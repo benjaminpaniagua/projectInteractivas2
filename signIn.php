@@ -70,12 +70,13 @@
                      "password"=> $pass,
                      "email"=> $_POST["email"]
                  ]);
+                        session_start();
                         $_SESSION['id']=$database->id();
                         $_SESSION['user']=$_POST["user"];
                         $_SESSION['isLoggedIn']=true;
                         $_SESSION['admin']=1;
  
-                 header("location:index.html");
+                 header("location:index.php");
              }
          }
      }
