@@ -135,6 +135,15 @@
 .tittle-WeAreHere{
     margin: 4rem;
 }
+.text-lognin{
+    text-align: center;
+}
+
+.text-signin{
+    margin: 0;
+    color: var(--clr-white);
+    font-size: 0.9rem;
+}
 
 @media (max-width: 835px) {
 
