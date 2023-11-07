@@ -22,7 +22,7 @@ const swiper = new Swiper('.swiper', {
             loop: false,
         },
 
-        1025: {
+        1024: {
             slidesPerView: 3,
             spaceBetween: 0,
             loop: false,
