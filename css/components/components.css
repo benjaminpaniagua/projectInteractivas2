@@ -1,0 +1,247 @@
+.nav-list-link {
+    text-decoration: none;
+    font-family: var(--ff-secondary);
+    font-size: clamp(1.10rem, 0.938rem, 1.125rem);
+    font-weight: 500;
+    padding: 1.1rem 0.5rem;
+    color: var(--clr-green);
+    gap: 1.5rem;
+}
+
+.nav-list-link:hover {
+    background-color: var(--clr-green);
+    color: var(--clr-white);
+}
+
+.btn-nav {
+    background: var(--clr-green-nav);
+    display: flex;
+    border-radius: 2rem;
+    padding: 0 0.5rem;
+    align-items: center;
+    gap: .5rem;
+    width: 6rem;
+    height: 2rem;
+    transition: all 0.2s ease-in;
+}
+
+.btn-nav:hover {
+    color: var(--clr-white);
+    background: var(--clr-green);
+}
+
+.submit-btn {
+    background: url(../../img/searchWhite.svg);
+    border: none;
+    background-repeat: no-repeat;
+    border-radius: .75rem;
+    background-position: center;
+    padding: .75rem 1.25rem;
+    cursor: pointer;
+}
+
+.btn--seeMore {
+    font-weight: 900;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    border: 2px solid var(--clr-greenBtn);
+    border-radius: 16px;
+    transition: all 0.2s ease-in;
+    overflow: hidden;
+    color: var(--clr-greenBtn);
+    margin-bottom: 8rem;
+    display: flex;
+    padding: .1rem 8rem;
+}
+
+.btn--seeMore:hover {
+    color: var(--clr-white);
+    background: var(--clr-green);
+    border: 2px solid var(--clr-green);
+}
+
+#search:hover {
+    width: 14rem;
+}
+
+.container--btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCart {
+    display: flex;
+    justify-content: space-around;
+}
+
+.img {
+    display: block;
+}
+
+.img-height {
+    height: 100%;
+    align-self: center;
+}
+
+.img-width {
+    width: 100%;
+}
+
+.img--cards {
+    margin: auto;
+}
+
+.image__saucer {
+    position: relative;
+    width: 80%;
+    left: 38px;
+    bottom: 115px;
+    transition: .3s ease;
+}
+
+.image__saucer:hover {
+    transform: translateY(-10%) scale(1.05);
+}
+
+.btn {
+    font-family: var(--ff-secondary);
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--clr-green);
+    display: flex;
+    background-color: var(--clr-white);
+    border-radius: 4rem;
+    padding: .5rem 8rem;
+    transition: all 0.2s ease-in;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    color: var(--clr-white);
+    background: var(--clr-green);
+}
+
+.btn-food {
+    font-weight: 900;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    background: var(--clr-greenBtn);
+    border-radius: 16px;
+    transition: all 0.2s ease-in;
+    color: var(--clr-white);
+    display: flex;
+    padding: .1rem 8rem;
+    margin-top: 2rem;
+    white-space: nowrap;
+    width: 100%;
+}
+
+
+.btn-food:hover {
+    color: var(--clr-white);
+    background: var(--clr-green);
+}
+
+.nav-bottom-link {
+    color: var(--clr-black);
+    font-size: var(--fs-nm);
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-rg);
+    text-decoration: none;
+}
+
+.btn-buy {
+    background-color: var(--clr-greenBtn);
+    color: var(--clr-white);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    width: 100%;
+}
+
+
+.phone-cart {
+    display: none;
+}
+
+.img-food {
+    height: min(43rem, 50rem, 55rem);
+    width: 100%;
+}
+
+@media (max-width: 1295px) {
+    .swiper {
+        width: 1070px;
+        height: 400px;
+        margin-bottom: 10rem;
+
+    }
+}
+
+@media (max-width: 1026px) {
+    .swiper {
+        width: 800px;
+        height: 400px;
+        margin-bottom: 10rem;
+    }
+}
+
+
+@media (max-width: 835px) {
+
+    .swiper {
+        width: 240px;
+        height: 400px;
+        margin-bottom: 10rem;
+    }
+
+    .btn {
+        color: var(--clr-green);
+        font-size: 2rem;
+        margin-left: 0rem;
+    }
+
+    .inputText {
+        height: 2rem;
+        background-color: var(--clr-white);
+        color: var(--clr-green);
+    }
+
+    .submit-btn {
+        background: url(../../img/searchGreen.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .btn-food {
+        /* margin: 2rem 1rem; */
+        padding: 0.5rem 6.8rem;
+    }
+
+    .phone-cart {
+        display: block;
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .img-food {
+        height: 100%;
+    }
+
+    .btn-food {
+        display: block;
+        margin-top: 2rem;
+        width: 100%;
+        text-align: center;
+    }
+    .img-weAreHere{
+        display: block;
+        height: 20rem;
+    }
+}

@@ -1,0 +1,179 @@
+.tittle {
+    text-align: center;
+    margin: 6rem 0rem;
+    font-size: var(--fs-lg);
+    font-family: var(--ff-secondary);
+    color: var(--clr-green);
+    content: none;
+}
+
+.text-tittle {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bld);
+    line-height: 1.5;
+    display: grid;
+    place-content: center;
+    margin: 0 auto;
+    color: var(--clr-green);
+}
+
+.text-tittle-menu {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-md);
+    line-height: 1.5;
+    display: grid;
+    place-content: center;
+    color: #17804D;
+    margin: 1rem 0rem;
+}
+
+.cartText {
+    color: var(--clr-white);
+}
+
+.inputText {
+    border: none;
+    background: var(--clr-green-nav);
+    color: var(--clr-white);
+    width: 100%;
+    font-size: 1rem;
+    height: 1rem;
+}
+
+.inputText:hover {
+    background: var(--clr-green);
+}
+
+.name__saucer {
+    text-align: center;
+    font-size: var(--fs-md);
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-bd);
+    top: 12rem;
+    margin: 0;
+}
+
+.persons {
+    text-align: center;
+    font-size: var(--fs-xs);
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-md);
+    margin: 30px 70px 30px 70px;
+    margin-bottom: 0;
+    border-bottom: 2px solid var(--clr-grey);
+    border-top: 2px solid var(--clr-grey);
+}
+
+.footer-title {
+    font-size: var(--fs-md);
+    font-family: var(--ff-main);
+    font-weight: 500;
+    margin-top: 3.5rem;
+}
+
+.footer-legal {
+    font-size: var(--fs-xs);
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Lalezar', cursive;
+    font-size: clamp(48px, 5rem, 6rem);
+    font-weight: 500;
+    color: var(--clr-white);
+    margin: 0 auto 1rem;
+    width: 16ch;
+}
+
+.activity-title {
+    font-size: var(--fs-md);
+    font-family: var(--ff-main);
+    font-weight: 500;
+    margin-top: 3.5rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    width: 10ch;
+}
+
+.price {
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bd);
+}
+
+.calification {
+    color: var(--clr-yellow);
+    width: 100%;
+    font-size: var(--fs-sm);
+    text-align: center;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.calification-food {
+    text-align: initial;
+    font-size: min(3rem, 2rem, 5rem);
+}
+
+.food-title {
+    font-family: var(--ff-secondary);
+    color: var(--clr-green);
+    font-size: clamp(39px, 2.5rem, 6rem);
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.food-text {
+    font-size: clamp(1rem, 1.3rem, 2rem);
+    font-weight: 500;
+    color: var(--clr-black);
+    width: clamp(39ch, 66%, 55ch);
+
+}
+
+.food-subtitle {
+    font-weight: 700;
+    font-size: clamp(1rem, 1rem, 2rem);
+}
+
+.food-subtitle-bottom {
+    font-size: clamp(1rem, 1.5rem, 3rem);
+}
+
+.margin {
+    margin: auto;
+}
+
+.tittle-WeAreHere{
+    margin: 4rem;
+}
+
+@media (max-width: 835px) {
+
+    .tittle {
+        margin: 6rem 0rem;
+
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        width: 10ch;
+    }
+
+    .food-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .food-subtitle-bottom {
+        font-size: 2rem;
+    }
+
+    .food-text {
+        font-size: 1.6rem;
+        width: 100%;
+        line-height: 2.5rem;
+        text-align: justify;
+    }
+}

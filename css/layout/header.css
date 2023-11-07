@@ -1,0 +1,31 @@
+.hero-container {
+    background: url(../../img/header.png);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    height: min(35rem, 50rem, 55rem);
+    width: 100%;
+    display: grid;
+    align-items: center;
+}
+
+.bg {
+    background: var(--clr-white);
+}
+
+header {
+    background: var(--clr-bg);
+}
+
+.food-thumb {
+    width: 100%;
+    overflow: hidden;
+}
+
+.food-container {
+    gap: 0rem;
+}
+
+.section-container {
+    margin: auto 1rem;
+}

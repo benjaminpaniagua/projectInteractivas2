@@ -1,0 +1,41 @@
+@import url('./abstracts/vars.css');
+
+@import url('./base/base.css');
+@import url('./base/typography.css');
+
+@import url('components/components.css');
+
+@import url('./layout/footer.css');
+@import url('./layout/forms.css');
+@import url('./layout/grid.css');
+@import url('./layout/header.css');
+@import url('./layout/navigation.css');
+
+
+.add {
+    cursor: pointer;
+}
+
+
+@media (max-width: 835px) {
+    .card--mini {
+        margin-bottom: 4rem;
+    }
+
+    .card--ourMenus {
+        margin-bottom: 4rem;
+    }
+
+    .btn-buy {
+        display: flex;
+        background-color: var(--clr-greenBtn);
+        color: var(--clr-white);
+        border-radius: 1rem;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}

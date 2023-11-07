@@ -1,0 +1,260 @@
+.container {
+    display: flex;
+}
+
+.logo-container {
+    background: var(--clr-green);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-size: cover;
+    height: 6rem;
+}
+
+.hero-menu {
+    background-position: center;
+    text-align: center;
+    height: min(100%, 50rem, 55rem);
+    width: 100%;
+    display: grid;
+    align-items: center;
+}
+
+.container__info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.container__infoWhyUs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.card--mini {
+    width: 280px;
+    height: 220px;
+    display: grid;
+    background: var(--clr-lightGreen);
+    border-radius: 2rem;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 6rem;
+}
+
+.card--ourMenus {
+    display: grid;
+    background: var(--clr-lightGreen);
+    border-radius: 2rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: 12rem;
+    width: 205px;
+}
+
+.card-img {
+    display: grid;
+    justify-content: center;
+    margin: auto;
+}
+
+.container__saucer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    margin-top: 2rem;
+}
+
+.container__information {
+    position: relative;
+    text-align: center;
+    bottom: 125px;
+}
+
+.card {
+    border-radius: 50px;
+    background: var(--clr-white);
+    opacity: 1;
+    width: 350px;
+    height: 456px;
+    margin-bottom: 6rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    text-align: center;
+    gap: 4rem;
+}
+
+.grid-template {
+    grid-template-columns: auto;
+    gap: 0;
+}
+
+.grid-price {
+    margin-left: 2rem;
+    gap: 5rem;
+}
+
+.food-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.no-justifi {
+    justify-content: initial;
+}
+
+.calification {
+    color: var(--clr-yellow);
+    width: 100%;
+    font-size: var(--fs-sm);
+    font-weight: bolder;
+    margin: 0;
+}
+
+.section-container {
+    display: flex;
+    align-items: start;
+    margin: auto;
+    flex-direction: column;
+}
+
+.cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-container-food {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.carusel {
+    display: none;
+}
+
+.menu-section {
+    display: grid;
+    margin-top: 5rem;
+}
+
+.img-container {
+    margin: auto;
+
+}
+
+.link-food {
+    text-decoration: none;
+    color: var(--clr-green-nav);
+}
+
+.linkf {
+    width: 350px;
+    height: 280px;
+    cursor: pointer;
+}
+
+.img--cards {
+    margin: auto;
+}
+
+.img-weAreHere {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1295px) {
+    .container__info {
+        display: none;
+    }
+
+    .carusel {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
+}
+
+@media (max-width: 835px) {
+
+    .menu-section {
+        display: grid;
+        margin-top: 12rem;
+    }
+
+    .container__info {
+        display: none;
+    }
+
+    .carusel {
+        display: block;
+    }
+
+    .footer-content {
+        grid-template-columns: auto;
+        text-align: center;
+    }
+
+    .card--mini {
+        margin-bottom: 4rem;
+    }
+
+    .card--ourMenus {
+        margin-bottom: 4rem;
+    }
+
+    .footer-content {
+        grid-template-columns: auto;
+        text-align: center;
+    }
+
+    .card--ourMenus {
+        margin-bottom: 4rem;
+    }
+
+    .card {
+        margin-top: 4rem;
+        margin-bottom: 6rem;
+    }
+
+    .section-container {
+        margin: auto 1rem;
+    }
+
+    .grid-template {
+        gap: 0px;
+    }
+
+    .grid {
+        justify-content: space-between;
+        display: grid;
+        width: 100%;
+    }
+    .cta-container-food {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .grid-price {
+        gap: 0;
+        margin-left: 0.5rem;
+    }
+
+    
+}
