@@ -7,9 +7,7 @@
     <title>Sultan Of Flavors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -181,81 +179,40 @@
     </div>
 
     <!-- footer -->
-<!-- footer -->
-<footer class="footer-container">
-        <div class="footer-content">
-            <section class="footer-section">
-                <img class="img-problem" src="./img/Group 103.svg" alt="">
-                <p class="activity-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non efficitur nunc,
-                    et consectetur erat. Sed at ultrices tortor, vel fermentum enim. Vestibulum tristique, ante vel
-                    fringilla sollicitudin, odio augue gravida magna, ac dictum massa metus vitae nulla. Donec a risus
-                    nec nulla tempus semper. Quisque vulputate ipsum auctor magna tincidunt aliquam.
-                </p>
-            </section>
-            <div class="footer-link">
-                <section class="footer-section">
-                    <h3 class="activity-title">Short Link</h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="menu.php">Menu</a></li>
-                        <li><a class="nav-bottom-link" href="#">Popular</a></li>
-                        <li><a class="nav-bottom-link" href="index.php">Home</a></li>
-                    </ul>
-                </section>
-                <section class="footer-section">
-                    <h3 class="activity-title">Help Link</h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="#">Privacy Policy </a></li>
-                        <li><a class="nav-bottom-link" href="#">Refund Policy</a></li>
-                        <li>
-                            <Buy class="nav-bottom-link" href="#">Terms & Conditions </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="footer-section">
-                    <h3 class="activity-title">Contact us </h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="#">(+961) 9012 7ft 782</a></li>
-                        <li><a class="nav-bottom-link" href="#">sultanofflavors@gmail.com</a></li>
-                        <li><a class="nav-bottom-link" href="#">Lebanon Baalbek-Hermel </a></li>
-                    </ul>
-                </section>
-            </div>
-        </div>
-        <p class="footer-legal">&copy; 2023. All rights reserved.</p>
-    </footer>
-    <!-- footer -->
+    <?php
+    include "./parts/nav.php"
+    ?>
     <!-- footer -->
 
     <script src="./js/main.js"> </script>
     <script>
+        let moveButton = document.getElementById('moveButton');
+        let image = document.getElementById('image');
+        let text = document.getElementById('text');
 
-let moveButton = document.getElementById('moveButton');
-let image = document.getElementById('image');
-let text = document.getElementById('text');
+        moveButton.addEventListener('click', () => {
+            let imageOrder = window.getComputedStyle(image).getPropertyValue('order');
+            let textOrder = window.getComputedStyle(text).getPropertyValue('order');
 
-moveButton.addEventListener('click', () => {
-    let imageOrder = window.getComputedStyle(image).getPropertyValue('order');
-    let textOrder = window.getComputedStyle(text).getPropertyValue('order');
-
-  image.style.order = textOrder;
-  text.style.order = imageOrder;
-});
+            image.style.order = textOrder;
+            text.style.order = imageOrder;
+        });
 
 
-let container = document.querySelector('.section-container');
-let description = document.querySelector('.section-container');
+        let container = document.querySelector('.section-container');
+        let description = document.querySelector('.section-container');
 
-moveButton.addEventListener('click', () => {
-    let currentAlignment = window.getComputedStyle(container).getPropertyValue('align-items');
+        moveButton.addEventListener('click', () => {
+            let currentAlignment = window.getComputedStyle(container).getPropertyValue('align-items');
 
-  if (currentAlignment === 'start') {
-    container.style.alignItems = 'end'; // Cambiar la alineación a la parte inferior (end)
-    container.style.textAlign = 'right';
-  } else {
-    container.style.alignItems = 'start'; // Cambiar la alineación a la parte superior (start)
-    container.style.textAlign = 'left';
-  }
-});
+            if (currentAlignment === 'start') {
+                container.style.alignItems = 'end'; // Cambiar la alineación a la parte inferior (end)
+                container.style.textAlign = 'right';
+            } else {
+                container.style.alignItems = 'start'; // Cambiar la alineación a la parte superior (start)
+                container.style.textAlign = 'left';
+            }
+        });
     </script>
 
 </body>

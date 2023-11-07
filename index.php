@@ -7,9 +7,7 @@
     <title>Sultan Of Flavors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -20,47 +18,14 @@
     <!-- nav, header -->
 
     <header>
-        <div class="logo-container">
-            <a href="index.php">
-                <img class="img img-problem" src="./img/logoVector.svg" alt="Logo">
-            </a>
-        </div>
 
         <!-- nav -->
-
-        <nav class="top-nav">
-            <input type="checkbox" id="menu" class="nav-input">
-            <div class="phone-nav">
-                <ul class="nav-list gap">
-                    <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
-                    <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
-                    <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
-                    <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
-                </ul>
-                <div id="phoneSearch" class="btn-nav btn-search">
-                    <input class="submit-btn" type="submit" value="">
-                    <input type="text" class="inputText" placeholder="">
-                </div>
-            </div>
-            <div class="cta-container">
-                <div id="search" class="btn-nav btn-search">
-                    <input class="submit-btn" type="submit" value="">
-                    <input type="text" class="inputText" placeholder="">
-                </div>
-                <div class="btn-nav">
-                    <img class="img" src="./img/shoppingCart.png" alt="shopping">
-                    <p class="cartText">Cart •</p>
-                    <p class="cartText">1</p>
-                </div>
-            </div>
-            <label for="menu" class="nav_label">
-                <img src="./img/nav.svg" alt="img">
-            </label>
-
-        </nav>
+        <?php
+        include "./parts/nav.php"
+        ?>
+        <!-- nav -->
 
         <!-- hero -->
-
         <div class="hero-container">
             <div>
                 <h1 class="hero-title">What would you like to order today?</h1>
@@ -198,57 +163,19 @@
             </div>
         </div>
     </section>
-    
+
     <!-- we are here -->
-    
+
     <section class="bg">
         <h2 class="tittle tittle-WeAreHere">We are here</h2>
         <img class="img-weAreHere" src="./img/location.png" alt="">
     </section>
 
     <!-- footer -->
-
-    <footer class="footer-container">
-        <div class="footer-content">
-            <section class="footer-section">
-                <img class="img-problem" src="./img/Group 103.svg" alt="">
-                <p class="activity-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non efficitur nunc,
-                    et consectetur erat. Sed at ultrices tortor, vel fermentum enim. Vestibulum tristique, ante vel
-                    fringilla sollicitudin, odio augue gravida magna, ac dictum massa metus vitae nulla. Donec a risus
-                    nec nulla tempus semper. Quisque vulputate ipsum auctor magna tincidunt aliquam.
-                </p>
-            </section>
-            <div class="footer-link">
-                <section class="footer-section">
-                    <h3 class="activity-title">Short Link</h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="menu.php">Menu</a></li>
-                        <li><a class="nav-bottom-link" href="#">Popular</a></li>
-                        <li><a class="nav-bottom-link" href="index.php">Home</a></li>
-                    </ul>
-                </section>
-                <section class="footer-section">
-                    <h3 class="activity-title">Help Link</h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="#">Privacy Policy </a></li>
-                        <li><a class="nav-bottom-link" href="#">Refund Policy</a></li>
-                        <li>
-                            <Buy class="nav-bottom-link" href="#">Terms & Conditions </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="footer-section">
-                    <h3 class="activity-title">Contact us </h3>
-                    <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="#">(+961) 9012 7ft 782</a></li>
-                        <li><a class="nav-bottom-link" href="#">sultanofflavors@gmail.com</a></li>
-                        <li><a class="nav-bottom-link" href="#">Lebanon Baalbek-Hermel </a></li>
-                    </ul>
-                </section>
-            </div>
-        </div>
-        <p class="footer-legal">&copy; 2023. All rights reserved.</p>
-    </footer>
+    <?php
+    include "./parts/footer.php"
+    ?>
+    <!-- footer -->
 </body>
 
 </html>
