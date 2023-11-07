@@ -210,7 +210,26 @@
     height: 100%;
 }
 
+.registation-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2rem;
+    margin-right: auto;
+}
 
+.options-container{
+    display: flex;
+    flex-direction: column;
+    background: var(--clr-green-nav);
+    width: 12rem;
+    gap: 1rem;
+}
+
+.information-part{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+}
 
 @media (max-width: 1295px) {
     .container__info {

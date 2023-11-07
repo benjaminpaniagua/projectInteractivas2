@@ -4,7 +4,7 @@
     $people= $database->select("tb_amount_people","*");
     $dishes= $database->select("tb_dish",[
         "tb_dish.id_dish",
-        "tb_dish.name",
+        "tb_dish.namel",
     ]);
 
 
@@ -21,16 +21,28 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <?php 
-    include "./parts/header.php";     
-    ?>
+<header>
+
+<!-- nav -->
+<?php
+include "./parts/nav.php"
+?>
+<!-- nav -->
+
+</header>
+
     <div class="registation-container">
-        <form method="post" action="admin.php">
-        <div class="information-container">
-        <div>
-        <input type="file" name="imagen">
-        </div>
-        <div>
+    <div class="options-container">
+            <input class="button button-admin margin-top" type="submit" name="find" value="Find Dish">
+            <input class="button button-admin" type="submit" name="register" value="Register Dish">
+            <input class="button button-admin" type="submit" name="list" value="List of Dishes">
+
+        </div> 
+        <form method="post" action="admin.php"> 
+        <div class="information-container">    
+        <h2 class="tittle-admin">Register dish</h2>
+        <h3 class="tittle-admin subtittle-admin">Information Part</h3>
+        <div class="information-part">
             <div class="input-box">
             <input id="name-english" type="text" name="name-english"
              required="">
@@ -42,17 +54,33 @@
             <label for="name-arabict">Name in Arabic</label>
             </div>
             <div class="input-box">
+            <input id="sname" type="text" name="sname"
+             required="">
+            <label for="sname">Short Name</label>
+            </div>
+            <div class="input-box">
+            <input id="sname-arabict" type="text" name="sname-arabict"
+             required="">
+            <label for="sname-arabict"> Short Name in Arabic</label>
+            </div>
+            <div class="input-box">
             <textarea rows="6" cols="40" name="description-english"
             required="" id="description-english"></textarea>
-            <label for="id">Description in English</label>
+            <label for="description-english">Description in English</label>
             </div>
             <div class="input-box">
             <textarea rows="6" cols="40" name="description-arabict"
             required="" id="description-arabict"></textarea>
-            <label for="id">Description in Arabic</label>
+            <label for="description-arabict">Description in Arabic</label>
+            </div>
+            <div class="input-box">
+            <input id="price" type="text" name="price"
+             required="">
+            <label for="price">Price</label>
             </div>
         </div>
-        <div>
+        <h3 class="tittle-admin subtittle-admin">Select Part</h3>
+        <div class="information-part">
         <div class="input-box">
                 <label class="label-section" for="categories">Categories</label>
                 <select name="state" id="categories" >
@@ -84,8 +112,8 @@
         </select>
         </div>
         <div class="input-box">
-                <label class="label-section" for="related-dish-one">Related Dish Two</label>
-                <select name="related-dish-one" id="related-dish-one" >
+                <label class="label-section" for="related-dish-two">Related Dish Two</label>
+                <select name="related-dish-two" id="related-dish-two" >
                 <?php 
                         foreach ($dishes as $dish) {
                             echo "<option value='".$dish["id_dish"]."'>".$dish["name"]."</option>";
@@ -94,8 +122,8 @@
         </select>
         </div>
         <div class="input-box">
-                <label class="label-section" for="related-dish-one">Related Dish Three</label>
-                <select name="related-dish-one" id="related-dish-one" >
+                <label class="label-section" for="related-dish-three">Related Dish Three</label>
+                <select name="related-dish-three" id="related-dish-three" >
                 <?php 
                         foreach ($dishes as $dish) {
                             echo "<option value='".$dish["id_dish"]."'>".$dish["name"]."</option>";
@@ -104,17 +132,19 @@
         </select>
         </div>
         </div>
-        <div>
+        <h3 class="tittle-admin subtittle-admin">Images</h3>
+        <div class="information-part">
+                <div>
+                    <input type="file" name="imagen">
+                </div>
+                <div>
+                    <input type="file" name="imagen">
+                </div>
         
-        <!-- 1. Nombre del platillo 2. Imagen del platillo 3. Categoría del platillo 4. Si es o no un platillo destacado 5. Descripción del platillo 6. Para cuantas personas  7. Precio del platillo 8. Platillos relacionados  -->
 
         </div>
-        <div class="options-container">
-            <input class="button button-forget" type="submit" name="find" value="Find food">
-            <input class="button button-forget" type="submit" name="add" value="Add food">
-            <input class="button button-forget" type="submit" name="modification" value="Modification food">
-            <input class="button button-forget" type="submit" name="delete" value="Delete food">
-        </div>    
+        </div> 
+        <input class="button button-forget" type="submit" name="add" value="Add food">  
         </form>
     </div>
 
