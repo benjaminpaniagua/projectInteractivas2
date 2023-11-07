@@ -9,11 +9,20 @@
         <nav class="top-nav">
             <input type="checkbox" id="menu" class="nav-input">
             <div class="phone-nav">
-                <ul class="nav-list gap">
-                    <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
-                    <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
-                    <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
-                    <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
+            <ul class="nav-list gap">
+                    <li><a class="nav-list-link" href="./index.php">Home</a></li>
+                    <li><a class="nav-list-link" href="#">Menu</a></li>
+                    <li><a class="nav-list-link" href="#">Popular</a></li>
+                    <?php 
+                    session_start();
+            if(isset($_SESSION['isLoggedIn'])){
+             echo '<li><a class="nav-list-link" href="./profile.php">'.$_SESSION['user'].'</a></li>';
+                echo '<li><a class="nav-list-link" href="./logout.php">Logout</a></li>';
+            }else{
+            echo '<li><a class="nav-list-link" href="./signIn.php">Sign in</a></li>';
+            }
+            ?>
+            
                 </ul>
                 <div id="phoneSearch" class="btn-nav btn-search">
                     <input class="submit-btn" type="submit" value="">
