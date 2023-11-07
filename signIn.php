@@ -33,25 +33,26 @@
             }
         }
 
-         if(isset($_POST["btn-sing-up"])){
-             //validate if user already registered
-             $validateUsername = $database->select("tb_users","*",[
-                 "username"=>$_POST["user"]
-             ]);
- 
-             if(count($validateUsername) > 0){
-                 $message = "This username is already registered";
-             }else{
-                 $database->insert("tb_users",[
-                     "fullname"=> $_POST["fullname"],
-                     "username"=> $_POST["user"],
-                     "password"=> $_POST["password"],
-                     "email"=> $_POST["email"]
-                 ]);
- 
-                 header("location:index.html");
-             }
-         }
+        if(isset($_POST["btn-sing-up"])){
+            //validate if user already registered
+            $validateUsername = $database->select("tb_users","*",[
+                "username"=>$_POST["user"]
+            ]);
+
+            if(count($validateUsername) > 0){
+                $message = "This username is already registered";
+            }else{
+               $pass=password_hash($_POST["password"],PASSWORD_DEFAULT,['cost'=> 10]);
+                $database->insert("tb_users",[
+                    "fullname"=> $_POST["fullname"],
+                    "username"=> $_POST["user"],
+                    "password"=> $pass,
+                    "email"=> $_POST["email"]
+                ]);
+
+                header("location:index.html");
+            }
+        }
      }
     
 
