@@ -39,3 +39,52 @@
         justify-content: center;
     }
 }
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex: 1;
+    /* padding: 10px; */ 
+    /* este padding hace que se vea mejor el txt pero la img no */
+    overflow: hidden;
+}
+
+#image {
+    order: 1;
+}
+
+#text {
+    order: 2;
+    padding: 10px;
+}
+
+
+.section-container {
+    display: flex;
+    align-items: start;
+    margin: auto;
+    flex-direction: column;
+}
+
+.food-container {
+    gap: 2rem;
+}
+
+
+
+@media (max-width: 835px) {
+    .image {
+        order: 2;
+        
+    }
+
+    #text {
+        order: 1;
+        /* justify-content: left; */
+    }
+}
+

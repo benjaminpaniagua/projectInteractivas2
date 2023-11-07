@@ -24,7 +24,7 @@
         <!-- logo -->
 
         <div class="logo-container">
-            <a href="index.html">
+            <a href="index.php">
             <img class="img img-problem" src="./img/logoVector.svg" alt="Logo">
         </a>
         </div>
@@ -34,8 +34,8 @@
             <input type="checkbox" id="menu" class="nav-input">
             <div class="phone-nav">
                 <ul class="nav-list gap">
-                    <li><a class="nav-list-link margin-menu" href="index.html">Home</a></li>
-                    <li><a class="nav-list-link margin-menu" href="menu.html">Menu</a></li>
+                    <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
+                    <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <li><a class="nav-list-link" href="#">Sign in</a></li>
                 </ul>
@@ -203,7 +203,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -220,7 +220,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -237,7 +237,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -254,7 +254,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -271,7 +271,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -288,7 +288,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -305,7 +305,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -322,7 +322,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -339,7 +339,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -356,7 +356,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -373,7 +373,7 @@
     <!-- btn--seeMore -->
 
     <div class="container--btn">
-        <a href="menu.html" class="btn--seeMore">See More</a>
+        <a href="menu.php" class="btn--seeMore">See More</a>
     </div>
 
     <!-- footer -->

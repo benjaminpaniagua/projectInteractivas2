@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project</title>
+    <title>Sultan Of Flavors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
 </head>
+
 <body>
     <!-- nav, header -->
 
     <header>
         <div class="logo-container">
-            <img class="img img-problem" src="./img/logoVector.svg" alt="Logo">
+            <a href="index.php">
+                <img class="img img-problem" src="./img/logoVector.svg" alt="Logo">
+            </a>
         </div>
         <nav class="top-nav">
             <input type="checkbox" id="menu" class="nav-input">
             <div class="phone-nav">
                 <ul class="nav-list gap">
-                    <li><a class="nav-list-link margin-menu" href="index.html">Home</a></li>
-                    <li><a class="nav-list-link margin-menu" href="menu.html">Menu</a></li>
+                    <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
+                    <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
                 </ul>
@@ -31,15 +37,17 @@
                 </div>
             </div>
             <div class="cta-container">
-                <a><img src="./img/translate.svg" alt=""></a>
+                <a id="moveButton">
+                    <img src="./img/translate.svg" alt="">
+                </a>
                 <div id="search" class="btn-nav btn-search">
                     <input class="submit-btn" type="submit" value="">
                     <input type="text" class="inputText" placeholder="">
                 </div>
                 <div class="btn-nav">
-                <img class="img" src="./img/cart.svg" alt="shopping">
-                <p  class="cartText">Cart •</p>
-                <p class="cartText" >1</p>
+                    <img class="img" src="./img/cart.svg" alt="shopping">
+                    <p class="cartText">Cart •</p>
+                    <p class="cartText">1</p>
                 </div>
 
             </div>
@@ -48,7 +56,7 @@
             </label>
 
         </nav>
-       
+
     </header>
 
     <!-- car that chases him -->
@@ -57,33 +65,43 @@
         <a href="#"><img src="./img/phone-car.svg" alt=""></a>
     </div>
 
+
     <!-- food container -->
 
     <div class="food-container">
-        <div class="food-thumb">
+        <div class="food-thumb item" id="image">
             <img class="img img-food" src="./img/food.png" alt="">
         </div>
-        <section class="section-container" >
+        <section class="section-container item" id="text">
             <h2 class="food-title">Hummus</h2>
             <p class="calification calification-food">★★★★★</p>
-            <p class="food-title food-text">Hummus, also spelled hommus or hummus, is a Middle Eastern dip, spread, or savory dish made from mashed cooked chickpeas mixed with tahini, lemon juice, and garlic. The standard garnish in the Middle East includes olive oil, a few whole chickpeas, parsley and paprika.</p>
-                <div class="grid">
-                    <p class="food-title food-subtitle">How many people</p>
-                    <p class="food-title food-subtitle">Price</p>
+            <p class="food-title food-text">Hummus, also spelled hommus or hummus, is a Middle Eastern dip, spread, or
+                savory dish made from mashed cooked chickpeas mixed with tahini, lemon juice, and garlic. The standard
+                garnish in the Middle East includes olive oil, a few whole chickpeas, parsley and paprika.</p>
+            <div class="grid">
+                <p class="food-title food-subtitle">How many people</p>
+                <p class="food-title food-subtitle">Price</p>
+            </div>
+            <div class="grid grid-price">
+                <div class="cta-container">
+                    <img src="./img/people.svg" alt="">
+                    <h3 class="food-title food-subtitle food-subtitle-bottom margin">1</h3>
                 </div>
-                <div class="grid grid-price">
-                    <div class="cta-container">
-                        <img src="./img/people.svg" alt="">
-                        <h3 class="food-title food-subtitle food-subtitle-bottom margin" >1</h3>
-                    </div>
-                    <h3 class="food-title food-subtitle food-subtitle-bottom margin">$15.00</h3>
-                </div>
+                <h3 class="food-title food-subtitle food-subtitle-bottom margin">$15.00</h3>
+            </div>
+
+            <form class="cta-container-food no-justifi">
+                <input class="form-amount" type="number" placeholder="Amount" name="points" min="1" step="1">
+            </form>
+
             <div class="cta-container-food no-justifi">
-                 
-                 <a class="btn-food" href="#">Add to Order</a>
-         </div>
+                <a class="btn-food" href="#">Add to Order</a>
+            </div>
         </section>
     </div>
+
+
+
 
     <!-- section best sellers -->
 
@@ -93,7 +111,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -110,7 +128,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -127,7 +145,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -144,7 +162,7 @@
             <img class="image__saucer" src="img/hummus.png" alt="Hummus">
             <div class="container__information">
                 <div class="linkf">
-                    <a class="link-class link-food" href="food.html">
+                    <a class="link-class link-food" href="food.php">
                         <h3 class="name__saucer">Hummus</h3>
                         <p class="calification">★★★★★</p>
                         <p class="persons">1 person</p>
@@ -159,12 +177,12 @@
     </section>
 
     <div class="container--btn">
-        <a href="menu.html" class="btn--seeMore">See More</a>
+        <a href="menu.php" class="btn--seeMore">See More</a>
     </div>
 
     <!-- footer -->
-
-    <footer class="footer-container">
+<!-- footer -->
+<footer class="footer-container">
         <div class="footer-content">
             <section class="footer-section">
                 <img class="img-problem" src="./img/Group 103.svg" alt="">
@@ -175,15 +193,15 @@
                 </p>
             </section>
             <div class="footer-link">
-                <sectio class="">
+                <section class="footer-section">
                     <h3 class="activity-title">Short Link</h3>
                     <ul class="nav-bottom-list">
-                        <li><a class="nav-bottom-link" href="menu.html">Menu</a></li>
+                        <li><a class="nav-bottom-link" href="menu.php">Menu</a></li>
                         <li><a class="nav-bottom-link" href="#">Popular</a></li>
-                        <li><a class="nav-bottom-link" href="index.html">Home</a></li>
+                        <li><a class="nav-bottom-link" href="index.php">Home</a></li>
                     </ul>
-                </sectio>
-                <sectio class="">
+                </section>
+                <section class="footer-section">
                     <h3 class="activity-title">Help Link</h3>
                     <ul class="nav-bottom-list">
                         <li><a class="nav-bottom-link" href="#">Privacy Policy </a></li>
@@ -192,19 +210,54 @@
                             <Buy class="nav-bottom-link" href="#">Terms & Conditions </a>
                         </li>
                     </ul>
-                </sectio>
-                <sectio class="">
+                </section>
+                <section class="footer-section">
                     <h3 class="activity-title">Contact us </h3>
                     <ul class="nav-bottom-list">
                         <li><a class="nav-bottom-link" href="#">(+961) 9012 7ft 782</a></li>
                         <li><a class="nav-bottom-link" href="#">sultanofflavors@gmail.com</a></li>
                         <li><a class="nav-bottom-link" href="#">Lebanon Baalbek-Hermel </a></li>
                     </ul>
-                </sectio>
+                </section>
             </div>
         </div>
         <p class="footer-legal">&copy; 2023. All rights reserved.</p>
     </footer>
+    <!-- footer -->
+    <!-- footer -->
+
+    <script src="./js/main.js"> </script>
+    <script>
+
+let moveButton = document.getElementById('moveButton');
+let image = document.getElementById('image');
+let text = document.getElementById('text');
+
+moveButton.addEventListener('click', () => {
+    let imageOrder = window.getComputedStyle(image).getPropertyValue('order');
+    let textOrder = window.getComputedStyle(text).getPropertyValue('order');
+
+  image.style.order = textOrder;
+  text.style.order = imageOrder;
+});
+
+
+let container = document.querySelector('.section-container');
+let description = document.querySelector('.section-container');
+
+moveButton.addEventListener('click', () => {
+    let currentAlignment = window.getComputedStyle(container).getPropertyValue('align-items');
+
+  if (currentAlignment === 'start') {
+    container.style.alignItems = 'end'; // Cambiar la alineación a la parte inferior (end)
+    container.style.textAlign = 'right';
+  } else {
+    container.style.alignItems = 'start'; // Cambiar la alineación a la parte superior (start)
+    container.style.textAlign = 'left';
+  }
+});
+    </script>
 
 </body>
+
 </html>

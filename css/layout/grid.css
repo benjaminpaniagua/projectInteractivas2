@@ -123,6 +123,10 @@
     margin: 0;
 }
 
+.calification-food {
+    font-size: min(3rem, 2rem, 5rem);
+}
+
 .section-container {
     display: flex;
     align-items: start;

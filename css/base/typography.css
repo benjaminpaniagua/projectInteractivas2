@@ -103,20 +103,6 @@
     font-weight: var(--fw-bd);
 }
 
-.calification {
-    color: var(--clr-yellow);
-    width: 100%;
-    font-size: var(--fs-sm);
-    text-align: center;
-    font-weight: bolder;
-    margin: 0;
-}
-
-.calification-food {
-    text-align: initial;
-    font-size: min(3rem, 2rem, 5rem);
-}
-
 .food-title {
     font-family: var(--ff-secondary);
     color: var(--clr-green);

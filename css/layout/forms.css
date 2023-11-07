@@ -1,0 +1,15 @@
+.form-amount {
+    margin-top: 2rem;
+    border: 0.25rem solid var(--clr-greenBtn);
+    background-color: transparent;
+    color: var(--clr-green);
+    font-weight: 900;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-sm);
+    padding: 0.2rem 3.17rem;
+    appearance: none;
+    border-radius: 1rem;
+    white-space: nowrap;
+    width: 100%;
+}
+
