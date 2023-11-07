@@ -21,6 +21,7 @@
                         $_SESSION['id']=$validateUsername[0]["id_user"];
                         $_SESSION['user']=$validateUsername[0]["username"];
                         $_SESSION['isLoggedIn']=true;
+                        $_SESSION['admin']=$validateUsername[0]["admin"];
 
                         header("location:index.php");
                     }else{
@@ -69,6 +70,10 @@
                      "password"=> $pass,
                      "email"=> $_POST["email"]
                  ]);
+                        $_SESSION['id']=$database->id();
+                        $_SESSION['user']=$_POST["user"];
+                        $_SESSION['isLoggedIn']=true;
+                        $_SESSION['admin']=1;
  
                  header("location:index.html");
              }
