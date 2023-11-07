@@ -2,57 +2,77 @@
      require_once './database.php';
      $message = "";
      $message_login='';
+     $registration=false;
  
     if($_POST){
- 
-        if(isset($_POST["btn-login"])){
-            //validate if user already logged in
-            session_start();
-            if(isset($_SESSION["isLoggedIn"])){
-                header("location:index.php");
-            }else{
-                //validate login
-                $validateUsername = $database->select("tb_users","*",[
-                   "email"=>$_POST["email"]
-               ]);
-               if(count($validateUsername) > 0){
-                   if($validateUsername[0]["password"]==$_POST["password"]){
-                       $_SESSION['id']=$validateUsername[0]["id_user"];
-                       $_SESSION['user']=$validateUsername[0]["username"];
-                       $_SESSION['isLoggedIn']=true;
-
-                       header("location:index.php");
-                   }else{
-                       $message_login = "Password incorrect";
-                   }
-               }else{
-                   $message_login = "User dont't find ";
-               }
-
-
-            }
-        }
-
-        if(isset($_POST["btn-sing-up"])){
-            //validate if user already registered
-            $validateUsername = $database->select("tb_users","*",[
-                "username"=>$_POST["user"]
-            ]);
-
-            if(count($validateUsername) > 0){
-                $message = "This username is already registered";
-            }else{
-               $pass=password_hash($_POST["password"],PASSWORD_DEFAULT,['cost'=> 10]);
-                $database->insert("tb_users",[
-                    "fullname"=> $_POST["fullname"],
-                    "username"=> $_POST["user"],
-                    "password"=> $pass,
-                    "email"=> $_POST["email"]
+        
+         if(isset($_POST["btn-login"])){
+             //validate if user already logged in
+             session_start();
+             if(isset($_SESSION["isLoggedIn"])){
+                 header("location:index.php");
+             }else{
+                 //validate login
+                 $validateUsername = $database->select("tb_users","*",[
+                    "email"=>$_POST["email"]
                 ]);
+                if(count($validateUsername) > 0){
+                    if(password_verify($_POST["password"],$validateUsername[0]['password'])){
+                        $_SESSION['id']=$validateUsername[0]["id_user"];
+                        $_SESSION['user']=$validateUsername[0]["username"];
+                        $_SESSION['isLoggedIn']=true;
 
-                header("location:index.html");
+                        header("location:index.php");
+                    }else{
+                        $message_login = "Password incorrect";
+                    }
+                }else{
+                    $message_login = "User dont't find ";
+                }
+
+
+             }
+         }
+         if(isset($_POST["confirmation"])){
+            $validateUsername = $database->select("tb_users","*",[
+                "email"=>$_POST["email"]
+            ]);
+            if(count($validateUsername) > 0){
+                $pass=password_hash($_POST["password"],PASSWORD_DEFAULT,['cost'=> 10]);
+                $database->update("tb_users",[
+                    "password"=>$pass,
+                ],[
+                    "id_user"=>$validateUsername[0]["id_user"]
+                ]);
+                $message_login = "Password change";
+                $registration=false;
+            }else{
+                $registration=true;
+                $message_login = "User dosen't exist";
             }
-        }
+
+         }
+ 
+         if(isset($_POST["btn-sing-up"])){
+             //validate if user already registered
+             $validateUsername = $database->select("tb_users","*",[
+                 "username"=>$_POST["user"]
+             ]);
+ 
+             if(count($validateUsername) > 0){
+                 $message = "This username is already registered";
+             }else{
+                $pass=password_hash($_POST["password"],PASSWORD_DEFAULT,['cost'=> 10]);
+                 $database->insert("tb_users",[
+                     "fullname"=> $_POST["fullname"],
+                     "username"=> $_POST["user"],
+                     "password"=> $pass,
+                     "email"=> $_POST["email"]
+                 ]);
+ 
+                 header("location:index.html");
+             }
+         }
      }
     
 
@@ -73,7 +93,7 @@
 
    <header>
     <div class="logo-container">
-        <a href="index.html">
+        <a href="index.php">
             <img class="img img-problem" src="./img/logoVector.svg" alt="Logo">
         </a>
     </div>
@@ -84,7 +104,7 @@
         <input type="checkbox" id="menu" class="nav-input">
         <div class="phone-nav">
             <ul class="nav-list gap">
-                <li><a class="nav-list-link margin-menu" href="index.html">Home</a></li>
+                <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
                 <li><a class="nav-list-link margin-menu" href="menu.html">Menu</a></li>
                 <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                 <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
@@ -137,15 +157,31 @@
 
         <div class="login">
         <form method="post" action="signIn.php">
-                <label for="checkbox" aria-hidden="true" class="login-label">Login</label> 
-                <p class="text-lognin"><?php echo $message_login; ?></p>
-                <input class="login-input" type="email" name="email"
-                placeholder="Email" required="">
-                <input class="login-input" type="Password" name="password"
-                placeholder="Password" required="">
-                <input class="login-input button"type="submit" name="btn-login" value="Login">
+            <?php 
+         if(isset($_POST["btn-forget"]) || $registration==true){
+            echo'<label for="checkbox" aria-hidden="true" class="login-label">Confirmation Email</label>'; 
+            echo'<p class="text-lognin">'.$message_login.'</p>';
+            echo'<input class="login-input" type="email" name="email"';
+            echo' placeholder="Email" required="">';
+            echo'<input class="login-input" type="Password" name="password"';
+            echo'placeholder="New password" required="">';
+            echo'<input class="login-input button button-forget" type="submit" name="confirmation" value="Confirmate email">';
+         }else{
+            echo'<label for="checkbox" aria-hidden="true" class="login-label">Login</label>'; 
+            echo'<p class="text-lognin">'.$message_login.'</p>';
+            echo'<input class="login-input" type="email" name="email"';
+            echo' placeholder="Email">';
+            echo'<input class="login-input" type="Password" name="password"';
+            echo'placeholder="Password">';
+            echo'<input class="login-input button button-forget" type="submit" name="btn-forget" value="forget my password">';
+            echo'<input class="login-input button"type="submit" name="btn-login" value="Login">';
+            
+         }
+           
+                
+            ?>
+                
         </form>
-
         </div>
         <!--login--->
 
