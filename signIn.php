@@ -5,34 +5,34 @@
  
     if($_POST){
  
-         if(isset($_POST["btn-login"])){
-             //validate if user already logged in
-             session_start();
-             if(isset($_SESSION["isLoggedIn"])){
-                 header("location:index.php");
-             }else{
-                 //validate login
-                 $validateUsername = $database->select("tb_users","*",[
-                    "email"=>$_POST["email"]
-                ]);
-                if(count($validateUsername) > 0){
-                    if($validateUsername[0]["password"]==$_POST["password"]){
-                        $_SESSION['id']=$validateUsername[0]["id_user"];
-                        $_SESSION['user']=$validateUsername[0]["username"];
-                        $_SESSION['isLoggedIn']=true;
+        if(isset($_POST["btn-login"])){
+            //validate if user already logged in
+            session_start();
+            if(isset($_SESSION["isLoggedIn"])){
+                header("location:index.php");
+            }else{
+                //validate login
+                $validateUsername = $database->select("tb_users","*",[
+                   "email"=>$_POST["email"]
+               ]);
+               if(count($validateUsername) > 0){
+                   if($validateUsername[0]["password"]==$_POST["password"]){
+                       $_SESSION['id']=$validateUsername[0]["id_user"];
+                       $_SESSION['user']=$validateUsername[0]["username"];
+                       $_SESSION['isLoggedIn']=true;
 
-                        header("location:index.php");
-                    }else{
-                        $message_login = "Password incorrect";
-                    }
-                }else{
-                    $message_login = "User dont't find ";
-                }
+                       header("location:index.php");
+                   }else{
+                       $message_login = "Password incorrect";
+                   }
+               }else{
+                   $message_login = "User dont't find ";
+               }
 
 
-             }
-         }
- 
+            }
+        }
+
          if(isset($_POST["btn-sing-up"])){
              //validate if user already registered
              $validateUsername = $database->select("tb_users","*",[
