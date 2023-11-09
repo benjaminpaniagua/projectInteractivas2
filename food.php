@@ -27,7 +27,21 @@
                     <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
                     <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
-                    <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
+                    <?php 
+                    session_start();
+                    if(isset($_SESSION['admin'])){
+                        if($_SESSION['admin']==2){
+                         echo '<li><a class="nav-list-link" href="./admin.php">Administration</a></li>';
+                        }
+                     }
+
+                    if(isset($_SESSION['isLoggedIn'])){
+                     echo '<li><a class="nav-list-link" href="./profile.php">'.$_SESSION['user'].'</a></li>';
+                     echo '<li><a class="nav-list-link" href="./logout.php">Logout</a></li>';
+                    }else{
+                     echo '<li><a class="nav-list-link" href="./signIn.php">Sign in</a></li>';
+                     }
+                    ?>
                 </ul>
                 <div id="phoneSearch" class="btn-nav btn-search">
                     <input class="submit-btn" type="submit" value="">
@@ -180,7 +194,7 @@
 
     <!-- footer -->
     <?php
-    include "./parts/nav.php"
+    include "./parts/footer.php"
     ?>
     <!-- footer -->
 

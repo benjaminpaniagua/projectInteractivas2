@@ -11,7 +11,7 @@
             <div class="phone-nav">
             <ul class="nav-list gap">
                     <li><a class="nav-list-link" href="./index.php">Home</a></li>
-                    <li><a class="nav-list-link" href="#">Menu</a></li>
+                    <li><a class="nav-list-link" href="./menu.php">Menu</a></li>
                     <li><a class="nav-list-link" href="#">Popular</a></li>
                     <?php 
                     session_start();
