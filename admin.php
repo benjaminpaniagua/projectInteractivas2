@@ -106,7 +106,7 @@ include "./parts/nav.php"
                 <select name="related-dish-one" id="related-dish-one" >
                 <?php 
                         foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["name"]."</option>";
+                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
                         }
                     ?>
         </select>
@@ -116,7 +116,7 @@ include "./parts/nav.php"
                 <select name="related-dish-two" id="related-dish-two" >
                 <?php 
                         foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["name"]."</option>";
+                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
                         }
                     ?>
         </select>
@@ -126,7 +126,7 @@ include "./parts/nav.php"
                 <select name="related-dish-three" id="related-dish-three" >
                 <?php 
                         foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["name"]."</option>";
+                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
                         }
                     ?>
         </select>
