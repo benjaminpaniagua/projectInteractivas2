@@ -135,22 +135,38 @@ include "./parts/nav.php"
         <h3 class="tittle-admin subtittle-admin">Images</h3>
         <div class="information-part">
                 <div>
-                    <input type="file" name="imagen">
+                    <label for="input-file" class="drop-area" id="drop-area" >
+                        <input type="file" accept="image/*" id="input-file" hidden>
+                        <div id="img-view" class="img-view">
+                        <img id="short-image" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
+                        <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
+                        <span>Upload any images from desktop</span>
+                        </div>
+                    </label> 
                 </div>
+
                 <div>
-                    <input type="file" name="imagen">
+                    <label for="input-recort" class="drop-area drop-area-recort"         id="drop-area-recort">
+                        <input type="file" accept="image/*" id="input-recort" hidden>
+                        <div id="img-view-recort" class="img-view img-view-recort">
+                        <img id="short-image-recort" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
+                        <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
+                        </div>
+                    </label> 
                 </div>
+              
         
 
         </div>
         </div> 
-        <input class="button button-forget" type="submit" name="add" value="Add food">  
+        <div class="admin-addcontainer ">
+             <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food"> 
+        </div>
+          
         </form>
     </div>
 
-
-
-
+<script src="./js/admin.js"></script>
     
 </body>
 </html>

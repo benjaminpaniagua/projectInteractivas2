@@ -347,6 +347,39 @@
 }
 
 
+.short-image{
+    height: 11rem;
+    width:8rem;
+}
+
+.img-view img{
+    width: 100px;
+    margin-top: 25px;
+}
+.img-view span{
+    display: block;
+    font-size: 12px;
+    color: var(--clr-greenBtn);
+    margin-top: 15px;
+}
+.p-file-recort{
+    width: 20ch;
+    position: relative;
+    bottom: 3rem;
+    left: 3.5rem;
+}
+
+.btn-add{
+    width: 8rem;
+    height: 3rem;
+    margin-right: 10%;
+}
+
+.information-part{
+    margin-right: 10%;
+}
+
+
 @media (max-width: 1295px) {
     .swiper {
         width: 1070px;
