@@ -32,138 +32,134 @@ include "./parts/nav.php"
 </header>
 
     <div class="registation-container">
-    <div class="options-container">
-            <input class="button button-admin margin-top" type="submit" name="find" value="Find Dish">
+        <div class="options-container">
             <input class="button button-admin" type="submit" name="register" value="Register Dish">
             <input class="button button-admin" type="submit" name="list" value="List of Dishes">
-
         </div> 
-        <form method="post" action="admin.php"> 
-        <div class="information-container">    
-        <h2 class="tittle-admin">Register dish</h2>
-        <h3 class="tittle-admin subtittle-admin">Information Part</h3>
-        <div class="information-part">
-            <div class="input-box">
-            <input id="name-english" type="text" name="name-english"
-             required="">
-            <label for="name-english">Name in English</label>
-            </div>
-            <div class="input-box">
-            <input id="name-arabict" type="text" name="name-arabict"
-             required="">
-            <label for="name-arabict">Name in Arabic</label>
-            </div>
-            <div class="input-box">
-            <input id="sname" type="text" name="sname"
-             required="">
-            <label for="sname">Short Name</label>
-            </div>
-            <div class="input-box">
-            <input id="sname-arabict" type="text" name="sname-arabict"
-             required="">
-            <label for="sname-arabict"> Short Name in Arabic</label>
-            </div>
-            <div class="input-box">
-            <textarea rows="6" cols="40" name="description-english"
-            required="" id="description-english"></textarea>
-            <label for="description-english">Description in English</label>
-            </div>
-            <div class="input-box">
-            <textarea rows="6" cols="40" name="description-arabict"
-            required="" id="description-arabict"></textarea>
-            <label for="description-arabict">Description in Arabic</label>
-            </div>
-            <div class="input-box">
-            <input id="price" type="text" name="price"
-             required="">
-            <label for="price">Price</label>
-            </div>
-        </div>
-        <h3 class="tittle-admin subtittle-admin">Select Part</h3>
-        <div class="information-part">
-        <div class="input-box">
-                <label class="label-section" for="categories">Categories</label>
-                <select name="state" id="categories" >
-                <?php 
-                        foreach ($categories as $category) {
-                            echo "<option value='".$category["id_category"]."'>".$category["name_categories"]."</option>";
-                        }
-                    ?>
-                </select>
-        </div>
-        <div class="input-box">
-                <label class="label-section" for="amount_people">Amount People</label>
-                <select name="state" id="amount_people" >
-                <?php 
-                        foreach ($people as $person) {
-                            echo "<option value='".$person["id_amount_people"]."'>".$person["name_amount_people"]."</option>";
-                        }
-                    ?>
-        </select>
-        </div>
-        <div class="input-box">
-                <label class="label-section" for="related-dish-one">Related Dish One</label>
-                <select name="related-dish-one" id="related-dish-one" >
-                <?php 
-                        foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
-                        }
-                    ?>
-        </select>
-        </div>
-        <div class="input-box">
-                <label class="label-section" for="related-dish-two">Related Dish Two</label>
-                <select name="related-dish-two" id="related-dish-two" >
-                <?php 
-                        foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
-                        }
-                    ?>
-        </select>
-        </div>
-        <div class="input-box">
-                <label class="label-section" for="related-dish-three">Related Dish Three</label>
-                <select name="related-dish-three" id="related-dish-three" >
-                <?php 
-                        foreach ($dishes as $dish) {
-                            echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
-                        }
-                    ?>
-        </select>
-        </div>
-        </div>
-        <h3 class="tittle-admin subtittle-admin">Images</h3>
-        <div class="information-part">
-                <div>
-                    <label for="input-file" class="drop-area" id="drop-area" >
-                        <input type="file" accept="image/*" id="input-file" hidden>
-                        <div id="img-view" class="img-view">
-                        <img id="short-image" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
-                        <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
-                        <span>Upload any images from desktop</span>
+            <form method="post" action="admin.php"> 
+                <div class="information-container">    
+                    <h2 class="tittle-admin">Register dish</h2>
+                    <h3 class="tittle-admin subtittle-admin">Information Part</h3>
+                        <div class="information-part">
+                            <div class="input-box">
+                                <input id="name-english" type="text" name="name-english"
+                                required="">
+                                <label for="name-english">Name in English</label>
+                            </div>
+                            <div class="input-box">
+                                <input id="name-arabict" type="text" name="name-arabict"
+                                required="">
+                                <label for="name-arabict">Name in Arabic</label>
+                            </div>
+                            <div class="input-box">
+                                <input id="sname" type="text" name="sname"
+                                required="">
+                                <label for="sname">Short Name</label>
+                            </div>
+                            <div class="input-box">
+                                <input id="sname-arabict" type="text" name="sname-arabict"
+                                required="">
+                                <label for="sname-arabict"> Short Name in Arabic</label>
+                            </div>
+                            <div class="input-box">
+                                <textarea rows="6" cols="40" name="description-english"
+                                required="" id="description-english"></textarea>
+                                <label for="description-english">Description in English</label>
+                            </div>
+                            <div class="input-box">
+                                <textarea rows="6" cols="40" name="description-arabict"
+                                required="" id="description-arabict"></textarea>
+                                <label for="description-arabict">Description in Arabic</label>
+                            </div>
+                            <div class="input-box">
+                                <input id="price" type="text" name="price"
+                                required="">
+                                <label for="price">Price</label>
+                            </div>
                         </div>
-                    </label> 
-                </div>
+                    <h3 class="tittle-admin subtittle-admin">Select Part</h3>
+                    <div class="information-part">
+                    <div class="input-box">
+                            <label class="label-section" for="categories">Categories</label>
+                            <select name="state" id="categories" >
+                            <?php 
+                                    foreach ($categories as $category) {
+                                        echo "<option value='".$category["id_category"]."'>".$category["name_categories"]."</option>";
+                                    }
+                                ?>
+                            </select>
+                    </div>
+                    <div class="input-box">
+                            <label class="label-section" for="amount_people">Amount People</label>
+                            <select name="state" id="amount_people" >
+                            <?php 
+                                    foreach ($people as $person) {
+                                        echo "<option value='".$person["id_amount_people"]."'>".$person["name_amount_people"]."</option>";
+                                    }
+                                ?>
+                    </select>
+                    </div>
+                    <div class="input-box">
+                            <label class="label-section" for="related-dish-one">Related Dish One</label>
+                            <select name="related-dish-one" id="related-dish-one" >
+                            <?php 
+                                    foreach ($dishes as $dish) {
+                                        echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
+                                    }
+                                ?>
+                    </select>
+                    </div>
+                    <div class="input-box">
+                            <label class="label-section" for="related-dish-two">Related Dish Two</label>
+                            <select name="related-dish-two" id="related-dish-two" >
+                            <?php 
+                                    foreach ($dishes as $dish) {
+                                        echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
+                                    }
+                                ?>
+                    </select>
+                    </div>
+                    <div class="input-box">
+                            <label class="label-section" for="related-dish-three">Related Dish Three</label>
+                            <select name="related-dish-three" id="related-dish-three" >
+                            <?php 
+                                    foreach ($dishes as $dish) {
+                                        echo "<option value='".$dish["id_dish"]."'>".$dish["namel"]."</option>";
+                                    }
+                                ?>
+                    </select>
+                    </div>
+                    </div>
+                    <h3 class="tittle-admin subtittle-admin">Images</h3>
+                    <div class="information-part">
+                        <div>
+                            <label for="input-file" class="drop-area" id="drop-area" >
+                                    <input type="file" accept="image/*" id="input-file" hidden>
+                                    <div id="img-view" class="img-view">
+                                    <img id="short-image" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
+                                    <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
+                                    <span>Upload any images from desktop</span>
+                                    </div>
+                                </label> 
+                            </div>
 
-                <div>
-                    <label for="input-recort" class="drop-area drop-area-recort"         id="drop-area-recort">
-                        <input type="file" accept="image/*" id="input-recort" hidden>
-                        <div id="img-view-recort" class="img-view img-view-recort">
-                        <img id="short-image-recort" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
-                        <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
+                            <div>
+                                <label for="input-recort" class="drop-area drop-area-recort"         id="drop-area-recort">
+                                    <input type="file" accept="image/*" id="input-recort" hidden>
+                                    <div id="img-view-recort" class="img-view img-view-recort">
+                                    <img id="short-image-recort" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
+                                    <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
+                                    </div>
+                                </label> 
+                            </div>
+                        
+                    </div>
+                        </div> 
+                        <div class="admin-addcontainer ">
+                            <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food"> 
                         </div>
-                    </label> 
-                </div>
-              
-        
-
-        </div>
-        </div> 
-        <div class="admin-addcontainer ">
-             <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food"> 
-        </div>
-          
-        </form>
+            
+            </form>
     </div>
 
 <script src="./js/admin.js"></script>
