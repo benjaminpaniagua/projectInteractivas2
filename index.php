@@ -1,3 +1,9 @@
+<?php
+require_once './database.php';
+
+// Reference: https://medoo.in/api/select
+$items = $database->select("tb_dish", "*");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,73 +54,28 @@
 
     <h2 class="tittle">Best Sellers</h2>
     <section class="container__saucer">
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <?php
+        foreach ($items as $key => $item) {
+            if ($key < 4) {
+                echo "<div class='card'>";
+                echo "<img class='image__saucer' src='img/hummus.png' alt='Hummus'>";
+                echo "<div class='container__information'>";
+                echo "<div class='linkf'>";
+                echo "<a class='link-class link-food' href='food.php'>";
+                echo "<h3 class='name__saucer'>" . $item["names"] . "</h3>";
+                echo "<p class='calification'>★★★★★</p>";
+                echo "<p class='persons'>Individual</p>";
+                echo "<div class='addCart'>";
+                echo "<p class='price'>$8</p>";
+                echo "<img class='add' src='./img/add.svg' alt='add'>";
+                echo "</div>";
+                echo "</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+        }
+        ?>
     </section>
 
     <!-- btn--seeMore -->
