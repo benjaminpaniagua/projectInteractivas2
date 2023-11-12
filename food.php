@@ -1,3 +1,34 @@
+<?php 
+    
+    require_once './database.php';
+    $item = $database->select("tb_dish",[
+        "[>]tb_amount_people"=>["id_amount_people" => "id_amount_people"],
+    ],[
+        "tb_dish.id_dish",
+        "tb_dish.namel",
+        "tb_dish.namel_ar",
+        "tb_dish.qualification",
+        "tb_dish.img_recorted",
+        "tb_dish.description",
+        "tb_dish.description_ar",
+        "tb_dish.price",
+        "tb_amount_people.number",
+    ],[
+        "id_dish"=>1
+    ]);
+    if($_POST){
+        if(isset($_POST["add-order"])){
+                $database->insert("tb_card",[
+                    "id_dish"=> $_POST["id_dish"],
+                    "id_user"=> $_POST['id_user'],
+                    "amount_dishes"=>$_POST["points"],
+                ]);
+            header("location:cart.php");  
+        }
+    }
+ 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +60,10 @@
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <?php 
                     session_start();
+                    if(isset($_SESSION["isLoggedIn"])){
+                    }else{
+                        header("location:signIn.php");
+                    }
                     if(isset($_SESSION['admin'])){
                         if($_SESSION['admin']==2){
                          echo '<li><a class="nav-list-link" href="./admin.php">Administration</a></li>';
@@ -78,37 +113,54 @@
     </div>
 
 
-    <!-- food container -->
+    <!-- food container   -->
 
     <div class="food-container">
-        <div class="food-thumb item" id="image">
-            <img class="img img-food" src="./img/food.png" alt="">
-        </div>
+        <?php 
+        echo ' <div class="food-thumb item" id="image">';
+        echo '<img class="img img-food" src="'.$item[0]['img_recorted'].'" alt="">';
+        echo '</div>';
+        ?>
         <section class="section-container item" id="text">
-            <h2 class="food-title">Hummus</h2>
-            <p class="calification calification-food">★★★★★</p>
-            <p class="food-title food-text">Hummus, also spelled hommus or hummus, is a Middle Eastern dip, spread, or
-                savory dish made from mashed cooked chickpeas mixed with tahini, lemon juice, and garlic. The standard
-                garnish in the Middle East includes olive oil, a few whole chickpeas, parsley and paprika.</p>
-            <div class="grid">
-                <p class="food-title food-subtitle">How many people</p>
-                <p class="food-title food-subtitle">Price</p>
-            </div>
-            <div class="grid grid-price">
-                <div class="cta-container">
-                    <img src="./img/people.svg" alt="">
-                    <h3 class="food-title food-subtitle food-subtitle-bottom margin">1</h3>
-                </div>
-                <h3 class="food-title food-subtitle food-subtitle-bottom margin">$15.00</h3>
-            </div>
+            <?php 
+                echo '<h2 class="food-title">'.$item[0]['namel'].'</h2>';
+                if($item[0]['qualification']==5) echo' <p class="calification calification-food">★★★★★</p>';
+                if($item[0]['qualification']==4) echo' <p class="calification calification-food">★★★★</p>';
+                if($item[0]['qualification']==3) echo' <p class="calification calification-food">★★★</p>';
+                if($item[0]['qualification']==2) echo' <p class="calification calification-food">★★</p>';
+                if($item[0]['qualification']==1) echo' <p class="calification calification-food">★</p>';
+                echo '<p class="food-title food-text">'.$item[0]['description'].'</p>';
+                echo '<div class="grid">';
+                echo '<p class="food-title food-subtitle">How many people</p>';
+                echo '<p class="food-title food-subtitle">Price</p>';
+                echo '</div>';
+                echo '<div class="grid grid-price">';
+                echo '<div class="cta-container">';
+                echo '<img src="./img/people.svg" alt="">';
+                echo '<h3 class="food-title food-subtitle food-subtitle-bottom margin">'.$item[0]['number'].'</h3>';
+                echo '</div>';
+                echo '<h3 class="food-title food-subtitle food-subtitle-bottom margin">'.$item[0]['price'].'</h3>';
+                echo ' </div>';
 
-            <form class="cta-container-food no-justifi">
-                <input class="form-amount" type="number" placeholder="Amount" name="points" min="1" step="1">
+            ?>
+          
+            <form method="post" action="food.php">
+                <div class="cta-container-food no-justifi">
+                <input class="form-amount" type="number" value="1" name="points" min="1" step="1">
+                <?php 
+                    echo "<input type='hidden' name='id_dish' value='".$item[0]["id_dish"]."'>";
+                    echo "<input type='hidden' name='id_user' value='".$_SESSION['id']."'>";
+
+                ?>
+                </div>
+                <div class="cta-container-food no-justifi">
+                <input type="submit" class="btn-food" name='add-order' value="Add to Order"></input>
+                </div>
             </form>
 
-            <div class="cta-container-food no-justifi">
-                <a class="btn-food" href="#">Add to Order</a>
-            </div>
+            
+            
+
         </section>
     </div>
 
