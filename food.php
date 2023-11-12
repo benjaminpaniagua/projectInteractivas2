@@ -16,6 +16,16 @@
     ],[
         "id_dish"=>1
     ]);
+    if($_POST){
+        if(isset($_POST["add-order"])){
+                $database->insert("tb_card",[
+                    "id_dish"=> $_POST["id_dish"],
+                    "id_user"=> $_POST['id_user'],
+                    "amount_dishes"=>$_POST["points"],
+                ]);
+            header("location:cart.php");  
+        }
+    }
  
 
 ?>
@@ -50,6 +60,10 @@
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <?php 
                     session_start();
+                    if(isset($_SESSION["isLoggedIn"])){
+                    }else{
+                        header("location:signIn.php");
+                    }
                     if(isset($_SESSION['admin'])){
                         if($_SESSION['admin']==2){
                          echo '<li><a class="nav-list-link" href="./admin.php">Administration</a></li>';
@@ -130,14 +144,23 @@
 
             ?>
           
-            <form method="post" action="food.php" class="cta-container-food no-justifi">
+            <form method="post" action="food.php">
+                <div class="cta-container-food no-justifi">
                 <input class="form-amount" type="number" value="1" name="points" min="1" step="1">
-                <input name="id" value="" hidden>
+                <?php 
+                    echo "<input type='hidden' name='id_dish' value='".$item[0]["id_dish"]."'>";
+                    echo "<input type='hidden' name='id_user' value='".$_SESSION['id']."'>";
+
+                ?>
+                </div>
+                <div class="cta-container-food no-justifi">
+                <input type="submit" class="btn-food" name='add-order' value="Add to Order"></input>
+                </div>
             </form>
 
-            <div class="cta-container-food no-justifi">
-                <a class="btn-food" href="#">Add to Order</a>
-            </div>
+            
+            
+
         </section>
     </div>
 
