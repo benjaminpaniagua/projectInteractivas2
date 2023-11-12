@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="stylesheet" href="./css/main.css">
     <script src="./js/main.js" async></script>
     <title>Sultan of Flavors </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -25,20 +26,18 @@
 
 
             <div class="cart-items">
-                <div class="cart-item">
+            <div class="cart-item">
                     <img src="./img/hummus.png" alt="hummus" width="80px" class="cart-img">
                     <div class="cart-item-details">
                         <span class="cart-item-tittle">Hummus</span>
                         <div class="selector-amount">
-                            <i class="fa-solid fa-minus minimus-amount i"></i>
+                            <img class="cart-btn" src="./img/less.svg" alt="less">
                             <input type="text" value="1" class="cart-item-amount" disabled>
-                            <i class="fa-solid fa-plus add-amount i"></i>
+                            <img class="cart-btn" src="./img/plus.svg" alt="less">
                         </div>
-                        <span class="carrito-item-precio">$15.000,00</span>
+                        <span class="carrito-item-precio">$9.9</span>
                     </div>
-                    <span class="btn-delete">
-                        <i class="fa-solid fa-trash i"></i>
-                    </span>
+                        <img class="cart-btn" src="./img/trash.svg" alt="">
                 </div>
 
                 <div class="cart-item">
@@ -46,15 +45,13 @@
                     <div class="cart-item-details">
                         <span class="cart-item-tittle">Hummus</span>
                         <div class="selector-amount">
-                            <i class="fa-solid fa-minus minimus-amount i"></i>
+                            <img class="cart-btn" src="./img/less.svg" alt="less">
                             <input type="text" value="1" class="cart-item-amount" disabled>
-                            <i class="fa-solid fa-plus add-amount i"></i>
+                            <img class="cart-btn" src="./img/plus.svg" alt="less">
                         </div>
-                        <span class="carrito-item-precio">$15.000,00</span>
+                        <span class="carrito-item-precio">$9.9</span>
                     </div>
-                    <span class="btn-delete">
-                        <i class="fa-solid fa-trash i"></i>
-                    </span>
+                        <img class="cart-btn" src="./img/trash.svg" alt="">
                 </div>
 
                 <div class="cart-item">
@@ -62,15 +59,13 @@
                     <div class="cart-item-details">
                         <span class="cart-item-tittle">Hummus</span>
                         <div class="selector-amount">
-                            <i class="fa-solid fa-minus minimus-amount i"></i>
+                            <img class="cart-btn" src="./img/less.svg" alt="less">
                             <input type="text" value="1" class="cart-item-amount" disabled>
-                            <i class="fa-solid fa-plus add-amount i"></i>
+                            <img class="cart-btn" src="./img/plus.svg" alt="less">
                         </div>
-                        <span class="carrito-item-precio">$15.000,00</span>
+                        <span class="carrito-item-precio">$9.9</span>
                     </div>
-                    <span class="btn-delete">
-                        <i class="fa-solid fa-trash i"></i>
-                    </span>
+                        <img class="cart-btn" src="./img/trash.svg" alt="">
                 </div>
 
             </div>
@@ -78,10 +73,10 @@
                 <div class="row">
                     <strong>Tu Total</strong>
                     <span class="cart-price-total">
-                        $120.000,00
+                        $120
                     </span>
                 </div>
-                <button class="btn-pay">Pay <i class="fa-solid fa-bag-shopping"></i> </button>
+                <button class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>
             </div>
         </div>
 

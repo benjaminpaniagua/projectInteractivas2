@@ -185,3 +185,8 @@
     width: 100%;
     text-align: left;
 }
+
+.cart-btn {
+    width: 24px;
+    height: 24px;
+}
