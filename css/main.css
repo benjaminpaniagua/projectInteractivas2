@@ -49,7 +49,6 @@
 .item {
     flex: 1;
     /* padding: 10px; */ 
-    /* este padding hace que se vea mejor el txt pero la img no */
     overflow: hidden;
 }
 
@@ -88,3 +87,65 @@
     }
 }
 
+.cart-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-container {
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.info-container img {
+    max-width: 140px;
+    border-radius: 4px;
+}
+
+.info-container-info {
+    flex-grow: 1;
+}
+
+.info-container input[type="number"] {
+    width: 50px;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.info-container button {
+    background-color: #ff6961;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.info-container button:hover {
+    background-color: #d9534f;
+}
+
+/* Media Query para pantallas más pequeñas */
+@media screen and (max-width: 600px) {
+    .info-container {
+        flex-direction: column;
+    }
+
+    .info-container img {
+        margin-bottom: 10px;
+    }
+
+    .info-container input[type="number"] {
+        margin-top: 10px;
+    }
+}

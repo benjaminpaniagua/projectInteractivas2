@@ -108,10 +108,11 @@ $items = $database->select("tb_dish", "*");
 
                 <!-- If we need navigation buttons -->
 
-
+    
             </div>
         </div>
 
+        
         <!-- container__info -->
 
         <div class="container__info">
@@ -197,6 +198,8 @@ foreach ($items as $item) {
 }
 ?>
 
+
+
     
     </section>
 
@@ -210,13 +213,15 @@ foreach ($items as $item) {
     <?php
     include "./parts/footer.php"
     ?>
+
+    <img src="" alt="">
     <!-- footer -->
-
     <!-- script -->
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script src="./js/main.js"> </script>
+    <!-- script -->
+
 </body>
 
 </html>
