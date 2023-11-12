@@ -6,72 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
-    <script src="./js/main.js" async></script>
     <title>Sultan of Flavors </title>
 </head>
 
 <body>
     <section class="container-cart">
-        <!-- Contenedor de elementos -->
-        <!-- <div class="container-items"> -->
-        <!-- <div class="item">
-                <span class="titulo-item">Box Engasse</span>
-                <img src="img/boxengasse.png" alt="" class="img-item">
-                <span class="precio-item">$15.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">English Horse</span>
-                <img src="img/englishrose.png" alt="" class="img-item">
-                <span class="precio-item">$25.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Knock Nap</span>
-                <img src="img/knocknap.png" alt="" class="img-item">
-                <span class="precio-item">$35.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">La Night</span>
-                <img src="img/lanight.png" alt="" class="img-item">
-                <span class="precio-item">$18.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Silver All</span>
-                <img src="img/silverall.png" alt="" class="img-item">
-                <span class="precio-item">$32.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Skin Glam</span>
-                <img src="img/skinglam.png" alt="" class="img-item">
-                <span class="precio-item">$18.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Midimix</span>
-                <img src="img/midimix.png" alt="" class="img-item">
-                <span class="precio-item">$54.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Sir Blue</span>
-                <img src="img/sirblue.png" alt="" class="img-item">
-                <span class="precio-item">$32.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Middlesteel</span>
-                <img src="img/middlesteel.png" alt="" class="img-item">
-                <span class="precio-item">$42.800</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div> -->
-        <!-- </div>  -->
-
         <!-- cart -->
         <div class="cart">
             <div class="header-cart">
@@ -144,5 +87,9 @@
 
     </section>
 </body>
+<script>
 
+
+    
+</script>
 </html>
