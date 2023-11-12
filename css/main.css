@@ -15,7 +15,9 @@
 .add {
     cursor: pointer;
 }
-
+.margin-top{
+    margin-top: 3.5rem;
+}
 
 @media (max-width: 835px) {
     .card--mini {
