@@ -1,3 +1,30 @@
+<?php 
+    require_once './database.php';
+
+    $items = $database->select("tb_card",[
+        "[>]tb_dish"=>["id_dish" => "id_dish"],
+    ],[
+        "tb_dish.namel",
+        "tb_dish.img_recorted",
+        "tb_dish.price",
+        "tb_card.amount_dishes",
+    ]);
+
+
+    if($_POST){
+        if(isset($_POST["add-order"])){
+                $database->insert("tb_card",[
+                    "id_dish"=> $_POST["id_dish"],
+                    "id_user"=> $_POST['id_user'],
+                    "amount_dishes"=>$_POST["points"],
+                ]);
+            header("location:cart.php");  
+        }
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,58 +47,34 @@
                 <h2>Cart</h2>
             </div>
 
-
-
             <div class="cart-items">
-            <div class="cart-item">
-                    <img src="./img/hummus.png" alt="hummus" width="80px" class="cart-img">
-                    <div class="cart-item-details">
-                        <span class="cart-item-tittle">Hummus</span>
-                        <div class="selector-amount">
-                            <img class="cart-btn" src="./img/less.svg" alt="less">
-                            <input type="text" value="1" class="cart-item-amount" disabled>
-                            <img class="cart-btn" src="./img/plus.svg" alt="less">
-                        </div>
-                        <span class="carrito-item-precio">$9.9</span>
-                    </div>
-                        <img class="cart-btn" src="./img/trash.svg" alt="">
-                </div>
+            <?php 
+            foreach($items as $index=>$item){
+            echo' <div class="cart-item">';
+            echo' <img src="'.$item['img_recorted'].'" alt="hummus" width="80px" class="cart-img">';
+            echo' <div class="cart-item-details">';
+            echo'  <span class="cart-item-tittle">'.$item['namel'].'</span>';
+            echo'    <div class="selector-amount">';
+            echo'       <input id="menu-item'.$index.'" item-price="'.$item['price'].'" type="number" value="'.$item['amount_dishes'].'" class="" oninput="updateSubtotal()"> ';
+            echo'   </div>';
+            echo'   <span class="carrito-item-precio">$'.$item['price'].'</span>';
+            echo'</div>';
+            echo' <span class="btn-delete">';
+            echo'    <img class="cart-btn" src="./img/trash.svg" alt="">';
+            echo' </span>';
+            echo' </div>';
+        }
+    
+    
+    ?>
+               
 
-                <div class="cart-item">
-                    <img src="./img/hummus.png" alt="hummus" width="80px" class="cart-img">
-                    <div class="cart-item-details">
-                        <span class="cart-item-tittle">Hummus</span>
-                        <div class="selector-amount">
-                            <img class="cart-btn" src="./img/less.svg" alt="less">
-                            <input type="text" value="1" class="cart-item-amount" disabled>
-                            <img class="cart-btn" src="./img/plus.svg" alt="less">
-                        </div>
-                        <span class="carrito-item-precio">$9.9</span>
-                    </div>
-                        <img class="cart-btn" src="./img/trash.svg" alt="">
-                </div>
-
-                <div class="cart-item">
-                    <img src="./img/hummus.png" alt="hummus" width="80px" class="cart-img">
-                    <div class="cart-item-details">
-                        <span class="cart-item-tittle">Hummus</span>
-                        <div class="selector-amount">
-                            <img class="cart-btn" src="./img/less.svg" alt="less">
-                            <input type="text" value="1" class="cart-item-amount" disabled>
-                            <img class="cart-btn" src="./img/plus.svg" alt="less">
-                        </div>
-                        <span class="carrito-item-precio">$9.9</span>
-                    </div>
-                        <img class="cart-btn" src="./img/trash.svg" alt="">
-                </div>
 
             </div>
             <div class="cart-total">
                 <div class="row">
                     <strong>Tu Total</strong>
-                    <span class="cart-price-total">
-                        $120
-                    </span>
+                    <p id="total"></p>
                 </div>
                 <button class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>
             </div>
