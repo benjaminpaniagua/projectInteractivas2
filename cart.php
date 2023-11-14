@@ -67,7 +67,7 @@
                         </div>
                         <span class="carrito-item-precio">$15.000,00</span>
                     </div>
-                    <span class="btn-delete">
+                    <span class="btn-delete" id='btn-delete'>
                         <i class="fa-solid fa-trash i"></i>
                     </span>
                 </div>
@@ -87,9 +87,8 @@
 
     </section>
 </body>
-<script>
-
-
-    
+<script src="./js/cart.js">
+    init();
 </script>
+
 </html>

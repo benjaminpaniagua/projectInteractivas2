@@ -148,7 +148,7 @@ include "./parts/nav.php"
                                     <input type="file" accept="image/*" id="input-recort" hidden>
                                     <div id="img-view-recort" class="img-view img-view-recort">
                                     <img id="short-image-recort" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
-                                    <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
+                                    <p id="p-file-recort" class="p-file-recort admin-text">Click here to upload image</p>
                                     </div>
                                 </label> 
                             </div>
