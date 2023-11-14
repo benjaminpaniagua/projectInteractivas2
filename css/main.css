@@ -15,7 +15,8 @@
 .add {
     cursor: pointer;
 }
-.margin-top{
+
+.margin-top {
     margin-top: 3.5rem;
 }
 
@@ -50,7 +51,7 @@
 
 .item {
     flex: 1;
-    /* padding: 10px; */ 
+    /* padding: 10px; */
     overflow: hidden;
 }
 
@@ -80,7 +81,7 @@
 @media (max-width: 835px) {
     .image {
         order: 2;
-        
+
     }
 
     #text {
@@ -150,4 +151,42 @@
     .info-container input[type="number"] {
         margin-top: 10px;
     }
+}
+
+
+
+/* dish list */
+
+.dish-container {
+    width: 90%;
+    background: var(--clr-white);
+    border-radius: 2rem;
+}
+
+.dish-tbl {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dish-list {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.dish-tittle {
+    font-family: var(--ff-main);
+    font-size: 3rem;
+    color: var(--clr-greenBtn);
+    border-bottom: 2px solid var(--clr-greenBtn);
+    width: 100%;
+    text-align: left;
+}
+
+.cart-btn {
+    width: 24px;
+    height: 24px;
 }

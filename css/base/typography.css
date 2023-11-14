@@ -132,32 +132,34 @@
     margin: auto;
 }
 
-.tittle-WeAreHere{
+.tittle-WeAreHere {
     margin: 4rem;
 }
-.text-lognin{
+
+.text-lognin {
     text-align: center;
 }
 
-.text-signin{
+.text-signin {
     margin: 0;
     color: var(--clr-white);
     font-size: 0.9rem;
 }
 
-.tittle-admin{
+.tittle-admin {
     font-family: var(--ff-main);
     font-size: 3rem;
     color: var(--clr-greenBtn);
     border-bottom: 2px solid var(--clr-greenBtn);
     width: 90%;
 }
-.subtittle-admin{
-    font-size: 2rem;
-    border-bottom:none;
 
+.subtittle-admin {
+    font-size: 2rem;
+    border-bottom: none;
 }
-.admin-text{
+
+.admin-text {
     font-family: var(--ff-secondary);
     font-weight: 600;
     font-size: 1rem;

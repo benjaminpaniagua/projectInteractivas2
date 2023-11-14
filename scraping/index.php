@@ -76,12 +76,14 @@
 // for ($i = 0; $i < 20; $i++) {
 //     if ($i == 7 || $i == 8 || $i == 9 || $i == 10 || $i == 12 || $i == 13 || $i == 14 || $i == 15 || $i == 18 || $i == 19) {
 //     } else {
+//         $id_amount_people = rand(1, 3);
 //         $rand = rand(1 * 10, 70 * 10) / 10;
 //         $database->insert("tb_dish", [
 //             "id_category" => $id_category,
 //             "namel" => $menu_item_names[$i],
 //             "description" => $menu_item_descriptions[$i],
-//             "img_recorted" => $image_urls[$i],
+//             "img" => $image_urls[$i],
+//             "id_amount_people" => $id_amount_people,
 //             "price" => $rand
 //         ]);
 //     }
@@ -107,6 +109,7 @@
 
 // $menu_items = 20;
 // $id_category = 2;
+// $id_amount_people = rand(1, 4);
 
 // $items = file_get_html($link);
 
@@ -173,7 +176,8 @@
 //             "id_category" => $id_category,
 //             "namel" => $menu_item_names[$i],
 //             "description" => $menu_item_descriptions[$i],
-//             "img_recorted" => $image_urls[$i],
+//             "img" => $image_urls[$i],
+//             "id_amount_people" => $id_amount_people,
 //             "price" => $rand
 //         ]);
 //     }
@@ -199,6 +203,7 @@
 
 // $menu_items = 20;
 // $id_category = 3;
+// $id_amount_people = rand(1, 2);
 
 // $items = file_get_html($link);
 
@@ -265,7 +270,8 @@
 //             "id_category" => $id_category,
 //             "namel" => $menu_item_names[$i],
 //             "description" => $menu_item_descriptions[$i],
-//             "img_recorted" => $image_urls[$i],
+//             "img" => $image_urls[$i],
+//             "id_amount_people" => $id_amount_people,
 //             "price" => $rand
 //         ]);
 //     }
@@ -291,6 +297,7 @@
 
 // $menu_items = 6;
 // $id_category = 4;
+// $id_amount_people = 1;
 
 // $items = file_get_html($link);
 
@@ -357,7 +364,8 @@
 //             "id_category" => $id_category,
 //             "namel" => $menu_item_names[$i],
 //             "description" => $menu_item_descriptions[$i],
-//             "img_recorted" => $image_urls[$i],
+//             "img" => $image_urls[$i],
+//             "id_amount_people" => $id_amount_people,
 //             "price" => $rand
 //         ]);
 //     }
