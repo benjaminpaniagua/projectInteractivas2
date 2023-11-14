@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="cta-container">
-                <a id="moveButton" onclick=getTranslation()>
+                <a id="moveButton">
                     <img src="./img/translate.svg" alt="">
                 </a>
                 <div id="search" class="btn-nav btn-search">
@@ -123,13 +123,13 @@
         ?>
         <section class="section-container item" id="text">
             <?php 
-                echo '<h2 class="food-title" id="title">'.$item[0]['namel'].'</h2>';
+                echo '<h2 class="food-title">'.$item[0]['namel'].'</h2>';
                 if($item[0]['qualification']==5) echo' <p class="calification calification-food">★★★★★</p>';
                 if($item[0]['qualification']==4) echo' <p class="calification calification-food">★★★★</p>';
                 if($item[0]['qualification']==3) echo' <p class="calification calification-food">★★★</p>';
                 if($item[0]['qualification']==2) echo' <p class="calification calification-food">★★</p>';
                 if($item[0]['qualification']==1) echo' <p class="calification calification-food">★</p>';
-                echo '<p class="food-title food-text" id="description">'.$item[0]['description'].'</p>';
+                echo '<p class="food-title food-text">'.$item[0]['description'].'</p>';
                 echo '<div class="grid">';
                 echo '<p class="food-title food-subtitle">How many people</p>';
                 echo '<p class="food-title food-subtitle">Price</p>';
@@ -148,7 +148,7 @@
                 <div class="cta-container-food no-justifi">
                 <input class="form-amount" type="number" value="1" name="points" min="1" step="1">
                 <?php 
-                    echo "<input type='hidden' id='id_dish' name='id_dish' value='".$item[0]["id_dish"]."'>";
+                    echo "<input type='hidden' name='id_dish' value='".$item[0]["id_dish"]."'>";
                     echo "<input type='hidden' name='id_user' value='".$_SESSION['id']."'>";
 
                 ?>
@@ -250,60 +250,19 @@
     ?>
     <!-- footer -->
 
-    <!-- <script src="./js/main.js"> </script> -->
+    <script src="./js/main.js"> </script>
     <script>
         let moveButton = document.getElementById('moveButton');
         let image = document.getElementById('image');
         let text = document.getElementById('text');
-        let requestLang='AR';
 
-       
         moveButton.addEventListener('click', () => {
             let imageOrder = window.getComputedStyle(image).getPropertyValue('order');
             let textOrder = window.getComputedStyle(text).getPropertyValue('order');
+
             image.style.order = textOrder;
             text.style.order = imageOrder;
         });
-
-
-        function switchLang(){
-            if(requestLang=='EN') requestLang = 'AR';
-            else requestLang='EN';
-           // document.getElementById('lang').innerText = requestLang;
-        }
-
-        function getTranslation(){
-        let info={
-            id_dish: document.getElementById('id_dish').value,
-            language: requestLang
-        };
-        
-        //fetch
-        fetch('http://localhost/projectInteractivas2/language.php',{
-            method:'POST',
-            mode: "same-origin",
-            credentials:"same-origin",
-            headers:{
-                'Accept':'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(info)
-        })
-        .then(response => response.json())
-        .then(data => {
-            switchLang();
-            console.log(data);
-            document.getElementById('title').innerText=data.name;
-            document.getElementById('description').innerText=data.description; 
-            // console.log(data.name);
-            // console.log(data.description);
-        })
-        .catch(err=>console.log('erros:'+ err))
-
-
-        }
-        
-
 
 
         let container = document.querySelector('.section-container');
@@ -319,7 +278,6 @@
                 container.style.alignItems = 'start'; // Cambiar la alineación a la parte superior (start)
                 container.style.textAlign = 'left';
             }
-      
         });
     </script>
 
