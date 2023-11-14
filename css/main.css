@@ -153,8 +153,6 @@
     }
 }
 
-
-
 /* dish list */
 
 .dish-container {
@@ -189,4 +187,23 @@
 .cart-btn {
     width: 24px;
     height: 24px;
+}
+
+.container-add-dish {
+    margin-top: 20px;
+}
+
+/* radio */
+.label-radio {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.radio-options {
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.radio-label {
+    margin-left: 5px;
 }
