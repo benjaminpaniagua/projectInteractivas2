@@ -19,6 +19,23 @@
 .margin-top {
     margin-top: 3.5rem;
 }
+.direction-input{
+    width: 90%;
+    height: 2.2rem;
+    background-color: var(--clr-white);
+    border: 2px solid var(--clr-greenBtn);
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+
+}
+
+
+.shake-left-right{animation:shake-left-right 1.5s linear 1 both } @keyframes shake-left-right{0%,100%{transform:rotate(0deg);transform-origin:50% 50%}10%{transform:rotate(8deg)}20%,40%,60%{transform:rotate(-10deg)}30%,50%,70%{transform:rotate(10deg)}80%{transform:rotate(-8deg)}90%{transform:rotate(8deg)}}
+
 
 @media (max-width: 835px) {
     .card--mini {

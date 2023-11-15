@@ -63,7 +63,7 @@
                     echo' <div class="cart-item-details">';
                     echo'  <span class="cart-item-tittle">'.$item['namel'].'</span>';
                     echo'    <div class="selector-amount">';
-                    echo'       <input name="value'.$index.'" id="menu-item'.$index.'" item-price="'.$item['price'].'" type="number" value="'.$item['amount_dishes'].'" class="" oninput="updateSubtotal()"> ';
+                    echo'       <input name="value'.$index.'" id="menu-item'.$index.'" item-price="'.$item['price'].'" type="number" value="'.$item['amount_dishes'].'" class="" oninput="updateSubtotal()" min="1">';
                     echo'   </div>';
                     echo'   <span class="carrito-item-precio">$'.$item['price'].'</span>';
                     echo'</div>';
@@ -78,7 +78,6 @@
                 
             }
             
-    
     ?>
                
                
@@ -86,6 +85,23 @@
 
             </div>
             <div class="cart-total">
+                <div class="radio-group">
+                    <label>
+                        <input id="lounge" type="radio" value="Lounge" name="group"> Lounge
+                        <span></span>
+                    </label>
+                    <label>
+                        <input id="express" type="radio" value="Express" name="group"> Express
+                        <span></span>
+                    </label>
+                    <label>
+                        <input id="pickUp" type="radio" value="Pick up" name="group"> Pick up
+                        <span></span>
+                    </label>
+                </div>
+                <div>
+                    <input class="direction-input" id='direction' type="text" name="direction" placeholder="Direction" required="">
+                </div>
                 <div class="row">
                     <strong>Tu Total</strong>
                     <p id="total"></p>
@@ -100,6 +116,8 @@
 </body>
 <script src="./js/cart.js">
     init();
+            
+
 </script>
 
 </html>
