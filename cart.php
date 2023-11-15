@@ -1,6 +1,10 @@
 <?php
 require_once './database.php';
 session_start();
+if (isset($_SESSION["isLoggedIn"])) {
+} else {
+    header("location:signIn.php");
+}
 
 $items = $database->select(
     "tb_card",
