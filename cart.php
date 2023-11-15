@@ -1,31 +1,68 @@
-<?php 
-    require_once './database.php';
-    session_start();
+<?php
+require_once './database.php';
+session_start();
 
-    $items = $database->select("tb_card",[
-        "[>]tb_dish"=>["id_dish" => "id_dish"],
-    ],[
+$items = $database->select(
+    "tb_card",
+    [
+        "[>]tb_dish" => ["id_dish" => "id_dish"],
+    ],
+    [
         "tb_dish.namel",
         "tb_dish.img_recorted",
         "tb_dish.price",
         "tb_card.amount_dishes",
+        "tb_card.id_dish",
+
     ],
     [
-        "id_user"=>$_SESSION["id"]
-    ]);
+        "id_user" => $_SESSION["id"]
+    ]
+);
 
 
-    if($_POST){
-        if(isset($_POST["pay"])){
-            var_dump($_POST);
-            //     $database->insert("tb_card",[
-            //         "id_dish"=> $_POST["id_dish"],
-            //         "id_user"=> $_POST['id_user'],
-            //         "amount_dishes"=>$_POST["points"],
-            //     ]);
-            // header("location:cart.php");  
+if ($_POST) {
+    if (isset($_POST["pay"])) {
+        date_default_timezone_set('America/Costa_Rica');
+        $date_time = date('Y-m-d H:i:s');
+        if ($_POST["group"] == 'Lounge') $type = 1;
+        if ($_POST["group"] == 'Express') $type = 2;
+        if ($_POST["group"] == 'Pick up') $type = 3;
+        $database->insert("tb_order_resgistered",[
+                    "id_user"=> $_SESSION["id"],
+                    "id_order_type"=>$type,
+                    "date_time"=>$date_time,
+         ]);
+         $id_order= $database->id();
+         if($_POST['direction']!=""){
+            $database->update("tb_order_resgistered",[
+                "direction"=>$_POST['direction'],
+        
+            ],[
+                "id_order_registered"=> $id_order
+            ]);
+         }
+         $amounts=$_POST['value'];
+         $ids=$_POST['id'];
+
+         
+         for($i=0; $i < count($_POST['value']); $i++){
+            $database->insert("tb_order_dishes",[
+                "id_order_registered"=>$id_order,
+                "id_dish"=> $ids[$i],
+                "amoun_dish"=>$amounts[$i],
+        ]);
         }
+        $database->delete("tb_card",[
+            "id_user"=> $_SESSION["id"]
+        ]);
+
+        header("location:index.php");  
     }
+    if (isset($_POST["go"])) {
+        header("location:menu.php");  
+    }
+}
 
 
 ?>
@@ -47,77 +84,81 @@
 <body>
     <form method="post" action="cart.php">
 
-    <section class="container-cart">
-        <!-- cart -->
-        <div class="cart">
-            <div class="header-cart">
-                <h2>Cart</h2>
+        <section class="container-cart">
+            <!-- cart -->
+            <div class="cart">
+                <div class="header-cart">
+                    <h2>Cart</h2>
+                </div>
+
+                <div class="cart-items">
+                    <?php
+                    if ($items != null) {
+                        foreach ($items as $index => $item) {
+                            echo ' <div class="cart-item">';
+                            echo ' <img src="' . $item['img_recorted'] . '" alt="hummus" width="80px" class="cart-img">';
+                            echo ' <div class="cart-item-details">';
+                            echo '  <span class="cart-item-tittle">' . $item['namel'] . '</span>';
+                            echo '    <div class="selector-amount">';
+                            echo '       <input name="value[]" id="menu-item' . $index . '" item-price="' . $item['price'] . '" type="number" value="' . $item['amount_dishes'] . '" class="" oninput="updateSubtotal()" min="1">';
+                            echo '   </div>';
+                            echo '   <span class="carrito-item-precio">$' . $item['price'] . '</span>';
+                            echo '</div>';
+                            echo ' <span class="btn-delete">';
+                            echo '    <img class="cart-btn" src="./img/trash.svg" alt="">';
+                            echo ' </span>';
+                            echo '<input type="text" name="id[]" value=' . $item['id_dish'] . '" hidden>';
+                            echo ' </div>';
+                        }
+                    }
+
+                    ?>
+
+
+
+
+                </div>
+                <div class="cart-total">
+                    <div class="radio-group">
+                        <label>
+                            <input id="lounge" type="radio" value="Lounge" name="group" required> Lounge
+                            <span></span>
+                        </label>
+                        <label>
+                            <input id="express" type="radio" value="Express" name="group" required> Express
+                            <span></span>
+                        </label>
+                        <label>
+                            <input id="pickUp" type="radio" value="Pick up" name="group" required> Pick up
+                            <span></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input class="direction-input" id='direction' type="text" name="direction" placeholder="Direction" required="">
+                    </div>
+                    <div class="row">
+                        <strong>Tu Total</strong>
+                        <p id="total"></p>
+                    </div>
+                    <?php 
+                        if ($items != null) {
+                            echo'<button type="submit" name="pay" class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>';
+                        }else{
+                            echo'<button type="submit" name="go" class="btn-pay">Go shopping<img src="./img/pay.svg" alt=""> </button>';
+                        }
+
+                        
+                    ?>
+
+                </div>
             </div>
 
-            <div class="cart-items">
-            <?php 
-            if($items!=null){
-                foreach($items as $index=>$item){
-                    echo' <div class="cart-item">';
-                    echo' <img src="'.$item['img_recorted'].'" alt="hummus" width="80px" class="cart-img">';
-                    echo' <div class="cart-item-details">';
-                    echo'  <span class="cart-item-tittle">'.$item['namel'].'</span>';
-                    echo'    <div class="selector-amount">';
-                    echo'       <input name="value'.$index.'" id="menu-item'.$index.'" item-price="'.$item['price'].'" type="number" value="'.$item['amount_dishes'].'" class="" oninput="updateSubtotal()" min="1">';
-                    echo'   </div>';
-                    echo'   <span class="carrito-item-precio">$'.$item['price'].'</span>';
-                    echo'</div>';
-                    echo' <span class="btn-delete">';
-                    echo'    <img class="cart-btn" src="./img/trash.svg" alt="">';
-                    echo' </span>';
-                    echo' </div>';
-                    echo'<input type="text" name="id'.$index.'" hidden>';
-                }       
-            }else{
 
-                
-            }
-            
-    ?>
-               
-               
-
-
-            </div>
-            <div class="cart-total">
-                <div class="radio-group">
-                    <label>
-                        <input id="lounge" type="radio" value="Lounge" name="group"> Lounge
-                        <span></span>
-                    </label>
-                    <label>
-                        <input id="express" type="radio" value="Express" name="group"> Express
-                        <span></span>
-                    </label>
-                    <label>
-                        <input id="pickUp" type="radio" value="Pick up" name="group"> Pick up
-                        <span></span>
-                    </label>
-                </div>
-                <div>
-                    <input class="direction-input" id='direction' type="text" name="direction" placeholder="Direction" required="">
-                </div>
-                <div class="row">
-                    <strong>Tu Total</strong>
-                    <p id="total"></p>
-                </div>
-                <button type="submit" name="pay" class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>
-            </div>
-        </div>
-
-
-    </section>
-   </form>
+        </section>
+    </form>
 </body>
 <script src="./js/cart.js">
     init();
-            
-
 </script>
 
 </html>

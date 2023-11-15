@@ -40,7 +40,7 @@
             totalExtras += document.getElementById("menu-item"+i).getAttribute("item-price") * document.getElementById("menu-item"+i).value;
         }
 
-        document.getElementById("total").innerHTML = totalExtras;
+        document.getElementById("total").innerHTML = totalExtras.toFixed(2);
     
     }
 
