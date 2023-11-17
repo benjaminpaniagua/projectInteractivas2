@@ -33,7 +33,7 @@ $message = "";
 
 //     $errors = [];
 //     $file_name = $_FILES["img_recorted"]["name"];
-//     $file_size = $_FILES["img_recorted"]["size"];
+//     $file_size = s$_FILES["img_recorted"]["size"];
 //     $file_tmp = $_FILES["img_recorted"]["tmp_name"];
 //     $file_type = $_FILES["img_recorted"]["type"];
 //     $file_ext_arr = explode(".", $_FILES["img_recorted"]["name"]);
@@ -395,16 +395,15 @@ var_dump($_FILES);
                         </select>
                     </div>
                     <div class="container-add-dish">
-    <label class="label-section" for="popular">Popular</label>
-    <div class="radio-options">
-        <input type="radio" value="yes" name="popular" id="popular-yes">
-        <label class="radio-label" for="popular-yes">Yes</label>
+                        <label class="label-section" for="popular">Popular</label>
+                        <div class="radio-options">
+                            <input type="radio" value="yes" name="popular" id="popular-yes">
+                            <label class="radio-label" for="popular-yes">Yes</label>
+                            <input type="radio" value="no" name="popular" id="popular-no" checked>
+                            <label class="radio-label" for="popular-no">No</label>
+                        </div>
+                    </div>
 
-        <input type="radio" value="no" name="popular" id="popular-no" checked>
-        <label class="radio-label" for="popular-no">No</label>
-    </div>
-</div>
-                    
                 </div>
                 <h3 class="tittle-admin subtittle-admin">Images</h3>
                 <div class="information-part">
