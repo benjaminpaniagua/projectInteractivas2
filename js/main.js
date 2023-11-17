@@ -1,3 +1,21 @@
+document.addEventListener("DOMContentLoaded", function() {
+    init();
+   });
+
+   function init(){ 
+    let items = ["popular", "starters", "mainDishes", "desserts", "drinks"];
+    for (let i = 0; i < items.length; i++) {
+        document.getElementById(items[i]+'1').addEventListener('click',function(event) {
+            window.location.href='http://localhost/projectInteractivas2/menu.php?categorie='+items[i];
+        })
+    }
+    for (let i = 0; i < items.length; i++) {
+        document.getElementById(items[i]).addEventListener('click',function(event) {
+            window.location.href='http://localhost/projectInteractivas2/menu.php?categorie='+items[i];
+        })
+    }
+    }
+
 const swiper = new Swiper('.swiper', {
     // Navigation arrows
     slidesPerView: 1,
@@ -37,5 +55,7 @@ const swiper = new Swiper('.swiper', {
 
     }
 });
+
+
 
 

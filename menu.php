@@ -2,7 +2,28 @@
 require_once './database.php';
 
 // Reference: https://medoo.in/api/select
-$items = $database->select("tb_dish", "*");
+if ($_GET) {
+    if ($_GET['categorie'] != 'popular') {
+        if ($_GET['categorie'] == 'starters') $category = 2;
+        if ($_GET['categorie'] == 'mainDishes') $category = 1;
+        if ($_GET['categorie'] == 'desserts') $category = 3;
+        if ($_GET['categorie'] == 'drinks') $category = 4;
+        $items = $database->select("tb_dish", "*", [
+            "id_category" => $category
+        ]);
+    } else {
+        $category = 5;
+        $items = $database->select("tb_dish", "*", [
+            "popular" => 'y'
+        ]);
+    }
+} else {
+    $category = 5;
+    $items = $database->select("tb_dish", "*", [
+        "popular" => 'y'
+    ]);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +74,7 @@ $items = $database->select("tb_dish", "*");
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <div class="card--ourMenus">
+                        <div class="card--ourMenus" id='popular'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
                             </div>
@@ -61,9 +82,10 @@ $items = $database->select("tb_dish", "*");
                                 <p class="text-tittle-menu">Popular</p>
                             </div>
                         </div>
+
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus">
+                        <div class="card--ourMenus" id='starters'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Starters.svg" alt="img  24 hours">
                             </div>
@@ -73,7 +95,7 @@ $items = $database->select("tb_dish", "*");
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus">
+                        <div class="card--ourMenus" id='mainDishes'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/MainDishes.svg" alt="img  24 hours">
                             </div>
@@ -83,7 +105,7 @@ $items = $database->select("tb_dish", "*");
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus">
+                        <div class="card--ourMenus" id='desserts'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Desserts.svg" alt="img  24 hours">
                             </div>
@@ -93,7 +115,7 @@ $items = $database->select("tb_dish", "*");
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus">
+                        <div class="card--ourMenus" id='drinks'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Drinks.svg" alt="img  24 hours">
                             </div>
@@ -108,59 +130,118 @@ $items = $database->select("tb_dish", "*");
 
                 <!-- If we need navigation buttons -->
 
-    
+
             </div>
         </div>
 
-        
+
         <!-- container__info -->
 
         <div class="container__info">
 
-            <div class="card--ourMenus">
-                <div class="card-img">
-                    <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
-                </div>
-                <div class="card-info">
-                    <p class="text-tittle-menu">Popular</p>
-                </div>
+            <?php
+            if ($category == 5) {
+                echo '<div class="card--ourMenus cart-green" id="popular1">';
+            } else {
+                echo '<div class="card--ourMenus" id="popular1">';
+            }
+            ?>
+            <div class="card-img">
+                <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
             </div>
+            <div class="card-info">
+                <?php
+                if ($category == 5) {
+                    echo '<p id="text-drink" class="text-tittle-menu text-white">Popular</p>';
+                } else {
+                    echo '<p id="text-drink" class="text-tittle-menu">Popular</p>';
+                }
+                ?>
+            </div>
+        </div>
 
-            <div class="card--ourMenus">
-                <div class="card-img">
-                    <img class="img--cards" src="./img/Starters.svg" alt="img  24 hours">
-                </div>
-                <div class="card-info">
-                    <p class="text-tittle-menu">Starters</p>
-                </div>
-            </div>
+        <?php
+        if ($category == 2) {
+            echo '<div class="card--ourMenus cart-green" id="starters1">';
+        } else {
+            echo '<div class="card--ourMenus" id="starters1">';
+        }
+        ?>
+        <div class="card-img">
+            <img class="img--cards" src="./img/Starters.svg" alt="img  24 hours">
+        </div>
+        <div class="card-info">
+            <?php
+            if ($category == 2) {
+                echo '<p id="text-drink" class="text-tittle-menu text-white">Starters</p>';
+            } else {
+                echo '<p id="text-drink" class="text-tittle-menu">Starters</p>';
+            }
+            ?>
+        </div>
+        </div>
+        <?php
+        if ($category == 1) {
+            echo '<div class="card--ourMenus cart-green" id="mainDishes1">';
+        } else {
+            echo '<div class="card--ourMenus" id="mainDishes1">';
+        }
+        ?>
+        <div class="card-img">
+            <img class="img--cards" src="./img/MainDishes.svg" alt="img  24 hours">
+        </div>
+        <div class="card-info">
+            <?php
+            if ($category == 1) {
+                echo '<p id="text-drink" class="text-tittle-menu text-white">Main Dishes</p>';
+            } else {
+                echo '<p id="text-drink" class="text-tittle-menu">Main Dishes</p>';
+            }
+            ?>
+        </div>
+        </div>
 
-            <div class="card--ourMenus">
-                <div class="card-img">
-                    <img class="img--cards" src="./img/MainDishes.svg" alt="img  24 hours">
-                </div>
-                <div class="card-info">
-                    <p class="text-tittle-menu">Main Dishes</p>
-                </div>
-            </div>
+        <?php
+        if ($category == 3) {
+            echo '<div class="card--ourMenus cart-green" id="desserts1">';
+        } else {
+            echo '<div class="card--ourMenus" id="desserts1">';
+        }
+        ?>
+        <div class="card-img">
+            <img class="img--cards" src="./img/Desserts.svg" alt="img  24 hours">
+        </div>
+        <div class="card-info">
+            <?php
+            if ($category == 3) {
+                echo '<p id="text-drink" class="text-tittle-menu text-white">Desserts</p>';
+            } else {
+                echo '<p id="text-drink" class="text-tittle-menu">Desserts</p>';
+            }
+            ?>
+        </div>
+        </div>
+        <?php
+        if ($category == 4) {
+            echo '<div class="card--ourMenus cart-green" id="drinks1">';
+        } else {
+            echo '<div class="card--ourMenus" id="drinks1">';
+        }
+        ?>
+        <div class="card-img">
+            <img class="img--cards" src="./img/Drinks.svg" alt="img  24 hours">
+        </div>
+        <div class="card-info">
+            <?php
+            if ($category == 4) {
+                echo '<p id="text-drink" class="text-tittle-menu text-white">Drinks</p>';
+            } else {
+                echo '<p id="text-drink" class="text-tittle-menu">Drinks</p>';
+            }
+            ?>
 
-            <div class="card--ourMenus">
-                <div class="card-img">
-                    <img class="img--cards" src="./img/Desserts.svg" alt="img  24 hours">
-                </div>
-                <div class="card-info">
-                    <p class="text-tittle-menu">Desserts</p>
-                </div>
-            </div>
-
-            <div class="card--ourMenus">
-                <div class="card-img">
-                    <img class="img--cards" src="./img/Drinks.svg" alt="img  24 hours">
-                </div>
-                <div class="card-info">
-                    <p class="text-tittle-menu">Drinks</p>
-                </div>
-            </div>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -168,39 +249,39 @@ $items = $database->select("tb_dish", "*");
 
     <section class="container__saucer">
 
-    <?php
-$limit = 10; // Cantidad de elementos a mostrar
-$count = 0;
+        <?php
+        $limit = 10; // Cantidad de elementos a mostrar
+        $count = 0;
 
-foreach ($items as $item) {
-    if ($count < $limit) {
-        echo "<div class='card'>";
-        echo "<img class='image__saucer' src='img/hummus.png' alt='Hummus'>";
-        echo "<div class='container__information'>";
-        echo "<div class='linkf'>";
-        echo "<a class='link-class link-food' href='food.php'>";
-        echo "<h3 class='name__saucer'>" . $item["names"] . "</h3>";
-        echo "<p class='calification'>★★★★★</p>";
-        echo "<p class='persons'>Individual</p>";
-        echo "<div class='addCart'>";
-        echo "<p class='price'>$8</p>";
-        echo "<img class='add' src='./img/add.svg' alt='add'>";
-        echo "</div>";
-        echo "</a>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        
-        $count++; // Incrementa el contador
-    } else {
-        break; // Sale del bucle después de mostrar los primeros 10 elementos
-    }
-}
-?>
+        foreach ($items as $item) {
+            // if ($count < $limit) {
+            echo "<div class='card'>";
+            echo "<img class='image__saucer' src='img/hummus.png' alt='Hummus'>";
+            echo "<div class='container__information'>";
+            echo "<div class='linkf'>";
+            echo "<a class='link-class link-food' href='food.php'>";
+            echo "<h3 class='name__saucer'>" . $item["namel"] . "</h3>";
+            echo "<p class='calification'>★★★★★</p>";
+            echo "<p class='persons'>Individual</p>";
+            echo "<div class='addCart'>";
+            echo "<p class='price'>" . $item["price"] . "</p>";
+            echo "<img class='add' src='./img/add.svg' alt='add'>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+
+            $count++; // Incrementa el contador
+            // } else {
+            //     break; // Sale del bucle después de mostrar los primeros 10 elementos
+            // }
+        }
+        ?>
 
 
 
-    
+
     </section>
 
     <!-- btn--seeMore -->
@@ -217,9 +298,13 @@ foreach ($items as $item) {
     <img src="" alt="">
     <!-- footer -->
     <!-- script -->
+    <script>
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script src="./js/main.js"> </script>
+
     <!-- script -->
 
 </body>

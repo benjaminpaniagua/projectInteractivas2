@@ -92,6 +92,12 @@
 .food-container {
     gap: 2rem;
 }
+.cart-green{
+    background: var(--clr-greenBtn);
+}
+.text-white{
+    color: var(--clr-white);
+}
 
 
 
