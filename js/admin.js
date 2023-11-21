@@ -1,12 +1,13 @@
-const dropArea = document.getElementById('drop-area');
-const inputFile = document.getElementById('input-file');
-const imageView = document.getElementById('img-view');
-const dropAreaRecort = document.getElementById('drop-area-recort');
-const inputFileRecort = document.getElementById('input-recort');
-const imageViewRecort = document.getElementById('img-view-recort');
+let dropArea = document.getElementById('drop-area');
+let inputFile = document.getElementById('input-file');
+let imageView = document.getElementById('img-view');
+let dropAreaRecort = document.getElementById('drop-area-recort');
+let inputFileRecort = document.getElementById('input-recort');
+let imageViewRecort = document.getElementById('img-view-recort');
 
 inputFileRecort.addEventListener('change',uploadImageRecort);
 inputFile.addEventListener('change',uploadImage);
+
 
 
 function uploadImage(){
