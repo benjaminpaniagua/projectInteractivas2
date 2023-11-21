@@ -37,25 +37,24 @@ if (isset($_POST["no"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete</title>
     <link rel="stylesheet" href="./css/themes/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
     <div>
         <form method="post" action="dish-delete.php">
-            <h2 class="">Are you sure that tou want to delete
+            <h2 class="dish-tittle-delete">Are you sure you want to delete
                 <?php
                 echo $item[0]["namel"];
                 ?>?</h2>
-            <div>
-                <input class="submit-btn" type="submit" name="yes" value="Yes">
-                <input class="submit-btn" type="submit" name="no" value="No">
+            <div class="container-btn-delete">
+                <input class="btn-dish-delete" type="submit" name="yes" value="Yes">
+                <input class="btn-dish-delete " type="submit" name="no" value="No">
                 <input type="hidden" name="id_dish" value="<?php echo $item[0]["id_dish"]; ?>">
-
             </div>
         </form>
     </div>
-
-
 </body>
 
 </html>

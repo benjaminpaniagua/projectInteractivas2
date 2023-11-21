@@ -158,8 +158,8 @@ if ($_POST) {
 
     <div class="registation-container">
         <div class="options-container">
-            <input class="button button-admin" type="submit" name="register" value="Register Dish">
-            <input class="button button-admin" type="submit" name="list" value="List of Dishes">
+            <a class="button button-admin" href="admin.php">Register Dish</a>
+            <a class="button button-admin" href="dish-list.php">List of Dishes</a>
         </div>
         <form method="post" action="dish-list.php" enctype="multipart/form-data">
             <div class="information-container">
@@ -283,6 +283,7 @@ if ($_POST) {
                     <div>
                         <label for="input-file" class="drop-area" id="drop-area">
                             <input type="file" accept="image/*" id="input-file" hidden name="img">
+                            <!-- <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>"> -->
                             <div id="img-view" class="img-view">
                                 <img id="short-image" class="short-image" src="./img/<?php echo $item[0]["img"]; ?>" alt="image about someting">
                                 <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
@@ -293,7 +294,8 @@ if ($_POST) {
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
                             <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
-                            <div id="img-view-recort" class="img-view img-view-recort">
+                            <!-- <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>"> -->
+                            <div id="img-view" class="img-view">
                                 <img id="short-image-recort" class="short-image" src="./img/<?php echo $item[0]["img_recorted"]; ?>" alt="image about someting">
                                 <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
                             </div>
@@ -304,11 +306,26 @@ if ($_POST) {
             <div class="admin-addcontainer">
                 <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food">
             </div>
-
         </form>
     </div>
 
     <script src="./js/admin.js"></script>
+    <script>
+        // let recorted1 = document.getElementById('input-recort');
+        // let recorted2 = document.getElementById('img-view-recort');
+
+        // function editImage() {
+            
+        //     let imageNormal = document.getElementById('img').getAttribute("test");
+        //     let imageRecorted = document.getElementById('img_recorted');
+        //     let imgLink= URL.createObjectURL(imageNormal);
+        //     recorted1.style.backgroundImage = "url(./img/" + imgLink + ")";
+        //     // recorted2.style.backgroundImage = "url(./img/" + imageRecorted + ")";
+        // }
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     editImage();
+        // });
+    </script>
 
 </body>
 
