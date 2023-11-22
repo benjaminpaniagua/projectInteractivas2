@@ -40,10 +40,11 @@ if (isset($_GET)) {
     ], [
         "id_dish" => $_GET["id_dish"]
     ]);
-    var_dump($item);
+    // var_dump($item);
 }
 
 if ($_POST) {
+    var_dump($_POST);
     $data = $database->select("tb_dish", "*", [
         "id_dish" => $_POST["id"]
     ]);
@@ -106,6 +107,8 @@ if ($_POST) {
     } else {
         $img_recorted = $data[0]["img_recorted"];
     }
+
+    /*array(14) { ["related-dish-one"]=> string(1) "1" ["related-dish-two"]=> string(2) "43" ["related-dish-three"]=> string(2) "43" ["popular"]=> string(2) "no" ["add"]=> string(8) "Add food" } */
     $database->update("tb_dish", [
         "id_category" => $_POST["id_category"],
         "id_amount_people" => $_POST["id_amount_people"],
@@ -127,7 +130,7 @@ if ($_POST) {
     ], [
         "id_dish" => $_POST["id"]
     ]);
-    header("location: dish-list.php");
+        header("location: dish-list.php");
     // Reference: https://medoo.in/api/insert  
 }
 
@@ -161,7 +164,7 @@ if ($_POST) {
             <a class="button button-admin" href="admin.php">Register Dish</a>
             <a class="button button-admin" href="dish-list.php">List of Dishes</a>
         </div>
-        <form method="post" action="dish-list.php" enctype="multipart/form-data">
+        <form method="post" action="dish-edit.php" enctype="multipart/form-data">
             <div class="information-container">
                 <h2 class="tittle-admin">Register dish</h2>
                 <h3 class="tittle-admin subtittle-admin">Information Part</h3>
@@ -227,7 +230,7 @@ if ($_POST) {
                     </div>
                     <div class="input-box">
                         <label class="label-section" for="related-dish-one">Related Dish One</label>
-                        <select name="related-dish-one" id="related-dish-one">
+                        <select name="related_dish_one" id="related-dish-one">
                             <?php
                             foreach ($dishes as $dish) {
                                 if ($item[0]["id_dish"] == $dish["id_dish"]) {
@@ -241,7 +244,7 @@ if ($_POST) {
                     </div>
                     <div class="input-box">
                         <label class="label-section" for="related-dish-two">Related Dish Two</label>
-                        <select name="related-dish-two" id="related-dish-two">
+                        <select name="related_dish_two" id="related-dish-two">
                             <?php
                             foreach ($dishes as $dish) {
                                 if ($item[0]["id_dish"] == $dish["id_dish"]) {
@@ -255,7 +258,7 @@ if ($_POST) {
                     </div>
                     <div class="input-box">
                         <label class="label-section" for="related-dish-three">Related Dish Three</label>
-                        <select name="related-dish-three" id="related-dish-three">
+                        <select name="related_dish_three" id="related-dish-three">
                             <?php
                             foreach ($dishes as $dish) {
                                 if ($item[0]["id_dish"] == $dish["id_dish"]) {
@@ -283,7 +286,7 @@ if ($_POST) {
                     <div>
                         <label for="input-file" class="drop-area" id="drop-area">
                             <input type="file" accept="image/*" id="input-file" hidden name="img">
-                            <!-- <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>"> -->
+                            <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>">
                             <div id="img-view" class="img-view">
                                 <img id="short-image" class="short-image" src="./img/<?php echo $item[0]["img"]; ?>" alt="image about someting">
                                 <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
@@ -294,7 +297,7 @@ if ($_POST) {
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
                             <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
-                            <!-- <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>"> -->
+                            <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>">
                             <div id="img-view" class="img-view">
                                 <img id="short-image-recort" class="short-image" src="./img/<?php echo $item[0]["img_recorted"]; ?>" alt="image about someting">
                                 <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
@@ -305,26 +308,27 @@ if ($_POST) {
             </div>
             <div class="admin-addcontainer">
                 <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food">
+                <input type="hidden" name="id" value="<?php echo $item[0]["id_dish"]; ?>">
             </div>
         </form>
     </div>
 
     <script src="./js/admin.js"></script>
     <script>
-        // let recorted1 = document.getElementById('input-recort');
-        // let recorted2 = document.getElementById('img-view-recort');
+        let recorted1 = document.getElementById('input-recort');
+        let recorted2 = document.getElementById('img-view-recort');
 
-        // function editImage() {
+        function editImage() {
             
-        //     let imageNormal = document.getElementById('img').getAttribute("test");
-        //     let imageRecorted = document.getElementById('img_recorted');
-        //     let imgLink= URL.createObjectURL(imageNormal);
-        //     recorted1.style.backgroundImage = "url(./img/" + imgLink + ")";
-        //     // recorted2.style.backgroundImage = "url(./img/" + imageRecorted + ")";
-        // }
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     editImage();
-        // });
+            let imageNormal = document.getElementById('img').getAttribute("test");
+            let imageRecorted = document.getElementById('img_recorted');
+            let imgLink= URL.createObjectURL(imageNormal);
+            recorted1.style.backgroundImage = "url(./img/" + imgLink + ")";
+            // recorted2.style.backgroundImage = "url(./img/" + imageRecorted + ")";
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            editImage();
+        });
     </script>
 
 </body>
