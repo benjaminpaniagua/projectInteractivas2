@@ -74,73 +74,53 @@ if ($_GET) {
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <div class="card--ourMenus <?php  if ($category == 5) {
-                        echo'cart-green';}
-                    ?>" id='popular'>
+                        <div class="card--ourMenus" id='popular' value='5'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu <?php  if ($category == 5) {
-                        echo'text-white';}
-                    ?>">Popular</p>
+                                <p class="text-tittle-menu>" id="text-popular">Popular</p>
                             </div>
                         </div>
 
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus <?php  if ($category == 2) {
-                        echo'cart-green';}
-                    ?>" id='starters'>
+                        <div class="card--ourMenus" id='starters' value='2'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Starters.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu <?php  if ($category == 2) {
-                        echo'text-white';}
-                    ?>">Starters</p>
+                                <p id="text-starters" class="text-tittle-menu" id="text-popular">Starters</p>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus <?php  if ($category == 1) {
-                        echo'cart-green';}
-                    ?>" id='mainDishes'>
+                        <div class="card--ourMenus" id='mainDishes' value='1'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/MainDishes.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu <?php  if ($category == 1) {
-                        echo'text-white';}
-                    ?>">Main Dishes</p>
+                                <p id="text-mainDishes" class="text-tittle-menu">Main Dishes</p>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus  <?php  if ($category == 3) {
-                        echo'cart-green';}
-                    ?>"  id='desserts'>
+                        <div class="card--ourMenus"  id='desserts' value='3'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Desserts.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu <?php  if ($category == 3) {
-                        echo'text-white';}
-                    ?>">Desserts</p>
+                                <p id="text-desserts" class="text-tittle-menu">Desserts</p>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="card--ourMenus  <?php  if ($category == 4) {
-                        echo'cart-green';}
-                    ?>" id='drinks'>
+                        <div class="card--ourMenus" id='drinks' value='4'>
                             <div class="card-img">
                                 <img class="img--cards" src="./img/Drinks.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu <?php  if ($category == 4) {
-                        echo'text-white';}
-                    ?>">Drinks</p>
+                                <p id="text-drinks" class="text-tittle-menu">Drinks</p>
                             </div>
                         </div>
                     </div>
@@ -158,68 +138,48 @@ if ($_GET) {
         <!-- container__info -->
 
         <div class="container__info ">
-            <div class="card--ourMenus <?php  if ($category == 5) {
-                        echo'cart-green';}
-                    ?>" id="popular1">
+            <div class="card--ourMenus" id="popular1" value='5'>
             <div class="card-img">
                 <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
             </div>
             <div class="card-info">
-                <p id="text-drink" class="text-tittle-menu <?php  if ($category == 5) {
-                        echo'text-white';}
-                    ?>">Popular</p>
+                <p id="text-popular1" class="text-tittle-menu">Popular</p>
             </div>
         </div>
 
-        <div class="card--ourMenus <?php  if ($category == 2) {
-                        echo'cart-green';}
-                    ?>" id="starters1">
+        <div class="card--ourMenus" id="starters1" value='2'>
         <div class="card-img">
             <img class="img--cards" src="./img/Starters.svg" alt="img  24 hours">
         </div>
         <div class="card-info">
-        <p id="text-drink" class="text-tittle-menu  <?php  if ($category == 2) {
-                        echo'text-white';}
-                    ?>">Starters</p>
+        <p id="text-starters1" class="text-tittle-menu">Starters</p>
         </div>
         </div>
 
-        <div class="card--ourMenus <?php  if ($category == 1) {
-                        echo'cart-green';}
-                    ?>" id="mainDishes1">
+        <div class="card--ourMenus" id="mainDishes1" value='1'>
         <div class="card-img">
             <img class="img--cards" src="./img/MainDishes.svg" alt="img  24 hours">
         </div>
         <div class="card-info">
-        <p id="text-drink" class="text-tittle-menu <?php  if ($category == 1) {
-                        echo'text-white';}
-                    ?>">Main Dishes</p>
+        <p id="text-mainDishes1" class="text-tittle-menu">Main Dishes</p>
         </div>
         </div>
 
         
-        <div class="card--ourMenus <?php  if ($category == 3) {
-                        echo'cart-green';}
-                    ?>" id="desserts1">
+        <div class="card--ourMenus" id="desserts1" value='3'>
         <div class="card-img">
             <img class="img--cards" src="./img/Desserts.svg" alt="img  24 hours">
         </div>
         <div class="card-info">
-        <p id="text-drink" class="text-tittle-menu <?php  if ($category == 3) {
-                        echo'text-white';}
-                    ?>">Desserts</p>
+        <p id="text-desserts1" class="text-tittle-menu">Desserts</p>
         </div>
         </div>
-        <div class="card--ourMenus <?php  if ($category == 4) {
-                        echo'cart-green';}
-                    ?>" id="drinks1">
+        <div class="card--ourMenus" id="drinks1" value='4'>
         <div class="card-img">
             <img class="img--cards" src="./img/Drinks.svg" alt="img  24 hours">
         </div>
         <div class="card-info">
-        <p id="text-drink" class="text-tittle-menu  <?php  if ($category == 4) {
-                        echo'text-white';}
-                    ?>">Drinks</p>
+        <p id="text-drinks1" class="text-tittle-menu">Drinks</p>
         </div>
         </div>
         </div>
@@ -227,7 +187,8 @@ if ($_GET) {
     
     <!-- section container__saucer -->
 
-    <section class="container__saucer">
+    <div id='foods'>
+    <section class="container__saucer" id="items">
 
         <?php
         $limit = 10; // Cantidad de elementos a mostrar
@@ -252,10 +213,6 @@ if ($_GET) {
             echo "</div>";
             echo "</div>";
 
-            $count++; // Incrementa el contador
-            // } else {
-            //     break; // Sale del bucle después de mostrar los primeros 10 elementos
-            // }
         }
         ?>
 
@@ -263,7 +220,7 @@ if ($_GET) {
 
 
     </section>
-
+    </div>
     <!-- btn--seeMore -->
 
     <div class="container--btn">
