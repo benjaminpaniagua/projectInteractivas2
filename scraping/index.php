@@ -2,107 +2,107 @@
 <!--  MAIN DISHES -->
 
 <?php
-require_once '../database.php';
+// require_once '../database.php';
 
-include('simple_html_dom.php');
+// include('simple_html_dom.php');
 
-//link
-$link = "https://www.allrecipes.com/recipes/1824/world-cuisine/middle-eastern/lebanese/";
+// //link
+// $link = "https://www.allrecipes.com/recipes/1824/world-cuisine/middle-eastern/lebanese/";
 
-$filenames = [];
-$menu_item_names = [];
-$menu_item_descriptions = [];
-$image_urls = [];
-$names = [];
-$names_ar = [];
-$description_ar = [];
+// $filenames = [];
+// $menu_item_names = [];
+// $menu_item_descriptions = [];
+// $image_urls = [];
+// $names = [];
+// $names_ar = [];
+// $description_ar = [];
 
-$menu_items = 20;
-$id_category = 1;
+// $menu_items = 20;
+// $id_category = 1;
 
-$items = file_get_html($link);
+// $items = file_get_html($link);
 
-//save meals info and filenames for the images
-foreach ($items->find('.card--no-image') as $item) {
+// //save meals info and filenames for the images
+// foreach ($items->find('.card--no-image') as $item) {
 
-    $title = $item->find('.card__title-text');
-    $details = file_get_html($item->href);
-    $description = $details->find('.article-subheading');
-    $image = $details->find('.primary-image__image');
+//     $title = $item->find('.card__title-text');
+//     $details = file_get_html($item->href);
+//     $description = $details->find('.article-subheading');
+//     $image = $details->find('.primary-image__image');
 
-    if (count($image) > 0) {
-        $image_urls[] = $image[0]->src;
-    } else {
-        $replace_img = $item->find('.universal-image__image');
-        if (count($replace_img) > 0) {
-            $image_urls[] = $replace_img[0]->{'data-src'};
-        }
-    }
+//     if (count($image) > 0) {
+//         $image_urls[] = $image[0]->src;
+//     } else {
+//         $replace_img = $item->find('.universal-image__image');
+//         if (count($replace_img) > 0) {
+//             $image_urls[] = $replace_img[0]->{'data-src'};
+//         }
+//     }
 
-    if (count($description) > 0) {
-        if ($menu_items == 0) break;
+//     if (count($description) > 0) {
+//         if ($menu_items == 0) break;
 
-        $menu_item_names[] = trim($title[0]->plaintext);
-        $menu_item_descriptions[] = $description[0]->plaintext;
+//         $menu_item_names[] = trim($title[0]->plaintext);
+//         $menu_item_descriptions[] = $description[0]->plaintext;
 
-        $filename = strtolower(trim($title[0]->plaintext));
-        $filename = str_replace(' ', '-', $filename);
-        $filenames[] = $filename;
+//         $filename = strtolower(trim($title[0]->plaintext));
+//         $filename = str_replace(' ', '-', $filename);
+//         $filenames[] = $filename;
 
-        $menu_items--;
-    }
-}
+//         $menu_items--;
+//     }
+// }
 
-$names = ['Mountain Bread', 'Seven Spices', 'Fattoush', 'Hummus', 'Chicken Shawarma', 'Chicken and Potatoes', 'Lamb Shawarma', 'Kibbeh', 'Chard ', 'Lentil Soup'];
-$names_ar = ['خبز الجبل', 'سبع بهارات', 'فتوش', 'الحمص', 'شاورما الدجاج', 'دجاج وبطاطس', 'شاورما لحم ضأن', 'كبة', 'السلق', 'شوربة العدس'];
-$description_ar = ['أقدم هذا مرة واحدة على الأقل في الأسبوع مع وجبة دجاج أو شريحة لحم أو كوجبة خفيفة سريعة. هذه هي وصفة الحمص الأساسية وهي بسيطة ولكنها لذيذة. تعلمت من جدي الراحل الذي كان من أصل لبناني. يقدم مع الخبز العربي الطازج.', 'مزيج التوابل اللبناني المكون من 7 بهارات سيضيف نكهات دافئة إلى الكثير من الأطباق! جربه على الدجاج أو البيض أو في ماء مالح.', 'وصفة الفتوش هذه عبارة عن سلطة ملونة مع صلصة الثوم والليمون. الفتوش هي واحدة من السلطات الشرق أوسطية الأكثر شهرة وطبق قياسي على طاولة المزة (الأطباق الصغيرة). إذا لم تقم بإعداد طبق عربي واحد من قبل، فهذا مكان لذيذ وصحي للبدء.', 'أقدم هذا مرة واحدة على الأقل في الأسبوع مع وجبة دجاج أو شريحة لحم أو كوجبة خفيفة سريعة. هذه هي وصفة الحمص الأساسية وهي بسيطة ولكنها لذيذة. تعلمت من جدي الراحل الذي كان من أصل لبناني. يقدم مع الخبز العربي الطازج.', 'ساندويتش لبناني رائع يقدم في معظم المطاعم اللبنانية. يمكن تقديمه مع صلصة الطحينة أو التوم.', 'طبق لبناني تقليدي من الدجاج والبطاطس المشوية، تعلمته من أمي. بسيطة بشكل لا يصدق، ولكن لذيذ جدا من أي وقت مضى.', 'هذا طبق شرق أوسطي رائع تعرفت عليه من قبل صديق لي من لبنان. تنتج هذه الوصفة منتجًا نهائيًا رائعًا ومذاقًا رائعًا. يمكن استخدام الشاورما مع خبز البيتا أو وضعها على الفتوش أو الحمص أو تناولها سادة.', 'الكبة هي طبق رائع من الشرق الأوسط يُصنع تقليديًا من لحم الضأن ولكن لحم البقر مقبول أيضًا. أنا أفضل أن يتم صنعها على شكل فطائر ومقلية بزيت الزيتون. ومع ذلك، غالبا ما توجد في المطاعم في شكل مخبوز. تُقدم الكبة مع الطحينة ومعجون السمسم.', 'من السهل تحضير شوربة نباتية لذيذة للغاية.', 'حساء العدس الأحمر اللبناني سريع التحضير ذو لون مشمس جميل بفضل العدس الأحمر. يُزيّن برذاذ من زيت الزيتون ورشة من الفلفل الحلبي، إذا رغبت في ذلك.'];
-$namel_ar = ['خبز الجبل اللبناني', 'البهارات السبعة اللبنانية', 'سلطة الفتوش العربي', 'أفضل حمص', 'شاورما الدجاج', 'دجاج لبناني و بطاطا', 'شاورما لحم ضأن', 'كبة شرق أوسطية', 'شوربة العدس بالسلق على الطريقة اللبنانية', 'شوربة العدس اللبنانية سريعة التحضير (شربات عدس)'];
-$img_recorted = ['img/recorted/LebaneseMountainBread.png', 'img/recorted/LebaneseSevenSpices.png', 'img/recorted/ArabicFattoushSalad.png', 'img/recorted/BestHummus.png', 'img/recorted/ChickenShawarma.png', 'img/recorted/LebaneseChickenandPotatoes.png', 'img/recorted/LambShawarma.png', 'img/recorted/MiddleEasternKibbeh.png', 'img/recorted/ChardLentilSoup.png', 'img/recorted/InstantPotLebaneseLentilSoup.png'];
-foreach ($filenames as $i => $item) {
-    echo "......................";
-    echo "<br>";
-    echo $item;
-    echo "<br>";
-    echo $menu_item_names[$i];
-    echo "<br>";
-    echo $menu_item_descriptions[$i];
-    echo "<br>";
-    echo $image_urls[$i];
-    echo "<br>";
-    echo rand(1 * 10, 70 * 10) / 10;
-    echo "<br>";
-    //$menu_items--;
-    //if($menu_items == 0) break;
-}
+// $names = ['Mountain Bread', 'Seven Spices', 'Fattoush', 'Hummus', 'Chicken Shawarma', 'Chicken and Potatoes', 'Lamb Shawarma', 'Kibbeh', 'Chard ', 'Lentil Soup'];
+// $names_ar = ['خبز الجبل', 'سبع بهارات', 'فتوش', 'الحمص', 'شاورما الدجاج', 'دجاج وبطاطس', 'شاورما لحم ضأن', 'كبة', 'السلق', 'شوربة العدس'];
+// $description_ar = ['أقدم هذا مرة واحدة على الأقل في الأسبوع مع وجبة دجاج أو شريحة لحم أو كوجبة خفيفة سريعة. هذه هي وصفة الحمص الأساسية وهي بسيطة ولكنها لذيذة. تعلمت من جدي الراحل الذي كان من أصل لبناني. يقدم مع الخبز العربي الطازج.', 'مزيج التوابل اللبناني المكون من 7 بهارات سيضيف نكهات دافئة إلى الكثير من الأطباق! جربه على الدجاج أو البيض أو في ماء مالح.', 'وصفة الفتوش هذه عبارة عن سلطة ملونة مع صلصة الثوم والليمون. الفتوش هي واحدة من السلطات الشرق أوسطية الأكثر شهرة وطبق قياسي على طاولة المزة (الأطباق الصغيرة). إذا لم تقم بإعداد طبق عربي واحد من قبل، فهذا مكان لذيذ وصحي للبدء.', 'أقدم هذا مرة واحدة على الأقل في الأسبوع مع وجبة دجاج أو شريحة لحم أو كوجبة خفيفة سريعة. هذه هي وصفة الحمص الأساسية وهي بسيطة ولكنها لذيذة. تعلمت من جدي الراحل الذي كان من أصل لبناني. يقدم مع الخبز العربي الطازج.', 'ساندويتش لبناني رائع يقدم في معظم المطاعم اللبنانية. يمكن تقديمه مع صلصة الطحينة أو التوم.', 'طبق لبناني تقليدي من الدجاج والبطاطس المشوية، تعلمته من أمي. بسيطة بشكل لا يصدق، ولكن لذيذ جدا من أي وقت مضى.', 'هذا طبق شرق أوسطي رائع تعرفت عليه من قبل صديق لي من لبنان. تنتج هذه الوصفة منتجًا نهائيًا رائعًا ومذاقًا رائعًا. يمكن استخدام الشاورما مع خبز البيتا أو وضعها على الفتوش أو الحمص أو تناولها سادة.', 'الكبة هي طبق رائع من الشرق الأوسط يُصنع تقليديًا من لحم الضأن ولكن لحم البقر مقبول أيضًا. أنا أفضل أن يتم صنعها على شكل فطائر ومقلية بزيت الزيتون. ومع ذلك، غالبا ما توجد في المطاعم في شكل مخبوز. تُقدم الكبة مع الطحينة ومعجون السمسم.', 'من السهل تحضير شوربة نباتية لذيذة للغاية.', 'حساء العدس الأحمر اللبناني سريع التحضير ذو لون مشمس جميل بفضل العدس الأحمر. يُزيّن برذاذ من زيت الزيتون ورشة من الفلفل الحلبي، إذا رغبت في ذلك.'];
+// $namel_ar = ['خبز الجبل اللبناني', 'البهارات السبعة اللبنانية', 'سلطة الفتوش العربي', 'أفضل حمص', 'شاورما الدجاج', 'دجاج لبناني و بطاطا', 'شاورما لحم ضأن', 'كبة شرق أوسطية', 'شوربة العدس بالسلق على الطريقة اللبنانية', 'شوربة العدس اللبنانية سريعة التحضير (شربات عدس)'];
+// $img_recorted = ['img/recorted/LebaneseMountainBread.png', 'img/recorted/LebaneseSevenSpices.png', 'img/recorted/ArabicFattoushSalad.png', 'img/recorted/BestHummus.png', 'img/recorted/ChickenShawarma.png', 'img/recorted/LebaneseChickenandPotatoes.png', 'img/recorted/LambShawarma.png', 'img/recorted/MiddleEasternKibbeh.png', 'img/recorted/ChardLentilSoup.png', 'img/recorted/InstantPotLebaneseLentilSoup.png'];
+// foreach ($filenames as $i => $item) {
+//     echo "......................";
+//     echo "<br>";
+//     echo $item;
+//     echo "<br>";
+//     echo $menu_item_names[$i];
+//     echo "<br>";
+//     echo $menu_item_descriptions[$i];
+//     echo "<br>";
+//     echo $image_urls[$i];
+//     echo "<br>";
+//     echo rand(1 * 10, 70 * 10) / 10;
+//     echo "<br>";
+//     //$menu_items--;
+//     //if($menu_items == 0) break;
+// }
 
-//get and download images
-//  foreach ($filenames as $index=>$image){
-//      file_put_contents("../img/scraping_img/".$image.".jpg", file_get_contents($image_urls[$index]));
-//  }
+// //get and download images
+// //  foreach ($filenames as $index=>$image){
+// //      file_put_contents("../img/scraping_img/".$image.".jpg", file_get_contents($image_urls[$index]));
+// //  }
 
 
-$index = 0;
-for ($i = 0; $i < 20; $i++) {
-    if ($i == 7 || $i == 8 || $i == 9 || $i == 10 || $i == 12 || $i == 13 || $i == 14 || $i == 15 || $i == 18 || $i == 19) {
-    } else {
-        $rand = rand(1 * 10, 70 * 10) / 10;
-        $id_amount_people = rand(1, 3);
-        $database->insert("tb_dish", [
-            "id_category" => $id_category,
-            "names" => $names[$index],
-            "names_ar" => $names_ar[$index],
-            "namel_ar" => $namel_ar[$index],
-            "description_ar" => $description_ar[$index],
-            "img_recorted" => $img_recorted[$index],
-            "namel" => $menu_item_names[$i],
-            "description" => $menu_item_descriptions[$i],
-            "img" => $image_urls[$i],
-            "id_amount_people" => $id_amount_people,
-            "price" => $rand
-        ]);
-        $index++;
-    }
-}
+// $index = 0;
+// for ($i = 0; $i < 20; $i++) {
+//     if ($i == 7 || $i == 8 || $i == 9 || $i == 10 || $i == 12 || $i == 13 || $i == 14 || $i == 15 || $i == 18 || $i == 19) {
+//     } else {
+//         $rand = rand(1 * 10, 70 * 10) / 10;
+//         $id_amount_people = rand(1, 3);
+//         $database->insert("tb_dish", [
+//             "id_category" => $id_category,
+//             "names" => $names[$index],
+//             "names_ar" => $names_ar[$index],
+//             "namel_ar" => $namel_ar[$index],
+//             "description_ar" => $description_ar[$index],
+//             "img_recorted" => $img_recorted[$index],
+//             "namel" => $menu_item_names[$i],
+//             "description" => $menu_item_descriptions[$i],
+//             "img" => $image_urls[$i],
+//             "id_amount_people" => $id_amount_people,
+//             "price" => $rand
+//         ]);
+//         $index++;
+//     }
+// }
 ?>
 <!--  MAIN DISHES -->
 <!--  MAIN DISHES -->
@@ -422,3 +422,4 @@ for ($i = 0; $i < 20; $i++) {
 ?>
 <!--  DRINKS -->
 <!--  DRINKS -->
+
