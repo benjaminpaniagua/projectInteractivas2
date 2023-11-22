@@ -287,20 +287,17 @@ if ($_POST) {
                         <label for="input-file" class="drop-area" id="drop-area">
                             <input type="file" accept="image/*" id="input-file" hidden name="img">
                             <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>">
-                            <div id="img-view" class="img-view">
-                                <img id="short-image" class="short-image" src="./img/<?php echo $item[0]["img"]; ?>" alt="image about someting">
-                                <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
-                                <span>Upload any images from desktop</span>
+                            <div id="img-view" class="edit">
+                                <img  class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
                             </div>
+                                
                         </label>
                     </div>
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
                             <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
                             <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>">
-                            <div id="img-view" class="img-view">
-                                <img id="short-image-recort" class="short-image" src="./img/<?php echo $item[0]["img_recorted"]; ?>" alt="image about someting">
-                                <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
+                            <div id="img-view-recort" class="img-view" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
                             </div>
                         </label>
                     </div>
