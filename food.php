@@ -3,7 +3,7 @@
 require_once './database.php';
 $dish_details = [];
 $order_details = [];
-$dish_cookie=true;
+$dish_cookie=1;
 $cookie_started = false;
 if($_GET){
 
@@ -23,22 +23,22 @@ $item = $database->select("tb_dish", [
     "id_dish" => $_GET["id"]
 ]);
         
-        if($cookie_started ==false){
+        if($cookie_started == false){
             if (isset($_COOKIE['cart'])) {
                 /* delete/remove a cookie
                 unset($_COOKIE['destinations']);
                 setcookie('destinations', '', time() - 3600);*/
                 $data = json_decode($_COOKIE['cart'], true);
                 $order_details = $data;
-                foreach( $order_details as $index=>$details){
-                    if($details['id']==$_GET["id"]){
-                        $dish_cookie=$details;
+                for ($i = 0; $i < count($order_details); $i++) {
+                    if($order_details[$i]['id']==$_GET["id"]){
+                        $dish_cookie=$order_details[$i]['amount_dishes'];
                     }
                 }
                 var_dump($data);
                 $cookie_started=true;
             }
-    }
+        }
 
         }
        
@@ -83,28 +83,40 @@ if ($_POST) {
         //     ]);
         // }
         if($cookie_started ==false){
+            $update=false;
             if (isset($_COOKIE['cart'])) {
                 /* delete/remove a cookie
                 unset($_COOKIE['destinations']);
                 setcookie('destinations', '', time() - 3600);*/
                 $data = json_decode($_COOKIE['cart'], true);
                 $order_details = $data;
-                foreach( $order_details as $index=>$details){
-                    if($details['id']==$_POST["id_dish"]){
-    
+                for ($i = 0; $i < count($order_details); $i++) {
+                    if($order_details[$i]['id']==$_POST["id_dish"]){
+                        $order_details[$i]['amount_dishes']=$_POST["points"];
+                        $update=true;
                     }
+                }
+                if($update==false){
+                    $dish_details["id"] = $_POST["id_dish"];
+                    $dish_details["amount_dishes"] = $_POST["points"];
+                    $order_details[] = $dish_details;
                 }
                 var_dump($data);
                 $cookie_started=true;
+                setcookie('cart', json_encode($order_details), time()+3600);
+
+            }else{
+                if($update==false){
+                    $dish_details["id"] = $_POST["id_dish"];
+                    $dish_details["amount_dishes"] = $_POST["points"];
+                    
+                    $order_details[] = $dish_details;
+                    setcookie('cart', json_encode($order_details), time()+3600);                
+                }
             }
         }
-        $dish_details["id"] = $_POST["id_dish"];
-        $dish_details["amount_dishes"] = $_POST["points"];
-        
-        $order_details[] = $dish_details;
-    
-        //expire in 1 hour
-        setcookie('cart', json_encode($order_details), time()+3600);
+       
+       
     }
    
 }
@@ -241,24 +253,10 @@ if ($_POST) {
             <form method="post" action="food.php">
                 <div class="cta-container-food no-justifi">
                     <?php
-                    // $id_cart;
-                    // $testing = $database->select("tb_card", '*');
-                    // foreach ($testing as $index => $test) {
-                    //     if ($test['id_dish'] == 1 && $test['id_user'] == $_SESSION['id']) {
-                    //         $approve = false;
-                    //         $id_cart = $index;
-                    //     }
-                    // }
-
-                    if ($dish_cookie == true) {
-                        echo '<input class="form-amount" type="number" value="1" name="points" min="1" step="1">
+                        echo '<input class="form-amount" type="number" value="' . $dish_cookie. '" name="points" min="1" step="1">
                         ';
-                    } else {
-                        echo '<input class="form-amount" type="number" value="' . $details['amount_dishes'] . '" name="points" min="1" step="1">
-                        ';
-                    }
-
                     ?>
+                    
                     <?php
                     echo "<input type='hidden' id='id_dish' name='id_dish' value='" . $item[0]["id_dish"] . "'>";
                     echo "<input type='hidden' name='id_user' value='" . $_SESSION['id'] . "'>";
