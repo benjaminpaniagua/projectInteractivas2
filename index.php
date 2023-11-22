@@ -2,7 +2,9 @@
 require_once './database.php';
 
 // Reference: https://medoo.in/api/select
-$items = $database->select("tb_dish", "*");
+$items = $database->select("tb_dish", "*", [
+    "popular" => 'y'
+]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,47 +53,34 @@ $items = $database->select("tb_dish", "*");
 
 
     <!-- Best Sellers -->
-    
+   
 
     <h2 class="tittle">Best Sellers</h2>
     <section class="container__saucer">
-    <div class='card'>
-                 <img class='image__saucer' src='img/recorted/SaltedCaramelAppleShots.png' alt='Hummus'>
-                 <div class='container__information'>
-                 <div class='linkf'>
-                 <a class='link-class link-food' href='food.php'>
-                <p class='calification'>★★★★★</p>
-                <p class='persons'>Individual</p>
-               <div class='addCart'>
-                <p class='price'>$8</p>
-                <img class='add' src='./img/add.svg' alt='add'>
-                </div>
-                </a>
-                </div>
-                </div>
-                </div>
-        <!-- <?php
-        // foreach ($items as $key => $item) {
-        //     if ($key < 4) {
-        //         echo "<div class='card'>";
-        //         echo "<img class='image__saucer' src='img/recorted/PoppySeedandWalnutRoll.png' alt='Hummus'>";
-        //         echo "<div class='container__information'>";
-        //         echo "<div class='linkf'>";
-        //         echo "<a class='link-class link-food' href='food.php'>";
-        //         echo "<h3 class='name__saucer'>" . $item["names"] . "</h3>";
-        //         echo "<p class='calification'>★★★★★</p>";
-        //         echo "<p class='persons'>Individual</p>";
-        //         echo "<div class='addCart'>";
-        //         echo "<p class='price'>$8</p>";
-        //         echo "<img class='add' src='./img/add.svg' alt='add'>";
-        //         echo "</div>";
-        //         echo "</a>";
-        //         echo "</div>";
-        //         echo "</div>";
-        //         echo "</div>";
-        //     }
-        // }
-        ?> -->
+        <?php
+        foreach ($items as $key => $item) {
+            if ($key < 4) {
+                echo "<div class='card'>";
+                echo "<img class='image__saucer' src='".$item["img_recorted"]."' alt='" . $item["names"] . "'>";
+                echo "<div class='container__information'>";
+                echo "<div class='linkf'>";
+                echo "<a class='link-class link-food' href='food.php?id=".$item["id_dish"]."'>";
+                echo "<h3 class='name__saucer'>" . $item["names"] . "</h3>";
+                echo "<p class='calification'>★★★★★</p>";
+                if ($item['id_amount_people'] == 1)  echo "<p class='persons'>Individual</p>";
+                if ($item['id_amount_people'] == 2)  echo "<p class='persons'>Couples</p>";
+                if ($item['id_amount_people'] == 3)  echo "<p class='persons'>Familiar</p>";
+                echo "<div class='addCart'>";
+                echo "<p class='price'>$" . $item["price"] . "</p>";
+                echo "<img class='add' src='./img/add.svg' alt='add'>";
+                echo "</div>";
+                echo "</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+        }
+        ?>
     </section>
 
     <!-- btn--seeMore -->

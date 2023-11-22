@@ -1,29 +1,5 @@
 <?php
 require_once './database.php';
-
-// Reference: https://medoo.in/api/select
-if ($_GET) {
-    if ($_GET['categorie'] != 'popular') {
-        if ($_GET['categorie'] == 'starters') $category = 2;
-        if ($_GET['categorie'] == 'mainDishes') $category = 1;
-        if ($_GET['categorie'] == 'desserts') $category = 3;
-        if ($_GET['categorie'] == 'drinks') $category = 4;
-        $items = $database->select("tb_dish", "*", [
-            "id_category" => $category
-        ]);
-    } else {
-        $category = 5;
-        $items = $database->select("tb_dish", "*", [
-            "popular" => 'y'
-        ]);
-    }
-} else {
-    $category = 5;
-    $items = $database->select("tb_dish", "*", [
-        "popular" => 'y'
-    ]);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -189,35 +165,6 @@ if ($_GET) {
 
     <div id='foods'>
     <section class="container__saucer" id="items">
-
-        <?php
-        $limit = 10; // Cantidad de elementos a mostrar
-        $count = 0;
-
-        foreach ($items as $item) {
-            // if ($count < $limit) {
-            echo "<div class='card'>";
-            echo "<img class='image__saucer' src='img/hummus.png' alt='Hummus'>";
-            echo "<div class='container__information'>";
-            echo "<div class='linkf'>";
-            echo "<a class='link-class link-food' href='food.php'>";
-            echo "<h3 class='name__saucer'>" . $item["namel"] . "</h3>";
-            echo "<p class='calification'>★★★★★</p>";
-            echo "<p class='persons'>Individual</p>";
-            echo "<div class='addCart'>";
-            echo "<p class='price'>" . $item["price"] . "</p>";
-            echo "<img class='add' src='./img/add.svg' alt='add'>";
-            echo "</div>";
-            echo "</a>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-
-        }
-        ?>
-
-
-
 
     </section>
     </div>

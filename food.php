@@ -1,6 +1,12 @@
 <?php
 
 require_once './database.php';
+$dish_details = [];
+$order_details = [];
+$dish_cookie=true;
+$cookie_started = false;
+if($_GET){
+
 $item = $database->select("tb_dish", [
     "[>]tb_amount_people" => ["id_amount_people" => "id_amount_people"],
 ], [
@@ -8,40 +14,99 @@ $item = $database->select("tb_dish", [
     "tb_dish.namel",
     "tb_dish.namel_ar",
     "tb_dish.qualification",
-    "tb_dish.img_recorted",
+    "tb_dish.img",
     "tb_dish.description",
     "tb_dish.description_ar",
     "tb_dish.price",
     "tb_amount_people.number",
 ], [
-    "id_dish" => 1
+    "id_dish" => $_GET["id"]
 ]);
+        
+        if($cookie_started ==false){
+            if (isset($_COOKIE['cart'])) {
+                /* delete/remove a cookie
+                unset($_COOKIE['destinations']);
+                setcookie('destinations', '', time() - 3600);*/
+                $data = json_decode($_COOKIE['cart'], true);
+                $order_details = $data;
+                foreach( $order_details as $index=>$details){
+                    if($details['id']==$_GET["id"]){
+                        $dish_cookie=$details;
+                    }
+                }
+                var_dump($data);
+                $cookie_started=true;
+            }
+    }
+
+        }
+       
 if ($_POST) {
     if (isset($_POST["add-order"])) {
-        $approve = true;
-        $id_cart;
-        $trying = $database->select("tb_card", '*');
-        foreach ($trying as $index => $try) {
-            if ($try['id_dish'] == $_POST["id_dish"] && $try['id_user'] == $_POST["id_user"]) {
-                $approve = false;
-                $id_cart = $try['id'];
+        $item = $database->select("tb_dish", [
+            "[>]tb_amount_people" => ["id_amount_people" => "id_amount_people"],
+        ], [
+            "tb_dish.id_dish",
+            "tb_dish.namel",
+            "tb_dish.namel_ar",
+            "tb_dish.qualification",
+            "tb_dish.img",
+            "tb_dish.description",
+            "tb_dish.description_ar",
+            "tb_dish.price",
+            "tb_amount_people.number",
+        ], [
+            "id_dish" => $_POST["id_dish"]
+        ]);
+        // $approve = true;
+        // $id_cart;
+        // $trying = $database->select("tb_card", '*');
+        // foreach ($trying as $index => $try) {
+        //     if ($try['id_dish'] == $_POST["id_dish"] && $try['id_user'] == $_POST["id_user"]) {
+        //         $approve = false;
+        //         $id_cart = $try['id'];
+        //     }
+        // }
+
+        // if ($approve == true) {
+        //     $database->insert("tb_card", [
+        //         "id_dish" => $_POST["id_dish"],
+        //         "id_user" => $_POST['id_user'],
+        //         "amount_dishes" => $_POST["points"],
+        //     ]);
+        // } else {
+        //     $database->update("tb_card", [
+        //         "amount_dishes" => $_POST["points"],
+        //     ], [
+        //         "id" => $id_cart
+        //     ]);
+        // }
+        if($cookie_started ==false){
+            if (isset($_COOKIE['cart'])) {
+                /* delete/remove a cookie
+                unset($_COOKIE['destinations']);
+                setcookie('destinations', '', time() - 3600);*/
+                $data = json_decode($_COOKIE['cart'], true);
+                $order_details = $data;
+                foreach( $order_details as $index=>$details){
+                    if($details['id']==$_POST["id_dish"]){
+    
+                    }
+                }
+                var_dump($data);
+                $cookie_started=true;
             }
         }
-
-        if ($approve == true) {
-            $database->insert("tb_card", [
-                "id_dish" => $_POST["id_dish"],
-                "id_user" => $_POST['id_user'],
-                "amount_dishes" => $_POST["points"],
-            ]);
-        } else {
-            $database->update("tb_card", [
-                "amount_dishes" => $_POST["points"],
-            ], [
-                "id" => $id_cart
-            ]);
-        }
+        $dish_details["id"] = $_POST["id_dish"];
+        $dish_details["amount_dishes"] = $_POST["points"];
+        
+        $order_details[] = $dish_details;
+    
+        //expire in 1 hour
+        setcookie('cart', json_encode($order_details), time()+3600);
     }
+   
 }
 
 
@@ -147,7 +212,7 @@ if ($_POST) {
     <div class="food-container">
         <?php
         echo ' <div class="food-thumb item" id="image">';
-        echo '<img class="img img-food" src="' . $item[0]['img_recorted'] . '" alt="">';
+        echo '<img class="img img-food" src="' . $item[0]['img'] . '" alt="">';
         echo '</div>';
         ?>
         <section class="section-container item" id="text">
@@ -176,21 +241,20 @@ if ($_POST) {
             <form method="post" action="food.php">
                 <div class="cta-container-food no-justifi">
                     <?php
-                    $approve = true;
-                    $id_cart;
-                    $testing = $database->select("tb_card", '*');
-                    foreach ($testing as $index => $test) {
-                        if ($test['id_dish'] == 1 && $test['id_user'] == $_SESSION['id']) {
-                            $approve = false;
-                            $id_cart = $index;
-                        }
-                    }
+                    // $id_cart;
+                    // $testing = $database->select("tb_card", '*');
+                    // foreach ($testing as $index => $test) {
+                    //     if ($test['id_dish'] == 1 && $test['id_user'] == $_SESSION['id']) {
+                    //         $approve = false;
+                    //         $id_cart = $index;
+                    //     }
+                    // }
 
-                    if ($approve == true) {
+                    if ($dish_cookie == true) {
                         echo '<input class="form-amount" type="number" value="1" name="points" min="1" step="1">
                         ';
                     } else {
-                        echo '<input class="form-amount" type="number" value="' . $testing[$id_cart]['amount_dishes'] . '" name="points" min="1" step="1">
+                        echo '<input class="form-amount" type="number" value="' . $details['amount_dishes'] . '" name="points" min="1" step="1">
                         ';
                     }
 
