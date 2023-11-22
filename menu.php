@@ -79,7 +79,7 @@ if ($_GET) {
                                 <img class="img--cards" src="./img/Popular.svg" alt="img  24 hours">
                             </div>
                             <div class="card-info">
-                                <p class="text-tittle-menu>" id="text-popular">Popular</p>
+                                <p class="text-tittle-menu" id="text-popular">Popular</p>
                             </div>
                         </div>
 
