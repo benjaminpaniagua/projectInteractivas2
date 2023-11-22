@@ -269,15 +269,6 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
     }
 }
 
-
-
-// if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
-
-
-
-
-var_dump($_FILES);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -305,8 +296,8 @@ var_dump($_FILES);
 
     <div class="registation-container">
         <div class="options-container">
-            <input class="button button-admin" type="submit" name="register" value="Register Dish">
-            <input class="button button-admin" type="submit" name="list" value="List of Dishes">
+            <a class="button button-admin" href="admin.php">Register Dish</a>
+            <a class="button button-admin" href="dish-list.php">List of Dishes</a>
         </div>
         <form method="post" action="admin.php" enctype="multipart/form-data">
             <div class="information-container">
@@ -338,7 +329,7 @@ var_dump($_FILES);
                         <label for="description-arabict">Description in Arabic</label>
                     </div>
                     <div class="input-box">
-                        <input id="price" type="text" name="price" required="">
+                        <input id="price" type="text" name="price" required pattern="\d+" title="Enter only numbers in this field">
                         <label for="price">Price</label>
                     </div>
                 </div>
@@ -395,16 +386,16 @@ var_dump($_FILES);
                         </select>
                     </div>
                     <div class="container-add-dish">
-    <label class="label-section" for="popular">Popular</label>
-    <div class="radio-options">
-        <input type="radio" value="yes" name="popular" id="popular-yes">
-        <label class="radio-label" for="popular-yes">Yes</label>
+                        <label class="label-section" for="popular">Popular</label>
+                        <div class="radio-options">
+                            <input type="radio" value="yes" name="popular" id="popular-yes">
+                            <label class="radio-label" for="popular-yes">Yes</label>
 
-        <input type="radio" value="no" name="popular" id="popular-no" checked>
-        <label class="radio-label" for="popular-no">No</label>
-    </div>
-</div>
-                    
+                            <input type="radio" value="no" name="popular" id="popular-no" checked>
+                            <label class="radio-label" for="popular-no">No</label>
+                        </div>
+                    </div>
+
                 </div>
                 <h3 class="tittle-admin subtittle-admin">Images</h3>
                 <div class="information-part">
