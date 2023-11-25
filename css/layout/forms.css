@@ -14,11 +14,10 @@
 }
 
 .container-cart {
-    max-width: 1200px;
+    max-width:100%;
     padding: 10px;
     display: flex;
     /* margin: auto; */
-    justify-content: space-between;
     /* oculto lo que queda fuera del .contenedor */
     contain: paint;
     justify-content: center;
@@ -52,6 +51,9 @@ background: var(--clr-green-nav);
 color: #fff;
 text-align: center;
 padding: 1.875rem;
+display: grid;
+grid-template-columns: 8% auto;
+align-items: center;
 }
 
 .cart .cart-item{

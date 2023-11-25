@@ -251,6 +251,7 @@ if ($_POST) {
             ?>
 
             <form method="post" action="food.php">
+                
                 <div class="cta-container-food no-justifi">
                     <?php
                         echo '<input class="form-amount" type="number" value="' . $dish_cookie. '" name="points" min="1" step="1">

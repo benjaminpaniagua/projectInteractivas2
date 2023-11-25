@@ -222,10 +222,17 @@
 }
 
 .cart-btn {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    
+}
+.cart-btn-leave{
+    width: 77%;
 }
 
+.btn-leave{
+    background: var(--clr-green-nav);
+    border: none;
+}
 .container-add-dish {
     margin-top: 20px;
 }

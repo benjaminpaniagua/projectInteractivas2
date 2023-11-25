@@ -6,23 +6,20 @@ if (isset($_SESSION["isLoggedIn"])) {
     header("location:signIn.php");
 }
 
-$items = $database->select(
-    "tb_card",
-    [
-        "[>]tb_dish" => ["id_dish" => "id_dish"],
-    ],
-    [
-        "tb_dish.namel",
-        "tb_dish.img_recorted",
-        "tb_dish.price",
-        "tb_card.amount_dishes",
-        "tb_card.id_dish",
+$dish_details = null;
+$updateCookie = false;
 
-    ],
-    [
-        "id_user" => $_SESSION["id"]
-    ]
-);
+
+if (isset($_COOKIE['cart'])) {
+    $data = json_decode($_COOKIE['cart'], true);
+    if (isset($_GET["dish"]) && $_GET["dish"] >= 0 && $data != null) {
+        array_splice($data, $_GET["dish"], 1);
+        $updateCookie = true;
+    }
+    $dish_details = $data;
+    if ($updateCookie) setcookie('cart', json_encode($dish_details), time() + 72000);
+}
+
 
 
 if ($_POST) {
@@ -32,39 +29,56 @@ if ($_POST) {
         if ($_POST["group"] == 'Lounge') $type = 1;
         if ($_POST["group"] == 'Express') $type = 2;
         if ($_POST["group"] == 'Pick up') $type = 3;
-        $database->insert("tb_order_resgistered",[
-                    "id_user"=> $_SESSION["id"],
-                    "id_order_type"=>$type,
-                    "date_time"=>$date_time,
-         ]);
-         $id_order= $database->id();
-         if($_POST['direction']!=""){
-            $database->update("tb_order_resgistered",[
-                "direction"=>$_POST['direction'],
-        
-            ],[
-                "id_order_registered"=> $id_order
+        $database->insert("tb_order_resgistered", [
+            "id_user" => $_SESSION["id"],
+            "id_order_type" => $type,
+            "date_time" => $date_time,
+        ]);
+        $id_order = $database->id();
+        if ($_POST['direction'] != "") {
+            $database->update("tb_order_resgistered", [
+                "direction" => $_POST['direction'],
+
+            ], [
+                "id_order_registered" => $id_order
             ]);
-         }
-         $amounts=$_POST['value'];
-         $ids=$_POST['id'];
-
-         
-         for($i=0; $i < count($_POST['value']); $i++){
-            $database->insert("tb_order_dishes",[
-                "id_order_registered"=>$id_order,
-                "id_dish"=> $ids[$i],
-                "amoun_dish"=>$amounts[$i],
-        ]);
         }
-        $database->delete("tb_card",[
-            "id_user"=> $_SESSION["id"]
+        $amounts = $_POST['value'];
+        $ids = $_POST['id'];
+
+
+        for ($i = 0; $i < count($_POST['value']); $i++) {
+            $database->insert("tb_order_dishes", [
+                "id_order_registered" => $id_order,
+                "id_dish" => $ids[$i],
+                "amoun_dish" => $amounts[$i],
+            ]);
+        }
+        $database->delete("tb_card", [
+            "id_user" => $_SESSION["id"]
         ]);
 
-        header("location:index.php");  
+        header("location:index.php");
+    }
+    if (isset($_POST["leave"])) {
+        $data = json_decode($_COOKIE['cart'], true);
+                $order_details = $data;
+                $amounts = $_POST['value'];
+                $ids = $_POST['id'];
+
+        
+            if ($order_details != null) {
+                for ($i = 0; $i < count($order_details); $i++) {
+                    if($order_details[$i]['id']==$ids[$i]){
+                        $order_details[$i]['amount_dishes']=$amounts[$i];
+                    }
+                }
+                setcookie('cart', json_encode($order_details), time()+3600);
+                header("location:menu.php");
+            }
     }
     if (isset($_POST["go"])) {
-        header("location:menu.php");  
+        header("location:menu.php");
     }
 }
 
@@ -92,34 +106,34 @@ if ($_POST) {
             <!-- cart -->
             <div class="cart">
                 <div class="header-cart">
+                <button type="submit" name="leave" class="btn-leave">  <img class="cart-btn-leave" src="./img/leave.svg" alt=""> </button>
                     <h2>Cart</h2>
                 </div>
 
+
                 <div class="cart-items">
                     <?php
-                    if ($items != null) {
-                        foreach ($items as $index => $item) {
+                    if ($dish_details != null) {
+                        foreach ($dish_details as $index => $dish) {
+                            $item = $database->select("tb_dish", "*", ["id_dish" => $dish["id"]]);
                             echo ' <div class="cart-item">';
-                            echo ' <img src="' . $item['img_recorted'] . '" alt="hummus" width="80px" class="cart-img">';
+                            echo ' <img src="' . $item[0]['img_recorted'] . '" alt="hummus" width="80px" class="cart-img">';
                             echo ' <div class="cart-item-details">';
-                            echo '  <span class="cart-item-tittle">' . $item['namel'] . '</span>';
+                            echo '  <span class="cart-item-tittle">' . $item[0]['names'] . '</span>';
                             echo '    <div class="selector-amount">';
-                            echo '       <input name="value[]" id="menu-item' . $index . '" item-price="' . $item['price'] . '" type="number" value="' . $item['amount_dishes'] . '" class="" oninput="updateSubtotal()" min="1">';
+                            echo '       <input name="value[]" id="menu-item' . $index . '" item-price="' . $item[0]['price'] . '" type="number" value="' . $dish['amount_dishes'] . '" class="" oninput="updateSubtotal()" min="1">';
                             echo '   </div>';
-                            echo '   <span class="carrito-item-precio">$' . $item['price'] . '</span>';
+                            echo '   <span class="carrito-item-precio">$' . $item[0]['price'] . '</span>';
                             echo '</div>';
-                            echo ' <span class="btn-delete">';
+                            echo ' <a href="cart.php?dish=' . $index . '"><span class="btn-delete">';
                             echo '    <img class="cart-btn" src="./img/trash.svg" alt="">';
-                            echo ' </span>';
-                            echo '<input type="text" name="id[]" value=' . $item['id_dish'] . '" hidden>';
+                            echo ' </span></a>';
+                            echo '<input type="text" name="id[]" value="' . $item[0]['id_dish'] . '" hidden>';
                             echo ' </div>';
                         }
                     }
 
                     ?>
-
-
-
 
                 </div>
                 <div class="cart-total">
@@ -144,14 +158,14 @@ if ($_POST) {
                         <strong>Tu Total</strong>
                         <p id="total"></p>
                     </div>
-                    <?php 
-                        if ($items != null) {
-                            echo'<button type="submit" name="pay" class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>';
-                        }else{
-                            echo'<button type="submit" name="go" class="btn-pay">Go shopping<img src="./img/pay.svg" alt=""> </button>';
-                        }
+                    <?php
+                    if ($dish_details != null) {
+                        echo '<button type="submit" name="pay" class="btn-pay">Pay <img src="./img/pay.svg" alt=""> </button>';
+                    } else {
+                        echo '<button type="submit" name="go" class="btn-pay">Go shopping<img src="./img/pay.svg" alt=""> </button>';
+                    }
 
-                        
+
                     ?>
 
                 </div>
