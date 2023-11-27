@@ -197,8 +197,8 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
         $filename = str_replace(',', '', $filename);
         $filename = str_replace('.', '', $filename);
         $filename = str_replace(' ', '-', $filename);
-        $img = $filename . "." . $file_ext;
-        move_uploaded_file($file_tmp, "./img/" . $img);
+        $img = "./img/" . $filename . "." . $file_ext;
+        move_uploaded_file($file_tmp, $img);
 
         $errors_recorted = [];
         $file_name_recorted = $_FILES["img_recorted"]["name"];
