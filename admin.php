@@ -173,8 +173,9 @@ $message = "";
 //     };
 // }
 
-//ORIGINAL QUE NO CARGA
+
 if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
+
 
     $errors = [];
     $file_name = $_FILES["img"]["name"];
@@ -196,7 +197,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
         $filename = str_replace(',', '', $filename);
         $filename = str_replace('.', '', $filename);
         $filename = str_replace(' ', '-', $filename);
-        $img = "./img/" . $filename . "." . $file_ext;
+        $img = $filename . "." . $file_ext;
         move_uploaded_file($file_tmp, "./img/" . $img);
 
         $errors_recorted = [];
@@ -214,12 +215,12 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
         }
 
         if (empty($errors_recorted)) {
-            $filename_recorted = strtolower($_POST["namel"]);
-            $filename_recorted = str_replace(',', '', $filename_recorted);
-            $filename_recorted = str_replace('.', '', $filename_recorted);
-            $filename_recorted = str_replace(' ', '-', $filename_recorted);
+            $filename = strtolower($_POST["namel"]);
+            $filename = str_replace(',', '', $filename);
+            $filename = str_replace('.', '', $filename);
+            $filename = str_replace(' ', '-', $filename);
             $img_recorted = "./img/" . $filename . "." . $file_ext_recorted;
-            move_uploaded_file($file_tmp_recorted, "./img/" . $img_recorted);
+            move_uploaded_file($file_tmp_recorted, $img_recorted);
 
             $errors_recorted = [];
             $file_name_recorted = $_FILES["img_recorted"]["name"];
@@ -234,36 +235,37 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                 $errors_recorted[] = "File type is not supported";
                 $message = "File type is not supported";
             }
-            
+
             if (empty($errors_recorted)) {
                 $filename = strtolower($_POST["namel"]);
                 $filename = str_replace(',', '', $filename);
                 $filename = str_replace('.', '', $filename);
                 $filename = str_replace(' ', '-', $filename);
-                $img_recorted = $filename . "." . $file_ext_recorted;
-                move_uploaded_file($file_tmp_recorted, "./img/" . $img_recorted);
+                $img_recorted ="./img/" . $filename . "." . $file_ext_recorted;
+                move_uploaded_file($file_tmp_recorted, $img_recorted);
 
 
-            // Reference: https://medoo.in/api/insert
-            $database->insert("tb_dish", [
-                "id_category" => $_POST["id_category"],
-                "id_amount_people" => $_POST["id_amount_people"],
-                "namel" => $_POST["namel"],
-                "namel_ar" => $_POST["namel_ar"],
-                "names" => $_POST["names"],
-                "names_ar" => $_POST["names_ar"],
-                "price" => $_POST["price"],
-                "description" => $_POST["description"],
-                "description_ar" => $_POST["description_ar"],
-                "popular" => $_POST["popular"],
-                "price" => $_POST["price"],
-                "img" => $img,
-                "img_recorted" => $img_recorted,
-                "tb_dish.related_dish_one" => $_POST["related-dish-one"],
-                "tb_dish.related_dish_two" => $_POST["related-dish-two"],
-                "tb_dish.related_dish_three" => $_POST["related-dish-three"]
-            ]);
-        }
+                // Reference: https://medoo.in/api/insert
+                $database->insert("tb_dish", [
+                    "id_category" => $_POST["id_category"],
+                    "id_amount_people" => $_POST["id_amount_people"],
+                    "namel" => $_POST["namel"],
+                    "namel_ar" => $_POST["namel_ar"],
+                    "names" => $_POST["names"],
+                    "names_ar" => $_POST["names_ar"],
+                    "price" => $_POST["price"],
+                    "description" => $_POST["description"],
+                    "description_ar" => $_POST["description_ar"],
+                    "popular" => $_POST["popular"],
+                    "price" => $_POST["price"],
+                    "img" => $img,
+                    "img_recorted" => $img_recorted,
+                    "tb_dish.related_dish_one" => $_POST["related-dish-one"],
+                    "tb_dish.related_dish_two" => $_POST["related-dish-two"],
+                    "tb_dish.related_dish_three" => $_POST["related-dish-three"]
+                ]);
+            };
+        };
     }
 }
 
