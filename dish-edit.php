@@ -69,7 +69,7 @@ if ($_POST) {
             $filename = str_replace(',', '', $filename);
             $filename = str_replace('.', '', $filename);
             $filename = str_replace(' ', '-', $filename);
-            $img = $filename . "." . $file_ext;
+            $img = "./img/" . $filename . "." . $file_ext;
             echo $img;
             move_uploaded_file($file_tmp, "./img/" . $img);
         }
@@ -102,7 +102,7 @@ if ($_POST) {
             $filename = str_replace(' ', '-', $filename);
             $img_recorted = $filename . "." . $file_ext_recorted;
             echo $img_recorted;
-            move_uploaded_file($file_tmp_recorted, "./img/" . $img_recorted);
+            move_uploaded_file($file_tmp_recorted, "./img/recorted" . $img_recorted);
         }
     } else {
         $img_recorted = $data[0]["img_recorted"];
@@ -297,7 +297,7 @@ if ($_POST) {
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
                             <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
                             <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>">
-                            <div id="img-view-recort" class="img-view" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
+                            <div id="img-view-recort" class="img-view img-view-recort" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
                             </div>
                         </label>
                     </div>
