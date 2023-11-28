@@ -10,13 +10,19 @@
             $decoded = json_decode($content, true);
             if($decoded["category"]==5){
                 $items = $database->select("tb_dish","*",[
-                    "popular" => 'y'
+                    'AND'=>[
+                        "popular" => 'y',
+                        "visible"=>1
+                    ]
                 ]
             );
 
             }else{
                 $items = $database->select("tb_dish","*",[
-                    "id_category" => $decoded["category"]
+                    'AND'=>[
+                        "id_category" => $decoded["category"],
+                        "visible"=>1
+                    ]
                 ]
             );
 

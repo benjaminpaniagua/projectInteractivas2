@@ -3,7 +3,11 @@ require_once './database.php';
 
 // Reference: https://medoo.in/api/select
 $items = $database->select("tb_dish", "*", [
-    "popular" => 'y'
+    'AND'=>[
+        "popular" => 'y',
+        "visible"=>1
+    ]
+    
 ]);
 ?>
 <!DOCTYPE html>
