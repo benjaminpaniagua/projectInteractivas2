@@ -40,7 +40,7 @@ require_once './database.php';
     <!-- menu section -->
 
     <section class="menu-section">
-        <h2 class="tittle">Our Menus</h2>
+        <h2 id='popular2' class="tittle">Our Menus</h2>
 
         <!-- carusel -->
 

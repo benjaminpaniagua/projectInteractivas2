@@ -3,45 +3,44 @@
 require_once './database.php';
 $dish_details = [];
 $order_details = [];
-$dish_cookie=1;
+$dish_cookie = 1;
 $cookie_started = false;
-if($_GET){
+if ($_GET) {
 
-$item = $database->select("tb_dish", [
-    "[>]tb_amount_people" => ["id_amount_people" => "id_amount_people"],
-], [
-    "tb_dish.id_dish",
-    "tb_dish.namel",
-    "tb_dish.namel_ar",
-    "tb_dish.qualification",
-    "tb_dish.img",
-    "tb_dish.description",
-    "tb_dish.description_ar",
-    "tb_dish.price",
-    "tb_amount_people.number",
-], [
-    "id_dish" => $_GET["id"]
-]);
-        
-        if($cookie_started == false){
-            if (isset($_COOKIE['cart'])) {
-                /* delete/remove a cookie
+    $item = $database->select("tb_dish", [
+        "[>]tb_amount_people" => ["id_amount_people" => "id_amount_people"],
+    ], [
+        "tb_dish.id_dish",
+        "tb_dish.namel",
+        "tb_dish.namel_ar",
+        "tb_dish.qualification",
+        "tb_dish.img",
+        "tb_dish.description",
+        "tb_dish.description_ar",
+        "tb_dish.price",
+        "tb_amount_people.number",
+    ], [
+        "id_dish" => $_GET["id"]
+    ]);
+
+    if ($cookie_started == false) {
+        if (isset($_COOKIE['cart'])) {
+            /* delete/remove a cookie
                 unset($_COOKIE['destinations']);
                 setcookie('destinations', '', time() - 3600);*/
-                $data = json_decode($_COOKIE['cart'], true);
-                $order_details = $data;
-                for ($i = 0; $i < count($order_details); $i++) {
-                    if($order_details[$i]['id']==$_GET["id"]){
-                        $dish_cookie=$order_details[$i]['amount_dishes'];
-                    }
+            $data = json_decode($_COOKIE['cart'], true);
+            $order_details = $data;
+            for ($i = 0; $i < count($order_details); $i++) {
+                if ($order_details[$i]['id'] == $_GET["id"]) {
+                    $dish_cookie = $order_details[$i]['amount_dishes'];
                 }
-                var_dump($data);
-                $cookie_started=true;
             }
+            var_dump($data);
+            $cookie_started = true;
         }
+    }
+}
 
-        }
-       
 if ($_POST) {
     if (isset($_POST["add-order"])) {
         $item = $database->select("tb_dish", [
@@ -82,8 +81,8 @@ if ($_POST) {
         //         "id" => $id_cart
         //     ]);
         // }
-        if($cookie_started ==false){
-            $update=false;
+        if ($cookie_started == false) {
+            $update = false;
             if (isset($_COOKIE['cart'])) {
                 /* delete/remove a cookie
                 unset($_COOKIE['destinations']);
@@ -91,34 +90,30 @@ if ($_POST) {
                 $data = json_decode($_COOKIE['cart'], true);
                 $order_details = $data;
                 for ($i = 0; $i < count($order_details); $i++) {
-                    if($order_details[$i]['id']==$_POST["id_dish"]){
-                        $order_details[$i]['amount_dishes']=$_POST["points"];
-                        $update=true;
+                    if ($order_details[$i]['id'] == $_POST["id_dish"]) {
+                        $order_details[$i]['amount_dishes'] = $_POST["points"];
+                        $update = true;
                     }
                 }
-                if($update==false){
+                if ($update == false) {
                     $dish_details["id"] = $_POST["id_dish"];
                     $dish_details["amount_dishes"] = $_POST["points"];
                     $order_details[] = $dish_details;
                 }
                 var_dump($data);
-                $cookie_started=true;
-                setcookie('cart', json_encode($order_details), time()+3600);
-
-            }else{
-                if($update==false){
+                $cookie_started = true;
+                setcookie('cart', json_encode($order_details), time() + 72000);
+            } else {
+                if ($update == false) {
                     $dish_details["id"] = $_POST["id_dish"];
                     $dish_details["amount_dishes"] = $_POST["points"];
-                    
+
                     $order_details[] = $dish_details;
-                    setcookie('cart', json_encode($order_details), time()+3600);                
+                    setcookie('cart', json_encode($order_details), time() + 72000);
                 }
             }
         }
-       
-       
     }
-   
 }
 
 
@@ -154,19 +149,20 @@ if ($_POST) {
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <?php
                     session_start();
-                    if (isset($_SESSION["isLoggedIn"])) {
-                    } else {
-                        header("location:signIn.php");
-                    }
-                    if (isset($_SESSION['admin'])) {
-                        if ($_SESSION['admin'] == 2) {
-                            echo '<li><a class="nav-list-link" href="./admin.php">Administration</a></li>';
-                        }
-                    }
-
                     if (isset($_SESSION['isLoggedIn'])) {
-                        echo '<li><a class="nav-list-link" href="./profile.php">' . $_SESSION['user'] . '</a></li>';
-                        echo '<li><a class="nav-list-link" href="./logout.php">Logout</a></li>';
+                        echo '<li>
+                             <a class="nav-list-link" href="#">' . $_SESSION['user'] . '</a>';
+                        echo '<ul class="menu-vertical">';
+                        echo '<li><a class="" href="./profile.php">Profile</a></li>';
+                        if (isset($_SESSION['admin'])) {
+                            if ($_SESSION['admin'] == 2) {
+                                echo '<li><a class="" href="./admin.php">Administration</a></li>';
+                            }
+                        }
+                        echo '<li><a class="" href="./logout.php">Logout</a></li>';
+
+                        echo '</ul>';
+                        echo '</li>';
                     } else {
                         echo '<li><a class="nav-list-link" href="./signIn.php">Sign in</a></li>';
                     }
@@ -185,6 +181,7 @@ if ($_POST) {
                     <input class="submit-btn" type="submit" value="">
                     <input type="text" class="inputText" placeholder="">
                 </div>
+                <a href="cart.php" class="text-decoration"> 
                 <?php
                 if (isset($_POST["add-order"])) {
                     echo '<div class="btn-nav shake-left-right" id="cart">';
@@ -194,9 +191,16 @@ if ($_POST) {
                 ?>
                 <a id='cart' href="cart.php"><img class="img" src="./img/cart.svg" alt="shopping"></a>
                 <p class="cartText">Cart •</p>
-                <p class="cartText">1</p>
+                <p class="cartText"><?php 
+                 if (isset($_COOKIE['cart'])) {
+                    $number = json_decode($_COOKIE['cart'], true);
+                    echo count($number); 
+                }else{
+                    echo'0';
+                }
+            ?></p>
             </div>
-
+            </a>
             </div>
             <label for="menu" class="nav_label">
                 <img src="./img/nav.svg" alt="img">
@@ -251,17 +255,15 @@ if ($_POST) {
             ?>
 
             <form method="post" action="food.php">
-                
+
                 <div class="cta-container-food no-justifi">
                     <?php
-                        echo '<input class="form-amount" type="number" value="' . $dish_cookie. '" name="points" min="1" step="1">
+                    echo '<input class="form-amount" type="number" value="' . $dish_cookie . '" name="points" min="1" step="1">
                         ';
                     ?>
-                    
+
                     <?php
                     echo "<input type='hidden' id='id_dish' name='id_dish' value='" . $item[0]["id_dish"] . "'>";
-                    echo "<input type='hidden' name='id_user' value='" . $_SESSION['id'] . "'>";
-
                     ?>
                 </div>
                 <div class="cta-container-food no-justifi">

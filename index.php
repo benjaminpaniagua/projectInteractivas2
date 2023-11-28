@@ -3,7 +3,11 @@ require_once './database.php';
 
 // Reference: https://medoo.in/api/select
 $items = $database->select("tb_dish", "*", [
-    "popular" => 'y'
+    'AND'=>[
+        "popular" => 'y',
+        "visible"=>1
+    ]
+    
 ]);
 ?>
 <!DOCTYPE html>
@@ -55,7 +59,7 @@ $items = $database->select("tb_dish", "*", [
     <!-- Best Sellers -->
    
 
-    <h2 class="tittle">Best Sellers</h2>
+    <h2 id='popular2' class="tittle">Best Sellers</h2>
     <section class="container__saucer">
         <?php
         foreach ($items as $key => $item) {
