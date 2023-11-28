@@ -20,7 +20,7 @@ if ($_GET) {
         "tb_dish.price",
         "tb_amount_people.number",
     ], [
-        "id_dish" => $_GET["id"]
+        "id_dish" => $_SESSION['id']
     ]);
 
     if ($cookie_started == false) {
