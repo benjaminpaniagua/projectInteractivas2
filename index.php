@@ -59,7 +59,7 @@ $items = $database->select("tb_dish", "*", [
     <!-- Best Sellers -->
    
 
-    <h2 class="tittle">Best Sellers</h2>
+    <h2 id='popular2' class="tittle">Best Sellers</h2>
     <section class="container__saucer">
         <?php
         foreach ($items as $key => $item) {

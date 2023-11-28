@@ -251,3 +251,29 @@
 .radio-label {
     margin-left: 5px;
 }
+
+.menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    padding: 0;
+    width: 200px;
+    background-color:rgba(17, 65, 34, 0.661);
+}
+
+.nav-list li:hover .menu-vertical{
+    display: block;
+}
+.menu-vertical li:hover{
+    background-color: var(--clr-green-nav);
+}
+.menu-vertical li a{
+    display: block;
+    color:var(--clr-white);
+    text-decoration: none;
+    font-size: clamp(0.625rem, 1.125rem, 1.25rem);
+    padding: 15px 15px 15px 20px;
+}
+.text-decoration{
+    text-decoration: none;
+}
