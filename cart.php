@@ -1,10 +1,5 @@
 <?php
 require_once './database.php';
-session_start();
-if (isset($_SESSION["isLoggedIn"])) {
-} else {
-    header("location:signIn.php");
-}
 
 $dish_details = null;
 $updateCookie = false;
@@ -24,58 +19,68 @@ if (isset($_COOKIE['cart'])) {
 
 if ($_POST) {
     if (isset($_POST["pay"])) {
-        date_default_timezone_set('America/Costa_Rica');
-        $date_time = date('Y-m-d H:i:s');
-        if ($_POST["group"] == 'Lounge') $type = 1;
-        if ($_POST["group"] == 'Express') $type = 2;
-        if ($_POST["group"] == 'Pick up') $type = 3;
-        $database->insert("tb_order_resgistered", [
-            "id_user" => $_SESSION["id"],
-            "id_order_type" => $type,
-            "date_time" => $date_time,
-        ]);
-        $id_order = $database->id();
-        if ($_POST['direction'] != "") {
-            $database->update("tb_order_resgistered", [
-                "direction" => $_POST['direction'],
+        session_start();
+        if (isset($_SESSION["isLoggedIn"])) {
 
-            ], [
-                "id_order_registered" => $id_order
+            date_default_timezone_set('America/Costa_Rica');
+            $date_time = date('Y-m-d H:i:s');
+            if ($_POST["group"] == 'Lounge') $type = 1;
+            if ($_POST["group"] == 'Express') $type = 2;
+            if ($_POST["group"] == 'Pick up') $type = 3;
+            $database->insert("tb_order_resgistered", [
+                "id_user" => $_SESSION["id"],
+                "id_order_type" => $type,
+                "date_time" => $date_time,
             ]);
+            $id_order = $database->id();
+            if ($_POST['direction'] != "") {
+                $database->update("tb_order_resgistered", [
+                    "direction" => $_POST['direction'],
+
+                ], [
+                    "id_order_registered" => $id_order
+                ]);
+            }
+            $amounts = $_POST['value'];
+            $ids = $_POST['id'];
+
+
+            for ($i = 0; $i < count($_POST['value']); $i++) {
+                $database->insert("tb_order_dishes", [
+                    "id_order_registered" => $id_order,
+                    "id_dish" => $ids[$i],
+                    "amoun_dish" => $amounts[$i],
+                ]);
+            }
+            $database->delete("tb_card", [
+                "id_user" => $_SESSION["id"]
+            ]);
+
+            setcookie("cart", "", time() - 72000 );
+
+
+
+            header("location:index.php");
+        } else {
+            header("location:signIn.php");
         }
+    }
+    if (isset($_POST["leave"])) {
+        $data = json_decode($_COOKIE['cart'], true);
+        $order_details = $data;
         $amounts = $_POST['value'];
         $ids = $_POST['id'];
 
 
-        for ($i = 0; $i < count($_POST['value']); $i++) {
-            $database->insert("tb_order_dishes", [
-                "id_order_registered" => $id_order,
-                "id_dish" => $ids[$i],
-                "amoun_dish" => $amounts[$i],
-            ]);
-        }
-        $database->delete("tb_card", [
-            "id_user" => $_SESSION["id"]
-        ]);
-
-        header("location:index.php");
-    }
-    if (isset($_POST["leave"])) {
-        $data = json_decode($_COOKIE['cart'], true);
-                $order_details = $data;
-                $amounts = $_POST['value'];
-                $ids = $_POST['id'];
-
-        
-            if ($order_details != null) {
-                for ($i = 0; $i < count($order_details); $i++) {
-                    if($order_details[$i]['id']==$ids[$i]){
-                        $order_details[$i]['amount_dishes']=$amounts[$i];
-                    }
+        if ($order_details != null) {
+            for ($i = 0; $i < count($order_details); $i++) {
+                if ($order_details[$i]['id'] == $ids[$i]) {
+                    $order_details[$i]['amount_dishes'] = $amounts[$i];
                 }
-                setcookie('cart', json_encode($order_details), time()+3600);
-                header("location:menu.php");
             }
+            setcookie('cart', json_encode($order_details), time() + 3600);
+            header("location:menu.php");
+        }
     }
     if (isset($_POST["go"])) {
         header("location:menu.php");
@@ -106,7 +111,11 @@ if ($_POST) {
             <!-- cart -->
             <div class="cart">
                 <div class="header-cart">
-                <button type="submit" name="leave" class="btn-leave">  <img class="cart-btn-leave" src="./img/leave.svg" alt=""> </button>
+                    <?php
+                    if ($dish_details != null) {
+                        echo '<button type="submit" name="leave" class="btn-leave"> <img class="cart-btn-leave" src="./img/leave.svg" alt=""> </button>';
+                    }
+                    ?>
                     <h2>Cart</h2>
                 </div>
 

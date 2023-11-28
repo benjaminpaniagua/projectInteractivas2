@@ -103,7 +103,7 @@ if ($_POST) {
                 }
                 var_dump($data);
                 $cookie_started=true;
-                setcookie('cart', json_encode($order_details), time()+3600);
+                setcookie('cart', json_encode($order_details), time()+72000);
 
             }else{
                 if($update==false){
@@ -111,7 +111,7 @@ if ($_POST) {
                     $dish_details["amount_dishes"] = $_POST["points"];
                     
                     $order_details[] = $dish_details;
-                    setcookie('cart', json_encode($order_details), time()+3600);                
+                    setcookie('cart', json_encode($order_details), time()+72000);                
                 }
             }
         }
@@ -153,11 +153,6 @@ if ($_POST) {
                     <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
                     <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                     <?php
-                    session_start();
-                    if (isset($_SESSION["isLoggedIn"])) {
-                    } else {
-                        header("location:signIn.php");
-                    }
                     if (isset($_SESSION['admin'])) {
                         if ($_SESSION['admin'] == 2) {
                             echo '<li><a class="nav-list-link" href="./admin.php">Administration</a></li>';
@@ -260,8 +255,6 @@ if ($_POST) {
                     
                     <?php
                     echo "<input type='hidden' id='id_dish' name='id_dish' value='" . $item[0]["id_dish"] . "'>";
-                    echo "<input type='hidden' name='id_user' value='" . $_SESSION['id'] . "'>";
-
                     ?>
                 </div>
                 <div class="cta-container-food no-justifi">
