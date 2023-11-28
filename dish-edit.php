@@ -108,7 +108,6 @@ if ($_POST) {
         $img_recorted = $data[0]["img_recorted"];
     }
 
-    /*array(14) { ["related-dish-one"]=> string(1) "1" ["related-dish-two"]=> string(2) "43" ["related-dish-three"]=> string(2) "43" ["popular"]=> string(2) "no" ["add"]=> string(8) "Add food" } */
     $database->update("tb_dish", [
         "id_category" => $_POST["id_category"],
         "id_amount_people" => $_POST["id_amount_people"],

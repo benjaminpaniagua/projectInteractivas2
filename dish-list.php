@@ -40,7 +40,7 @@ $items = $database->select("tb_dish", "*");
                 <?php
                 foreach ($items as $item) {
                     echo "<tr>";
-                    echo "<td class='dish-list'><img src='./img/hummus.png' alt='Dish Image' style='width: 50px; height: 50px;'></td>";
+                    echo "<td class='dish-list'><img src=" . $item["img_recorted"] . " alt='Dish Image' style='width: 50px; height: 50px;'></td>";
                     echo "<td class='dish-list'>" . $item["namel"] . "</td>";
                     echo "<td class='dish-list'>" . $item["price"] . "</td>";
                     echo "<td class='dish-list'><a href='dish-edit.php?id_dish=" . $item["id_dish"] . "'>Edit</a></td>";

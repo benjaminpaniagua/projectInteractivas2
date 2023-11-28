@@ -251,3 +251,22 @@
 .radio-label {
     margin-left: 5px;
 }
+
+.dishes-container{
+    text-align: center;
+}
+
+.search-title{
+    font-family: var(--ff-main);
+    font-size: clamp(var(--fs-md), 1.875rem, var(--fs-lg));
+    margin: 1rem auto;
+    width: 17ch;
+}
+
+.dish-search-container{
+    display: grid;
+    width: 80vw;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
