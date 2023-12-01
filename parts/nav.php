@@ -16,7 +16,7 @@
 
             <?php
             session_start();
-           
+
             if (isset($_SESSION['isLoggedIn'])) {
                 echo '<li>
                      <a class="nav-list-link" href="#">' . $_SESSION['user'] . '</a>';
@@ -37,29 +37,31 @@
             ?>
 
         </ul>
-        <div id="phoneSearch" class="btn-nav btn-search">
-            <input class="submit-btn" type="submit" value="">
-            <input type="text" class="inputText" placeholder="">
-        </div>
+            <div id="phoneSearch" class="btn-nav btn-search">
+                <input class="submit-btn" type="submit">
+                <input type="text" class="inputText" placeholder="">
+            </div>
     </div>
+    <form method="get" action="results.php">
     <div class="cta-container">
         <div id="search" class="btn-nav btn-search">
             <input class="submit-btn" type="submit" value="">
-            <input type="text" class="inputText" placeholder="">
+            <input type="text" class="inputText" placeholder="" name="keyword">
         </div>
+        </form>
         <a href="cart.php" class="text-decoration">
-        <div class="btn-nav">
-            <img class="img" src="./img/shoppingCart.png" alt="shopping">
-            <p class="cartText">Cart •</p>
-            <p class="cartText"><?php 
-                 if (isset($_COOKIE['cart'])) {
-                    $number = json_decode($_COOKIE['cart'], true);
-                    echo count($number); 
-                }else{
-                    echo'0';
-                }
-            ?></p>
-        </div>
+            <div class="btn-nav">
+                <img class="img" src="./img/shoppingCart.png" alt="shopping">
+                <p class="cartText">Cart •</p>
+                <p class="cartText"><?php
+                                    if (isset($_COOKIE['cart'])) {
+                                        $number = json_decode($_COOKIE['cart'], true);
+                                        echo count($number);
+                                    } else {
+                                        echo '0';
+                                    }
+                                    ?></p>
+            </div>
         </a>
 
     </div>

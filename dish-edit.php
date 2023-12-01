@@ -129,7 +129,7 @@ if ($_POST) {
     ], [
         "id_dish" => $_POST["id"]
     ]);
-        header("location: dish-list.php");
+    header("location: dish-list.php");
     // Reference: https://medoo.in/api/insert  
 }
 
@@ -285,17 +285,19 @@ if ($_POST) {
                     <div>
                         <label for="input-file" class="drop-area" id="drop-area">
                             <input type="file" accept="image/*" id="input-file" hidden name="img">
-                            <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>">
+                            <!-- <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>"> -->
+                            <input id="img" type="hidden" name="img" value="<?php echo $item[0]["img"]; ?>">
                             <div id="img-view" class="edit">
-                                <img  class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
+                                <img class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
                             </div>
-                                
+
                         </label>
                     </div>
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
                             <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
-                            <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>">
+                            <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>" onchange="readURL(this)">
+                            <!-- <input id="img_recorted" type="hidden" name="img_recorted" value="<?php echo $item[0]["img_recorted"]; ?>"> -->
                             <div id="img-view-recort" class="img-view img-view-recort" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
                             </div>
                         </label>
@@ -315,16 +317,27 @@ if ($_POST) {
         let recorted2 = document.getElementById('img-view-recort');
 
         function editImage() {
-            
+
             let imageNormal = document.getElementById('img').getAttribute("test");
             let imageRecorted = document.getElementById('img_recorted');
-            let imgLink= URL.createObjectURL(imageNormal);
+            let imgLink = URL.createObjectURL(imageNormal);
             recorted1.style.backgroundImage = "url(./img/" + imgLink + ")";
             // recorted2.style.backgroundImage = "url(./img/" + imageRecorted + ")";
         }
         document.addEventListener("DOMContentLoaded", function() {
             editImage();
         });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    let preview = document.getElementById('preview').setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 
 </body>

@@ -47,6 +47,10 @@ $categories = $database->select("tb_category", "*");
         </div>
 
     </section>
+
+    <?php
+    include "./parts/footer.php"
+    ?>
 </body>
 
 </html>
