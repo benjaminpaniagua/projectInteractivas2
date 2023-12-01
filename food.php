@@ -18,6 +18,9 @@ if ($_GET) {
         "tb_dish.description",
         "tb_dish.description_ar",
         "tb_dish.price",
+        "tb_dish.related_dish_one",
+        "tb_dish.related_dish_two",
+        "tb_dish.related_dish_three",
         "tb_amount_people.number",
     ], [
         "id_dish" => $_GET['id']
@@ -35,7 +38,6 @@ if ($_GET) {
                     $dish_cookie = $order_details[$i]['amount_dishes'];
                 }
             }
-            var_dump($data);
             $cookie_started = true;
         }
     }
@@ -54,6 +56,9 @@ if ($_POST) {
             "tb_dish.description",
             "tb_dish.description_ar",
             "tb_dish.price",
+            "tb_dish.related_dish_one",
+            "tb_dish.related_dish_two",
+            "tb_dish.related_dish_three",
             "tb_amount_people.number",
         ], [
             "id_dish" => $_POST["id_dish"]
@@ -113,6 +118,7 @@ if ($_POST) {
                 }
             }
         }
+        $dish_cookie = $_POST["points"];
     }
 }
 
@@ -181,24 +187,24 @@ if ($_POST) {
                     <input class="submit-btn" type="submit" value="">
                     <input type="text" class="inputText" placeholder="">
                 </div>
-                <a href="cart.php" class="text-decoration"> 
-                <?php
-                if (isset($_POST["add-order"])) {
-                    echo '<div class="btn-nav shake-left-right" id="cart">';
-                } else {
-                    echo '<div class="btn-nav" id="cart">';
-                }
-                ?>
-                <a id='cart' href="cart.php"><img class="img" src="./img/cart.svg" alt="shopping"></a>
-                <p class="cartText">Cart •</p>
-                <p class="cartText"><?php 
-                 if (isset($_COOKIE['cart'])) {
-                    $number = json_decode($_COOKIE['cart'], true);
-                    echo count($number); 
-                }else{
-                    echo'0';
-                }
-            ?></p>
+                <a href="cart.php" class="text-decoration">
+                    <?php
+                    if (isset($_POST["add-order"])) {
+                        echo '<div class="btn-nav shake-left-right" id="cart">';
+                    } else {
+                        echo '<div class="btn-nav" id="cart">';
+                    }
+                    ?>
+                    <a id='cart' href="cart.php"><img class="img" src="./img/cart.svg" alt="shopping"></a>
+                    <p class="cartText">Cart •</p>
+                    <p class="cartText"><?php
+                                        if (isset($_COOKIE['cart'])) {
+                                            $number = json_decode($_COOKIE['cart'], true);
+                                            echo count($number);
+                                        } else {
+                                            echo '0';
+                                        }
+                                        ?></p>
             </div>
             </a>
             </div>
@@ -284,73 +290,94 @@ if ($_POST) {
 
     <h2 class="tittle">Best Sellers</h2>
     <section class="container__saucer">
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <?php
+        if($item[0]['related_dish_one']!=null){
+            $related = $database->select("tb_dish", "*", [
+                'AND' => [
+                    "id_dish" => $item[0]['related_dish_one'],
+                    "visible" => 1
+                ]
 
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            ]);
+            echo "<div class='card'>";
+            echo "<img class='image__saucer' src='" . $related[0]["img_recorted"] . "' alt='" . $related[0]["names"] . "'>";
+            echo "<div class='container__information'>";
+            echo "<div class='linkf'>";
+            echo "<a class='link-class link-food' href='food.php?id=" . $related[0]["id_dish"] . "'>";
+            echo "<h3 class='name__saucer'>" . $related[0]["names"] . "</h3>";
+            echo "<p class='calification'>★★★★★</p>";
+            if ($related[0]['id_amount_people'] == 1)  echo "<p class='persons'>Individual</p>";
+            if ($related[0]['id_amount_people'] == 2)  echo "<p class='persons'>Couples</p>";
+            if ($related[0]['id_amount_people'] == 3)  echo "<p class='persons'>Familiar</p>";
+            echo "<div class='addCart'>";
+            echo "<p class='price'>$" . $related[0]["price"] . "</p>";
+            echo "<img class='add' src='./img/add.svg' alt='add'>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        }
 
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        if($item[0]['related_dish_two']!=null){
+            $related = $database->select("tb_dish", "*", [
+                'AND' => [
+                    "id_dish" => $item[0]['related_dish_two'],
+                    "visible" => 1
+                ]
 
-        <div class="card">
-            <img class="image__saucer" src="img/hummus.png" alt="Hummus">
-            <div class="container__information">
-                <div class="linkf">
-                    <a class="link-class link-food" href="food.php">
-                        <h3 class="name__saucer">Hummus</h3>
-                        <p class="calification">★★★★★</p>
-                        <p class="persons">1 person</p>
-                        <div class="addCart">
-                            <p class="price">$8</p>
-                            <img class="add" src="./img/add.svg" alt="add">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            ]);
+            echo "<div class='card'>";
+            echo "<img class='image__saucer' src='" . $related[0]["img_recorted"] . "' alt='" . $related[0]["names"] . "'>";
+            echo "<div class='container__information'>";
+            echo "<div class='linkf'>";
+            echo "<a class='link-class link-food' href='food.php?id=" . $related[0]["id_dish"] . "'>";
+            echo "<h3 class='name__saucer'>" . $related[0]["names"] . "</h3>";
+            echo "<p class='calification'>★★★★★</p>";
+            if ($related[0]['id_amount_people'] == 1)  echo "<p class='persons'>Individual</p>";
+            if ($related[0]['id_amount_people'] == 2)  echo "<p class='persons'>Couples</p>";
+            if ($related[0]['id_amount_people'] == 3)  echo "<p class='persons'>Familiar</p>";
+            echo "<div class='addCart'>";
+            echo "<p class='price'>$" . $related[0]["price"] . "</p>";
+            echo "<img class='add' src='./img/add.svg' alt='add'>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        }
+
+        if($item[0]['related_dish_three']!=null){
+            $related = $database->select("tb_dish", "*", [
+                'AND' => [
+                    "id_dish" => $item[0]['related_dish_three'],
+                    "visible" => 1
+                ]
+
+            ]);
+            echo "<div class='card'>";
+            echo "<img class='image__saucer' src='" . $related[0]["img_recorted"] . "' alt='" . $related[0]["names"] . "'>";
+            echo "<div class='container__information'>";
+            echo "<div class='linkf'>";
+            echo "<a class='link-class link-food' href='food.php?id=" . $related[0]["id_dish"] . "'>";
+            echo "<h3 class='name__saucer'>" . $related[0]["names"] . "</h3>";
+            echo "<p class='calification'>★★★★★</p>";
+            if ($related[0]['id_amount_people'] == 1)  echo "<p class='persons'>Individual</p>";
+            if ($related[0]['id_amount_people'] == 2)  echo "<p class='persons'>Couples</p>";
+            if ($related[0]['id_amount_people'] == 3)  echo "<p class='persons'>Familiar</p>";
+            echo "<div class='addCart'>";
+            echo "<p class='price'>$" . $related[0]["price"] . "</p>";
+            echo "<img class='add' src='./img/add.svg' alt='add'>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        }
+           
+        
+
+        ?>
     </section>
 
     <div class="container--btn">
