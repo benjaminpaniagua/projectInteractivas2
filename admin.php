@@ -27,153 +27,6 @@ $dishes = $database->select("tb_dish", [
 
 $message = "";
 
-
-// if (isset($_FILES["img_recorted"])) {
-
-
-//     $errors = [];
-//     $file_name = $_FILES["img_recorted"]["name"];
-//     $file_size = $_FILES["img_recorted"]["size"];
-//     $file_tmp = $_FILES["img_recorted"]["tmp_name"];
-//     $file_type = $_FILES["img_recorted"]["type"];
-//     $file_ext_arr = explode(".", $_FILES["img_recorted"]["name"]);
-
-//     $file_ext = end($file_ext_arr);
-//     $img_ext = ["jpeg", "png", "jpg", "webp"];
-
-//     if (!in_array($file_ext, $img_ext)) {
-//         $errors[] = "File type is not supported";
-//         $message = "File type is not supported";
-//     }
-
-//     if (empty($errors)) {
-//         //location-big-bend-national-park-texas.jpg
-//         $filename = strtolower($_POST["names"]); //poner recorted
-//         $filename = str_replace(',', '', $filename);
-//         $filename = str_replace('.', '', $filename);
-//         $filename = str_replace(' ', '-', $filename);
-//         $img = $filename . $file_ext;
-//         move_uploaded_file($file_tmp, "./img/" . $img);
-//     }
-//         // Reference: https://medoo.in/api/insert
-//         $database->insert("tb_dish", [
-//             "id_category" => $_POST["id_category"],
-//             "id_amount_people" => $_POST["id_amount_people"],
-//             "namel" => $_POST["namel"],
-//             "namel_ar" => $_POST["namel_ar"],
-//             "names" => $_POST["names"],
-//             "names_ar" => $_POST["names_ar"],
-//             "price" => $_POST["price"],
-//             "description" => $_POST["description"],
-//             "description_ar" => $_POST["description_ar"],
-//             // "popular" => $_POST["popular"],
-//             "price" => $_POST["price"]
-//             // "img" => $img,
-//             // "img_recorted" => $img_recorted, //cambiar
-//         ]);
-//     }
-
-
-
-// if (isset($_FILES["img"])) {
-
-
-//     $errors = [];
-//     $file_name = $_FILES["img"]["name"];
-//     $file_tmp = $_FILES["img"]["tmp_name"];
-//     $file_type = $_FILES["img"]["type"];
-//     $file_ext_arr = explode(".", $_FILES["img"]["name"]);
-
-//     $file_ext = end($file_ext_arr);
-//     $img_ext = ["jpeg", "png", "jpg", "webp"];
-
-//     if (!in_array($file_ext, $img_ext)) {
-//         $errors[] = "File type is not supported";
-//         $message = "File type is not supported";
-//     }
-
-//     if (empty($errors)) {
-//         //location-big-bend-national-park-texas.jpg
-//         $filename = strtolower($_POST["names"]);
-//         $filename = str_replace(',', '', $filename);
-//         $filename = str_replace('.', '', $filename);
-//         $filename = str_replace(' ', '-', $filename);
-//         $img = $filename . "." . $file_ext;
-//         move_uploaded_file($file_tmp, "./img/" . $img);
-
-//         // Reference: https://medoo.in/api/insert
-//         $database->insert("tb_dish", [
-//             "id_category" => $_POST["id_category"],
-//             "id_amount_people" => $_POST["id_amount_people"],
-//             "namel" => $_POST["namel"],
-//             "namel_ar" => $_POST["namel_ar"],
-//             "names" => $_POST["names"],
-//             "names_ar" => $_POST["names_ar"],
-//             "price" => $_POST["price"],
-//             "description" => $_POST["description"],
-//             "description_ar" => $_POST["description_ar"],
-//             // "popular" => $_POST["popular"],
-//             "price" => $_POST["price"],
-//             "img" => $img,
-//             // "img" => $_POST["img"],
-//             // "img_recorted" => $img_recorted, //cambiar
-//             "tb_dish.related_dish_one" => $_POST["related-dish-one"],
-//             "tb_dish.related_dish_two" => $_POST["related-dish-two"],
-//             "tb_dish.related_dish_three" => $_POST["related-dish-three"]
-//         ]);
-//     };
-// }
-
-// if (isset($_FILES["img_recorted"])) {
-
-//     // if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
-
-
-//     $errors_recorted = [];
-//     $file_name_recorted = $_FILES["img_recorted"]["name"];
-//     $file_tmp_recorted = $_FILES["img_recorted"]["tmp_name"];
-//     $file_type_recorted = $_FILES["img_recorted"]["type"];
-//     $file_ext_arr_recorted = explode(".", $_FILES["img_recorted"]["name"]);
-
-//     $file_ext_recorted = end($file_ext_arr_recorted);
-//     $img_ext_recorted = ["jpeg", "png", "jpg", "webp"];
-
-//     if (!in_array($file_ext_recorted, $img_ext_recorted)) {
-//         $errors_recorted[] = "File type is not supported";
-//         $message = "File type is not supported";
-//     }
-
-//     if (empty($errors_recorted)) {
-//         $filename = strtolower($_POST["namel"]);
-//         $filename = str_replace(',', '', $filename);
-//         $filename = str_replace('.', '', $filename);
-//         $filename = str_replace(' ', '-', $filename);
-//         $img_recorted = $filename . "." . $file_ext_recorted;
-//         move_uploaded_file($file_tmp_recorted, "./img/" . $img_recorted);
-
-//         // Reference: https://medoo.in/api/insert
-//         $database->insert("tb_dish", [
-//             "id_category" => $_POST["id_category"],
-//             "id_amount_people" => $_POST["id_amount_people"],
-//             "namel" => $_POST["namel"],
-//             "namel_ar" => $_POST["namel_ar"],
-//             "names" => $_POST["names"],
-//             "names_ar" => $_POST["names_ar"],
-//             "price" => $_POST["price"],
-//             "description" => $_POST["description"],
-//             "description_ar" => $_POST["description_ar"],
-//             // "popular" => $_POST["popular"],
-//             "price" => $_POST["price"],
-//             "img" => $img,
-//             "img_recorted" => $img_recorted,
-//             "tb_dish.related_dish_one" => $_POST["related-dish-one"],
-//             "tb_dish.related_dish_two" => $_POST["related-dish-two"],
-//             "tb_dish.related_dish_three" => $_POST["related-dish-three"]
-//         ]);
-//     };
-// }
-
-
 if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
 
 
@@ -192,7 +45,6 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
     }
 
     if (empty($errors)) {
-        //location-big-bend-national-park-texas.jpg
         $filename = strtolower($_POST["names"]);
         $filename = str_replace(',', '', $filename);
         $filename = str_replace('.', '', $filename);
@@ -222,28 +74,6 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
             $img_recorted = "./img/" . $filename . "." . $file_ext_recorted;
             move_uploaded_file($file_tmp_recorted, $img_recorted);
 
-            $errors_recorted = [];
-            $file_name_recorted = $_FILES["img_recorted"]["name"];
-            $file_tmp_recorted = $_FILES["img_recorted"]["tmp_name"];
-            $file_type_recorted = $_FILES["img_recorted"]["type"];
-            $file_ext_arr_recorted = explode(".", $_FILES["img_recorted"]["name"]);
-
-            $file_ext_recorted = end($file_ext_arr_recorted);
-            $img_ext_recorted = ["jpeg", "png", "jpg", "webp"];
-
-            if (!in_array($file_ext_recorted, $img_ext_recorted)) {
-                $errors_recorted[] = "File type is not supported";
-                $message = "File type is not supported";
-            }
-
-            if (empty($errors_recorted)) {
-                $filename = strtolower($_POST["namel"]);
-                $filename = str_replace(',', '', $filename);
-                $filename = str_replace('.', '', $filename);
-                $filename = str_replace(' ', '-', $filename);
-                $img_recorted ="./img/" . $filename . "." . $file_ext_recorted;
-                move_uploaded_file($file_tmp_recorted, $img_recorted);
-
 
                 // Reference: https://medoo.in/api/insert
                 $database->insert("tb_dish", [
@@ -260,15 +90,13 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                     "price" => $_POST["price"],
                     "img" => $img,
                     "img_recorted" => $img_recorted,
-                    "tb_dish.related_dish_one" => $_POST["related-dish-one"],
-                    "tb_dish.related_dish_two" => $_POST["related-dish-two"],
-                    "tb_dish.related_dish_three" => $_POST["related-dish-three"]
+                    "tb_dish.related_dish_one" => $_POST["related_dish_one"],
+                    "tb_dish.related_dish_two" => $_POST["related_dish_two"],
+                    "tb_dish.related_dish_three" => $_POST["related_dish_three"]
                 ]);
             };
         };
     }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -356,8 +184,8 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                         </select>
                     </div>
                     <div class="input-box">
-                        <label class="label-section" for="related-dish-one">Related Dish One</label>
-                        <select name="related-dish-one" id="related-dish-one">
+                        <label class="label-section" for="related_dish_one">Related Dish One</label>
+                        <select name="related_dish_one" id="related_dish_one">
                             <?php
                             foreach ($dishes as $dish) {
                                 echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
@@ -366,8 +194,8 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                         </select>
                     </div>
                     <div class="input-box">
-                        <label class="label-section" for="related-dish-two">Related Dish Two</label>
-                        <select name="related-dish-two" id="related-dish-two">
+                        <label class="label-section" for="related_dish_two">Related Dish Two</label>
+                        <select name="related_dish_two" id="related_dish_two">
                             <?php
                             foreach ($dishes as $dish) {
                                 echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
@@ -376,8 +204,8 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                         </select>
                     </div>
                     <div class="input-box">
-                        <label class="label-section" for="related-dish-three">Related Dish Three</label>
-                        <select name="related-dish-three" id="related-dish-three">
+                        <label class="label-section" for="related_dish_three">Related Dish Three</label>
+                        <select name="related_dish_three" id="related_dish_three">
                             <?php
                             foreach ($dishes as $dish) {
                                 echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
@@ -401,7 +229,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                 <div class="information-part">
                     <div>
                         <label for="input-file" class="drop-area" id="drop-area">
-                            <input type="file" accept="image/*" id="input-file" hidden name="img">
+                            <input type="file" accept="image/*" id="input-file" hidden name="img" onchange="readURL(this)">
                             <div id="img-view" class="img-view">
                                 <img id="short-image" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
                                 <p id="p-file" class="admin-text">Drag and drop or click here to upload image</p>
@@ -411,7 +239,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                     </div>
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
-                            <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
+                            <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted" onchange="readURL(this)">
                             <div id="img-view-recort" class="img-view img-view-recort">
                                 <img id="short-image-recort" class="short-image" src="./img/cloud-computing.svg" alt="image about someting">
                                 <p id="p-file-recort " class="p-file-recort admin-text">Click here to upload image</p>
@@ -420,7 +248,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                     </div>
                 </div>
             </div>
-            <div class="admin-addcontainer">
+            <div class="admin-addcontainer">qw
                 <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food">
             </div>
 
@@ -428,6 +256,18 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
     </div>
 
     <script src="./js/admin.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    let preview = document.getElementById('preview').setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 </body>
 

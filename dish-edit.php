@@ -6,6 +6,7 @@ $people = $database->select("tb_amount_people", "*");
 
 $dishes = $database->select("tb_dish", "*");
 
+
 $message = "";
 
 if (isset($_GET)) {
@@ -40,7 +41,6 @@ if (isset($_GET)) {
     ], [
         "id_dish" => $_GET["id_dish"]
     ]);
-    // var_dump($item);
 }
 
 if ($_POST) {
@@ -48,7 +48,7 @@ if ($_POST) {
     $data = $database->select("tb_dish", "*", [
         "id_dish" => $_POST["id"]
     ]);
-    if (isset($_FILES["img"]) && $_FILES["img"]["namel"] != "") {
+    if (isset($_FILES["img"]) && $_FILES["img"]["name"]) {
         var_dump($_FILES);
         $errors = [];
         $file_name = $_FILES["img"]["name"];
@@ -70,8 +70,7 @@ if ($_POST) {
             $filename = str_replace('.', '', $filename);
             $filename = str_replace(' ', '-', $filename);
             $img = "./img/" . $filename . "." . $file_ext;
-            echo $img;
-            move_uploaded_file($file_tmp, "./img/" . $img);
+            move_uploaded_file($file_tmp, $img);
         }
     } else {
         $img = $data[0]["img"];
@@ -79,7 +78,7 @@ if ($_POST) {
 
     //img_recorted
 
-    if (isset($_FILES["img_recorted"]) && $_FILES["img_recorted"]["namel"] != "") {
+    if (isset($_FILES["img_recorted"]) && $_FILES["img_recorted"]["name"]) {
 
         $errors_recorted = [];
         $file_name_recorted = $_FILES["img_recorted"]["name"];
@@ -100,9 +99,8 @@ if ($_POST) {
             $filename = str_replace(',', '', $filename);
             $filename = str_replace('.', '', $filename);
             $filename = str_replace(' ', '-', $filename);
-            $img_recorted = $filename . "." . $file_ext_recorted;
-            echo $img_recorted;
-            move_uploaded_file($file_tmp_recorted, "./img/recorted" . $img_recorted);
+            $img_recorted = "./img/" . $filename . "." . $file_ext_recorted;
+            move_uploaded_file($file_tmp_recorted, $img_recorted);
         }
     } else {
         $img_recorted = $data[0]["img_recorted"];
@@ -213,6 +211,7 @@ if ($_POST) {
                             ?>
                         </select>
                     </div>
+
                     <div class="input-box">
                         <label class="label-section" for="amount_people">Amount People</label>
                         <select name="id_amount_people" id="amount_people">
@@ -227,26 +226,20 @@ if ($_POST) {
                             ?>
                         </select>
                     </div>
+                    <?php
+                    for ($i = 0; $i < count($dishes); $i++) {
+                        if ($dishes[$i]["id_dish"] == $_GET["id_dish"]) {
+                            unset($dishes[$i]);
+                            break;
+                        }
+                    } //hace que se pongan todos los platillos excepto el de esa id
+                    ?>
                     <div class="input-box">
-                        <label class="label-section" for="related-dish-one">Related Dish One</label>
-                        <select name="related_dish_one" id="related-dish-one">
+                        <label class="label-section" for="related_dish_one">Related Dish One</label>
+                        <select name="related_dish_one" id="related_dish_one">
                             <?php
                             foreach ($dishes as $dish) {
-                                if ($item[0]["id_dish"] == $dish["id_dish"]) {
-                                    echo "<option value='" . $dish["id_dish"] . "' >" . $dish["namel"] . "</option>";
-                                } else {
-                                    echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label class="label-section" for="related-dish-two">Related Dish Two</label>
-                        <select name="related_dish_two" id="related-dish-two">
-                            <?php
-                            foreach ($dishes as $dish) {
-                                if ($item[0]["id_dish"] == $dish["id_dish"]) {
+                                if ($item[0]["related_dish_one"] == $dish["id_dish"]) {
                                     echo "<option value='" . $dish["id_dish"] . "' selected>" . $dish["namel"] . "</option>";
                                 } else {
                                     echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
@@ -256,11 +249,25 @@ if ($_POST) {
                         </select>
                     </div>
                     <div class="input-box">
-                        <label class="label-section" for="related-dish-three">Related Dish Three</label>
-                        <select name="related_dish_three" id="related-dish-three">
+                        <label class="label-section" for="related_dish_two">Related Dish Two</label>
+                        <select name="related_dish_two" id="related_dish_two">
                             <?php
                             foreach ($dishes as $dish) {
-                                if ($item[0]["id_dish"] == $dish["id_dish"]) {
+                                if ($item[0]["related_dish_two"] == $dish["id_dish"]) {
+                                    echo "<option value='" . $dish["id_dish"] . "' selected>" . $dish["namel"] . "</option>";
+                                } else {
+                                    echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label class="label-section" for="related_dish_three">Related Dish Three</label>
+                        <select name="related_dish_three" id="related_dish_three">
+                            <?php
+                            foreach ($dishes as $dish) {
+                                if ($item[0]["related_dish_three"] == $dish["id_dish"]) {
                                     echo "<option value='" . $dish["id_dish"] . "' selected>" . $dish["namel"] . "</option>";
                                 } else {
                                     echo "<option value='" . $dish["id_dish"] . "'>" . $dish["namel"] . "</option>";
@@ -278,26 +285,20 @@ if ($_POST) {
                             <label class="radio-label" for="popular-no">No</label>
                         </div>
                     </div>
-
                 </div>
                 <h3 class="tittle-admin subtittle-admin">Images</h3>
                 <div class="information-part">
                     <div>
                         <label for="input-file" class="drop-area" id="drop-area">
-                            <input type="file" accept="image/*" id="input-file" hidden name="img">
-                            <!-- <input id="img" hidden name="img" test="<?php echo $item[0]["img"]; ?>"> -->
-                            <input id="img" type="hidden" name="img" value="<?php echo $item[0]["img"]; ?>">
+                            <input type="file" accept="image/*" id="input-file" hidden name="img" onchange="readURL(this)">
                             <div id="img-view" class="edit">
                                 <img class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
                             </div>
-
                         </label>
                     </div>
                     <div>
                         <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
-                            <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted">
-                            <input id="img_recorted" hidden name="img_recorted" test="<?php echo $item[0]["img_recorted"]; ?>" onchange="readURL(this)">
-                            <!-- <input id="img_recorted" type="hidden" name="img_recorted" value="<?php echo $item[0]["img_recorted"]; ?>"> -->
+                            <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted" onchange="readURL(this)">
                             <div id="img-view-recort" class="img-view img-view-recort" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
                             </div>
                         </label>

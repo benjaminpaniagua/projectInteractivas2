@@ -38,7 +38,7 @@ if (isset($_GET)) {
     <h2 class="search-title">Explore Dishes</h2>
     <?php
     if (count($items) > 0) {
-        echo "<p class='activity-text'> We found : " . count($items) . " dish(s)</p>";
+        echo "<p class='activity-text text-results'> We found : " . count($items) . " dish(s)</p>";
     }
 
     ?>
@@ -68,7 +68,7 @@ if (isset($_GET)) {
                 echo "</div>";
             }
         } else {
-            echo "<h3 class='search-title'>No results</h3>";
+            echo "<h3 class='activity-text text-results'>No results</h3>";
         }
 
 

@@ -445,44 +445,42 @@
 //     ]);
 
 // }
-
 ?>
 <!-- Popular -->
 
 <!-- Releated dishes -->
 <?php
-// require_once '../database.php';
-// $items = $database->select("tb_dish", "tb_dish.id_dish", [
-//     "visible" => 1
-// ]);
-// foreach ($items as $index=> $item) {
+require_once '../database.php';
+$items = $database->select("tb_dish", "tb_dish.id_dish", [
+    "visible" => 1
+]);
+foreach ($items as $index=> $item) {
 
-// // Randomly shuffle the array of numbers
-// $dishes = $database->select("tb_dish", "tb_dish.id_dish", [
-//     "visible" => 1
-// ]);
-// unset($dishes[$index]);
-// shuffle($dishes);
+// Randomly shuffle the array of numbers
+$dishes = $database->select("tb_dish", "tb_dish.id_dish", [
+    "visible" => 1
+]);
+unset($dishes[$index]);
+shuffle($dishes);
 
-//     $database->update("tb_dish", [
-//         "related_dish_one" => $dishes[0],
+    $database->update("tb_dish", [
+        "related_dish_one" => $dishes[0],
 
-//     ], [
-//         "id_dish" => $item
-//     ]);
-//     $database->update("tb_dish", [
-//         "related_dish_two" => $dishes[1],
+    ], [
+        "id_dish" => $item
+    ]);
+    $database->update("tb_dish", [
+        "related_dish_two" => $dishes[1],
 
-//     ], [
-//         "id_dish" => $item
-//     ]);
-//     $database->update("tb_dish", [
-//         "related_dish_three" => $dishes[2],
+    ], [
+        "id_dish" => $item
+    ]);
+    $database->update("tb_dish", [
+        "related_dish_three" => $dishes[2],
 
-//     ], [
-//         "id_dish" => $item
-//     ]);
-// }
-
+    ], [
+        "id_dish" => $item
+    ]);
+}
 ?>
 <!-- Releated dishes -->

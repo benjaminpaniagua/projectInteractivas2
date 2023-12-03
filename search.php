@@ -24,29 +24,30 @@ $categories = $database->select("tb_category", "*");
     include "./parts/nav.php";
     ?>
 
-    <section class="dishes-container">
-        <h2 class="search-title">Explore Dishes </h2>
-        <div class="dish-search-container">
-            <form method="get" action="results.php">
-                <label for="dish_amount_people">Amount People</label>
-                <select name="dish_amount_people" id="dish_amount_people">
+<section class="dishes-container">
+    <h2 class="search-title">Explore Dishes</h2>
+    <div class="dish-search-container">
+        <form method="get" action="results.php">
+            <div class="form-group">
+                <label for="dish_amount_people" class="dishes-container">Amount People</label>
+                <select class="form-control dishes-container" name="dish_amount_people" id="dish_amount_people">
                     <?php
                     foreach ($peoples as $people) {
                         echo "<option value='" . $people["id_amount_people"] . "'>" . $people["name_amount_people"] . "</option>";
                     }
                     ?>
                 </select>
-                <!-- <label for="dish_category">Category</label>
-                <select name="dish_category" id="dish_category"> 
-                </select>-->
-                <label for="search" class="activity-tittle">Search</label>
-                <input type="text" name="keyword">
-                <input type="submit" class="search-btn" value="Search Dish">
-            </form>
-
-        </div>
-
-    </section>
+            </div>
+            <div class="form-group">
+                <label for="search" class="activity-tittle dishes-container">Search</label>
+                <input class="form-control dishes-container" type="text" name="keyword">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn-searchDish" value="Search Dish">
+            </div>
+        </form>
+    </div>
+</section>
 
     <?php
     include "./parts/footer.php"
