@@ -94,6 +94,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                 "tb_dish.related_dish_two" => $_POST["related_dish_two"],
                 "tb_dish.related_dish_three" => $_POST["related_dish_three"]
             ]);
+            
         };
     };
 }
