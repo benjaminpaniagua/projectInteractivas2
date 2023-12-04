@@ -75,28 +75,28 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
             move_uploaded_file($file_tmp_recorted, $img_recorted);
 
 
-                // Reference: https://medoo.in/api/insert
-                $database->insert("tb_dish", [
-                    "id_category" => $_POST["id_category"],
-                    "id_amount_people" => $_POST["id_amount_people"],
-                    "namel" => $_POST["namel"],
-                    "namel_ar" => $_POST["namel_ar"],
-                    "names" => $_POST["names"],
-                    "names_ar" => $_POST["names_ar"],
-                    "price" => $_POST["price"],
-                    "description" => $_POST["description"],
-                    "description_ar" => $_POST["description_ar"],
-                    "popular" => $_POST["popular"],
-                    "price" => $_POST["price"],
-                    "img" => $img,
-                    "img_recorted" => $img_recorted,
-                    "tb_dish.related_dish_one" => $_POST["related_dish_one"],
-                    "tb_dish.related_dish_two" => $_POST["related_dish_two"],
-                    "tb_dish.related_dish_three" => $_POST["related_dish_three"]
-                ]);
-            };
+            // Reference: https://medoo.in/api/insert
+            $database->insert("tb_dish", [
+                "id_category" => $_POST["id_category"],
+                "id_amount_people" => $_POST["id_amount_people"],
+                "namel" => $_POST["namel"],
+                "namel_ar" => $_POST["namel_ar"],
+                "names" => $_POST["names"],
+                "names_ar" => $_POST["names_ar"],
+                "price" => $_POST["price"],
+                "description" => $_POST["description"],
+                "description_ar" => $_POST["description_ar"],
+                "popular" => ($_POST["popular"] == "yes") ? "y" : "n",
+                "price" => $_POST["price"],
+                "img" => $img,
+                "img_recorted" => $img_recorted,
+                "tb_dish.related_dish_one" => $_POST["related_dish_one"],
+                "tb_dish.related_dish_two" => $_POST["related_dish_two"],
+                "tb_dish.related_dish_three" => $_POST["related_dish_three"]
+            ]);
         };
-    }
+    };
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,7 +223,6 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                             <label class="radio-label" for="popular-no">No</label>
                         </div>
                     </div>
-
                 </div>
                 <h3 class="tittle-admin subtittle-admin">Images</h3>
                 <div class="information-part">
@@ -248,7 +247,7 @@ if (isset($_FILES["img_recorted"]) && isset($_FILES["img"])) {
                     </div>
                 </div>
             </div>
-            <div class="admin-addcontainer">qw
+            <div class="admin-addcontainer">
                 <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food">
             </div>
 

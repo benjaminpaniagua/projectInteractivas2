@@ -121,7 +121,7 @@
 .section-container {
     display: flex;
     align-items: start;
-    margin: auto;
+    /* margin: auto; */
     flex-direction: column;
 }
 
@@ -399,6 +399,7 @@
     padding: 8px;
     margin-top: 5px;
     box-sizing: border-box;
+    border-radius: 15px;
 }
 
 .btn-searchDish {

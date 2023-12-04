@@ -279,39 +279,41 @@ if ($_POST) {
                     <div class="container-add-dish">
                         <label class="label-section" for="popular">Popular</label>
                         <div class="radio-options">
-                            <input type="radio" value="yes" name="popular" id="popular-yes">
+                            <input type="radio" value="y" name="popular" id="popular-yes" <?= $item[0]["popular"] == 'y' ? 'checked' : '' ?>>
                             <label class="radio-label" for="popular-yes">Yes</label>
-                            <input type="radio" value="no" name="popular" id="popular-no" checked>
+                            <input type="radio" value="n" name="popular" id="popular-no" <?= $item[0]["popular"] == 'n' ? 'checked' : '' ?>>
                             <label class="radio-label" for="popular-no">No</label>
                         </div>
                     </div>
-                </div>
-                <h3 class="tittle-admin subtittle-admin">Images</h3>
-                <div class="information-part">
-                    <div>
-                        <label for="input-file" class="drop-area" id="drop-area">
-                            <input type="file" accept="image/*" id="input-file" hidden name="img" onchange="readURL(this)">
-                            <div id="img-view" class="edit">
-                                <img class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
-                            </div>
-                        </label>
-                    </div>
-                    <div>
-                        <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
-                            <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted" onchange="readURL(this)">
-                            <div id="img-view-recort" class="img-view img-view-recort" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
-                            </div>
-                        </label>
-                    </div>
+                    <?php
+                    ?>
                 </div>
             </div>
+            <h3 class="tittle-admin subtittle-admin">Images</h3>
+            <div class="information-part">
+                <div>
+                    <label for="input-file" class="drop-area" id="drop-area">
+                        <input type="file" accept="image/*" id="input-file" hidden name="img" onchange="readURL(this)">
+                        <div id="img-view" class="edit">
+                            <img class="edit-part-img" src="<?php echo $item[0]["img"]; ?>" alt="">
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="input-recort" class="drop-area drop-area-recort" id="drop-area-recort">
+                        <input type="file" accept="image/*" id="input-recort" hidden name="img_recorted" onchange="readURL(this)">
+                        <div id="img-view-recort" class="img-view img-view-recort" style="background-image: url(<?php echo $item[0]["img_recorted"]; ?>)">
+                        </div>
+                    </label>
+                </div>
+            </div>
+
             <div class="admin-addcontainer">
                 <input class=" button-forget btn-add admin-text" type="submit" name="add" value="Add food">
                 <input type="hidden" name="id" value="<?php echo $item[0]["id_dish"]; ?>">
             </div>
         </form>
     </div>
-
     <script src="./js/admin.js"></script>
     <script>
         let recorted1 = document.getElementById('input-recort');
@@ -323,7 +325,6 @@ if ($_POST) {
             let imageRecorted = document.getElementById('img_recorted');
             let imgLink = URL.createObjectURL(imageNormal);
             recorted1.style.backgroundImage = "url(./img/" + imgLink + ")";
-            // recorted2.style.backgroundImage = "url(./img/" + imageRecorted + ")";
         }
         document.addEventListener("DOMContentLoaded", function() {
             editImage();
