@@ -88,6 +88,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./img/logoMain.svg" />
     <title>Sign in</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +112,7 @@
         <div class="phone-nav">
             <ul class="nav-list gap">
                 <li><a class="nav-list-link margin-menu" href="index.php">Home</a></li>
-                <li><a class="nav-list-link margin-menu" href="menu.html">Menu</a></li>
+                <li><a class="nav-list-link margin-menu" href="menu.php">Menu</a></li>
                 <li><a class="nav-list-link margin-menu" href="#">Popular</a></li>
                 <li><a class="nav-list-link margin-menu" href="#">Sign in</a></li>
             </ul>
@@ -181,7 +182,6 @@
             echo'placeholder="Password">';
             echo'<input class="login-input button button-forget" type="submit" name="btn-forget" value="forget my password">';
             echo'<input class="login-input button"type="submit" name="btn-login" value="Login">';
-            
          }
            
                 
